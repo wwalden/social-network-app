@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const models = require("../models");
 
 exports.signup = (req, res, next) => {
   const newUser = models.User.create({
