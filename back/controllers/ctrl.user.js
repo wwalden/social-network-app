@@ -1,7 +1,7 @@
-const models = require("../models/user");
+const User = require("../models/user");
 
 exports.signup = (req, res, next) => {
-  const newUser = models.User.create({
+  const newUser = User.create({
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,

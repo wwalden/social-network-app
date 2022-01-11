@@ -6,4 +6,4 @@ const sequelize = new Sequelize("socialnetwork", "root", "hMxmLBhxqyGFXXEG9DRC7k
 });
 
 module.exports = sequelize;
-global.sequelize = sequelize;
+
