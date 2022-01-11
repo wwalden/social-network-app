@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "hMxmLBhxqyGFXXEG9DRC7kpd",
-    "database": "database_development",
+    "database": "socialnetwork",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

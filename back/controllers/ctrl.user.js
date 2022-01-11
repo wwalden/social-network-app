@@ -1,4 +1,4 @@
-const models = require("../models");
+const models = require("../models/user");
 
 exports.signup = (req, res, next) => {
   const newUser = models.User.create({
@@ -11,3 +11,4 @@ exports.signup = (req, res, next) => {
     .then((newUser) => res.status(201).json({ userId: newUser.id }))
     .catch((error) => res.status(400).json({ error }));
 };
+
