@@ -5,6 +5,7 @@ exports.signup = (req, res, next) => {
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
+    bio: req.body.bio,
     isAdmin: 0,
   })
     .then((newUser) => res.status(201).json({ userId: newUser.id }))
