@@ -25,7 +25,7 @@ module.exports = {
         },
         bio: {
           allowNull: true,
-          type: Sequelize.STRING(1024)
+          type: Sequelize.STRING
         },
         isAdmin: {
           allowNull: false,

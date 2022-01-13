@@ -2,11 +2,40 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
-// Ajouter Regex pour valider email, condition sur la taille du username, etc...
-// check si unique, peut se faire via SQL, correct?
-// Promises imbriquées à changer: essayer async await
+const EMAIL_REGEX     = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+// regex password: at least 8 chars (uppercase AND lowercase), at least one number, at least one special char
+const PASSWORD_REGEX  =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+
 
 exports.signup = (req, res, next) => {
+  let email = req.body.email;
+  let username = req.body.username;
+  let password = req.body.password;
+
+  if (!email) {
+    return res.status(400).json({ 'error': 'missing email, please fill email' });
+  }
+
+  if (!username) {
+    return res.status(400).json({ 'error': 'missing username, please fill username' });
+  }
+
+  if (!password) {
+    return res.status(400).json({ 'error': 'missing password, please fill password' });
+  }
+  
+  if (username.length >= 17 || username.length <= 5) {
+    return res.status(400).json({ 'error': 'wrong username (must be length 6 - 16)' });
+  }
+
+  if (!EMAIL_REGEX.test(email)) {
+    return res.status(400).json({ 'error': 'email is not valid' });
+  }
+
+  if (!PASSWORD_REGEX.test(password)) {
+    return res.status(400).json({ 'error': 'invalid password :  must contain at least 8 chars (uppercase AND lowercase), at least one number, at least one special char)' });
+  }
+  
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
