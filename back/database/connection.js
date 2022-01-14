@@ -5,5 +5,6 @@ const sequelize = new Sequelize("socialnetwork", "root", "hMxmLBhxqyGFXXEG9DRC7k
   dialect: "mysql"
 });
 
+
 module.exports = sequelize;
 

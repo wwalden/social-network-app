@@ -30,3 +30,10 @@ module.exports = sequelize.define("User", {
       type: Sequelize.BOOLEAN,
     }
 });
+
+
+/*
+User.hasMany(Message, {foreignKey: 'userId'});
+Message.belongsTo(User, {foreignKey: 'userId'})
+*/
+
