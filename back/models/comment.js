@@ -1,24 +1,23 @@
 const Sequelize = require("sequelize");
 const sequelize = require('../database/connection');
 
-module.exports = sequelize.define("Message", {
+module.exports = sequelize.define("Comment", {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER(11),
     },
+    messid: {
+      allowNull: false,
+      type: Sequelize.INTEGER(11),
+    },
     userid: {
       allowNull: false,
       type: Sequelize.INTEGER(11),
     },
-    content: {
+    inc: {
       allowNull: false,
-      type: Sequelize.STRING(1024),
-    },
-    likes: {
-      allowNull: false,
-      defaultValue: 0,
       type: Sequelize.INTEGER(11),
     }
 });
