@@ -1,6 +1,9 @@
 const Message = require("../models/message");
 const Comment = require("../models/comment");
 
+
+// Messages Controllers
+
 exports.createMess = (req, res, next) => {
   const newMess = Message.create({
     userid: req.body.userid,
@@ -36,5 +39,23 @@ exports.showAllMess = (req, res, next) => {
   Message.findAll()
     .then(sauces => res.status(200).json(sauces))
     .catch(error => res.status(400).json({ error }));
+};
+
+
+
+// Likes Controllers
+
+
+
+
+// Comments Controllers
+
+exports.addComment = (req, res, next) => {
+  const newComment = Comment.create({
+    userid: req.body.userid,
+    content: req.body.content
+  })
+    .then((newComment) => res.status(201).json({ Message: newComment.id }))
+    .catch((error) => res.status(400).json({ error }));
 };
 
