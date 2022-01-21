@@ -19,7 +19,7 @@ exports.deleteMess = (req, res, next) => {
       id: req.body.id
     }
   })
-    .then(() => res.status(200).json({ message: 'Message supprimé !'}))
+    .then(() => res.status(200).json({ message: 'Message bien supprimé !'}))
     .catch(error => res.status(400).json({ error }));
 };
 
