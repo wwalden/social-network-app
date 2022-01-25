@@ -1,8 +1,11 @@
 const jwt = require("jsonwebtoken");
 
+
+// pourquoi celle-ci fonctionne sans asyn await??
 module.exports = (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    // OLD: const token = req.headers.authorization.split(" ")[1];
+    const token = req.cookies.jwt;
     const decodedToken = jwt.verify(token, `${process.env.TOKEN_KEY}`);
     const userId = decodedToken.userId.toString();
     res.locals.user = userId;
@@ -13,6 +16,10 @@ module.exports = (req, res, next) => {
     });
   }
 };
+
+
+
+
 
 /*
 // OLD VERSION //

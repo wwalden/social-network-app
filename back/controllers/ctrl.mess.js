@@ -1,7 +1,8 @@
 const Message = require("../models/message");
+const User = require("../models/user");
 const Comment = require("../models/comment");
 
-// cookies 1h58
+
 
 // Messages Controllers
 
@@ -22,7 +23,7 @@ exports.createMess = (req, res, next) => {
 };
 
 exports.showOneMess = (req, res, next) => {
-  Message.findOne()
+  Message.findOne({ where: { id: req.params.id } })
     .then(message => res.status(200).json(message))
     .catch(error => res.status(400).json({ error }));
 };
@@ -31,9 +32,14 @@ exports.showOneMess = (req, res, next) => {
 exports.updateMess = async (req, res, next) => {
   try {
     const messInDb = await Message.findOne({ where: { id: req.params.id } })
-    const userInDb = messInDb.userid.toString();
-    if (userInDb !== res.locals.user) {
+    const userOfMessInDb = messInDb.userid.toString();
+ 
+    if (userOfMessInDb !== res.locals.user) {
+      const userInDb = await User.findOne({ where: { id: res.locals.user } })
+      const userStatus = userInDb.isAdmin.toString();
+      if (userStatus !== true) {
       return res.status(400).json({ message: "not allowed" })
+      }
     }
     await Message.update(
         {content: req.body.content}, {
@@ -41,7 +47,7 @@ exports.updateMess = async (req, res, next) => {
           id: req.params.id
         }
       })
-    res.status(200).json({ message: 'Message mis à jour !', mess: req.params.id, user: userInDb, userbis: res.locals.user, newmess: req.body.content})
+    res.status(200).json({ message: 'Message mis à jour !', mess: req.params.id, user: userOfMessInDb, userbis: res.locals.user, newmess: req.body.content})
   } catch {
     res.status(400).json({ error})
   }
@@ -51,16 +57,20 @@ exports.updateMess = async (req, res, next) => {
 exports.deleteMess = async (req, res, next) => {
   try {
     const messInDb = await Message.findOne({ where: { id: req.params.id } })
-    const userInDb = messInDb.userid.toString();
-    if (userInDb !== res.locals.user) {
-      return res.status(400).json({ message: "not allowed" })
+    const userOfMessInDb = messInDb.userid.toString();
+    if (userOfMessInDb !== res.locals.user) {
+      const userInDb = await User.findOne({ where: { id: res.locals.user } })
+      const userStatus = userInDb.isAdmin.toString();
+      if (userStatus !== true) {
+        return res.status(400).json({ message: "not allowed" })
+      }
     }
       await Message.destroy({
           where : {
             id: req.params.id
           }
         })
-      res.status(200).json({ message: 'Message supprimé !', mess: req.params.id, user: userInDb, userbis: res.locals.user})
+      res.status(200).json({ message: 'Message supprimé !', mess: req.params.id, user: userOfMessInDb, userbis: res.locals.user})
   } catch {
     res.status(400).json({ error })
   }
