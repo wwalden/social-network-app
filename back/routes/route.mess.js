@@ -13,7 +13,7 @@ router.delete('/:id', auth, messCtrl.deleteMess);
 router.put('/:id', auth, messCtrl.updateMess);
 
 
-//router.post('/', auth, messCtrl.addComment);
+router.post('/:id/', auth, messCtrl.addComment);
 
 
 module.exports = router;

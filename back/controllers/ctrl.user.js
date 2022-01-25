@@ -15,9 +15,7 @@ TODO:
 const { email, password } = req.body
 
 3) découper les fonctions? (pour jwt.sign par exemple)
-
-5) Remettre les Regex sur le userUpdate (username taille mini par exemple) + Ajouter la modif du mdp
-
+4) Remettre les Regex sur le userUpdate (username taille mini par exemple) + Ajouter la modif du mdp
 
 */
 
