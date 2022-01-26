@@ -10,12 +10,13 @@ const sessionDuration = 24 * 3600 * 1000;
 /*
 
 TODO:
-1) PASSER LES FONCTIONS EN ASYNC AWAIT
+1) PASSER LES FONCTIONS EN ASYNC AWAIT -- Pourquoi l'Update du comment n'est pas Asynchrone???
 2) PASSER MES VARIABLES EN DESTRUCTURING:
 const { email, password } = req.body
 
 3) découper les fonctions? (pour jwt.sign par exemple)
 4) Remettre les Regex sur le userUpdate (username taille mini par exemple) + Ajouter la modif du mdp
+
 
 */
 

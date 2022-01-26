@@ -16,7 +16,7 @@ module.exports = sequelize.define("Comment", {
       allowNull: false,
       type: Sequelize.INTEGER(11),
     },
-    inc: {
+    content: {
       allowNull: false,
       type: Sequelize.INTEGER(11),
     }

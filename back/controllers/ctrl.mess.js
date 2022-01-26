@@ -82,15 +82,30 @@ exports.deleteMess = async (req, res, next) => {
 
 
 // Comments Controllers
+// PASSER 2 PARAMETRES ? -- AVEC: http://localhost:3000/api/?mess=16&comment=23
+
 
 exports.addComment = (req, res, next) => {
   const newComment = Comment.create({
     userid: req.body.userid,
+    messid: req.params.id,
     content: req.body.content
   })
-    .then((newComment) => res.status(201).json({ Message: newComment.id }))
+    .then((newComment) => res.status(201).json({ Message: newComment.id, content: newComment.content }))
     .catch((error) => res.status(400).json({ error }));
 };
 
 
-
+exports.updateComment = (req, res, next) => {
+  try {
+    Comment.update(
+      {content: req.body.content}, {
+      where : {
+        id: req.params.id
+      }
+    })
+    res.status(200).json({ message: 'Commentaire mis à jour !'})
+  } catch {
+    res.status(400).json({ error })
+  }
+};
