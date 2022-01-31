@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Message.css';
 
 
-function Message() {
+const Message = () => {
   return (
     <div id="mess_container">
       <div className="messages">

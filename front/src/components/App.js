@@ -1,17 +1,12 @@
-import Banner from './Banner'
-import Feed from './Feed'
-import Aside from './Aside'
+import React from 'react';
+import Routes from "./routes/index";
 import '../styles/App.css';
 
 
-function App() {
+const App = () => {
   return ( 
     <div>
-      <Banner />
-      <div id="main_page">
-        <Feed />
-        <Aside />
-      </div>
+      <Routes />
     </div>
 )
 }

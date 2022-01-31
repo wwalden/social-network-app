@@ -1,5 +1,19 @@
-import React from 'react';
+import Banner from '../components/Banner'
+import Feed from '../components/Feed'
+import Aside from '../components/Aside'
+import '../styles/App.css';
 
-export default function Home() {
-  return <div></div>;
+
+const Home = () => {
+  return ( 
+    <div>
+      <Banner />
+      <div id="main_page">
+        <Feed />
+        <Aside />
+      </div>
+    </div>
+)
 }
+
+export default Home;

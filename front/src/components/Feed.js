@@ -2,7 +2,7 @@ import React from 'react';
 import Message from './Message'
 import '../styles/Feed.css';
 
-function Feed() {
+const Feed = () => {
   return (
     <div id="groupo_feed">
       <h2>Fil d'actualités</h2>
