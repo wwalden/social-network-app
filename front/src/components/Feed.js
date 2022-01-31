@@ -1,11 +1,12 @@
 import React from 'react';
+import Message from './Message'
 import '../styles/Feed.css';
 
 function Feed() {
   return (
     <div id="groupo_feed">
-      <h2>This is a feed</h2>
-      
+      <h2>Fil d'actualités</h2>
+      <Message />
     </div>
   )
 }

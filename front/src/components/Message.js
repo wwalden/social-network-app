@@ -1,11 +1,23 @@
 import React from 'react';
+import '../styles/Message.css';
+
 
 function Message() {
   return (
-    <div>
-
+    <div id="mess_container">
+      <div className="messages">
+        <h3>Ceci est un Message</h3>
+        <p>vgubj yuvbuy bchgbu cbu iugbuc hbuc cuhr cuzev czeuvbc ezze cezrbuycbuikhoi cziuhgbtv</p>
+      </div>
+      <div className="messages">
+        <h3>Ceci est un Message</h3>
+        <p>vgubj yuvbuy bchgbu cbu iugbuc hbuc cuhr cuzev czeuvbc ezze cezrbuycbuikhoi cziuhgbtv</p>
+      </div>
+      <div className="messages">
+        <h3>Ceci est un Message</h3>
+        <p>vgubj yuvbuy bchgbu cbu iugbuc hbuc cuhr cuzev czeuvbc ezze cezrbuycbuikhoi cziuhgbtv</p>
+      </div>
     </div>
-
   )
 }
 
