@@ -1,0 +1,10 @@
+.groupo_logo {
+  height: 200px;
+}
+
+.groupo_banner {
+  color: black;
+  text-align: right;
+  padding: 10px;
+  border-bottom: solid 3px red;
+}

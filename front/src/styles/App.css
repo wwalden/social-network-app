@@ -1,0 +1,11 @@
+#main_page{
+  display: flex;
+  min-height: 1200px;
+  width: calc(100% - 20px);
+  margin: 0px 10px;
+}
+
+h2 {
+  text-align: center;
+  color: #140F2D;
+}
