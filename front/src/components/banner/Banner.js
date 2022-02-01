@@ -4,6 +4,7 @@ import logo from '../../assets/icon.png'
 import '../../styles/Banner.css';
 import Clock from './Clock';
 import NavBar from './NavBar';
+import ConnectionCheck from './ConnectionCheck';
 
 
 const Banner = () => {
@@ -13,6 +14,7 @@ const Banner = () => {
       <Clock />
       <img className="logo_anim" alt='Logo Groupomania' src={logo}/>
       <NavBar />
+      <ConnectionCheck />
     </div>
   )
 }

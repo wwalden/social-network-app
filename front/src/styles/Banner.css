@@ -19,10 +19,26 @@
   background:#fdca77;
   width: 250px;
   height: 45px;
-  border-radius: 25px;
+  border-radius: 15px;
   padding-top: 12px; 
 }
 
+
+
+.groupo_check {
+  display: flex;
+  position: relative;
+  bottom: 150px;
+  align-items: center;
+  margin-left: 100px;
+  padding-left: 10px;
+  background:#fdca77;
+  width: 240px;
+  height: 18px;
+  border-radius: 15px;
+  font-size: 0.8em;
+  color: white; 
+}
 
 
 .fas {
