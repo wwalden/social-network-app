@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Aside.css';
+import '../../styles/Aside.css';
 
 const Aside = () => {
   return (

@@ -1,6 +1,6 @@
-import Banner from '../components/Banner'
-import Feed from '../components/Feed'
-import Aside from '../components/Aside'
+import Banner from '../components/banner/Banner'
+import Feed from '../components/feed/Feed'
+import Aside from '../components/aside/Aside'
 import '../styles/App.css';
 
 

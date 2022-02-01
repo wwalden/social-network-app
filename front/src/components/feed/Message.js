@@ -1,6 +1,6 @@
 import React from 'react';
-import GetMess from './GetMess'
-import '../styles/Message.css';
+import GetMess from './GetMess';
+import '../../styles/Message.css';
 
 
 
@@ -9,7 +9,7 @@ const Message = () => {
     <div id="mess_container">
       <div className="messages">
         <h3>Ceci est un Message</h3>
-        <GetMess />
+        {/* <GetMess /> */}
       </div>
       <div className="messages">
         <h3>Ceci est un Message</h3>

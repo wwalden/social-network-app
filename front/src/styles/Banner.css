@@ -8,3 +8,28 @@
   padding: 10px;
   border-bottom: solid 3px red;
 }
+
+
+.logo_anim {
+  height: 200px;
+  animation: logo-spin infinite 10s linear;
+}
+
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.styled_font {
+font-family: 'Comforter', cursive;
+font-weight: bold;
+font-style: italic;
+font-size: 48px;
+
+}
