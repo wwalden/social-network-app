@@ -1,5 +1,5 @@
 import React from 'react';
-import GetMess from './GetMess';
+// import GetMess from './GetMess';
 import '../../styles/Message.css';
 
 

@@ -1,9 +1,9 @@
 .messages {
   margin: 10px;
   padding: 5px;
-  border: solid 3px #3F88C5;
   border-radius: 25px;
   width: 75%;
+  background: rgb(255, 0, 0, 0.05);
 
 }
 

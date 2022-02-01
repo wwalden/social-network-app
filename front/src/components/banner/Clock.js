@@ -13,16 +13,16 @@ class Clock extends React.Component {
 
     return (
       <div>
-        <p>Bienvenue sur <span className="styled_font">  keep'in  </span> by Groupomania!</p>
-        <p>Nous sommes {this.state.date.toLocaleDateString('fr-FR', dayDisplay)}, il est {this.state.date.toLocaleTimeString('fr-FR', timeDisplay)}</p>
+        <p>Bienvenue sur <span className="styled_font">  in'Touch  </span> by Groupomania!</p>
+        <p>Nous sommes <span className="colored_font">{this.state.date.toLocaleDateString('fr-FR', dayDisplay)}</span>, il est {this.state.date.toLocaleTimeString('fr-FR', timeDisplay)}</p>
       </div>
     );
   }
   componentDidMount() {
-    const halfAMin = 30000;
+    const refreshDuration = 1000;
     setInterval(() => {
       this.setState({ date: new Date() });
-    }, halfAMin);
+    }, refreshDuration);
   }
 }
 

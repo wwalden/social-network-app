@@ -1,4 +1,24 @@
 #groupo_feed {
-  width: 75%;
+  padding-top: 30px;
+  border: 3px solid rgb(255, 0, 0, 0.3);
+  border-radius: 25px;
+
+  grid-column: 1/2;
+  grid-row: 2/3;
+
+}
+
+.groupo_trees {
+  padding: 10px 20px 0px 20px;
+  background: #badfbb;
+  border-radius: 15px;
+  height: 50px;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  font-weight: 300;
+  font-size: 0.9em;
+  display: flex;
+  align-items: flex-end;
+
 
 }

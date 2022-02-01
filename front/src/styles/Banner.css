@@ -1,18 +1,48 @@
 .groupo_logo {
-  height: 200px;
+  width: 300px;
 }
 
 .groupo_banner {
   color: black;
   text-align: right;
-  padding: 10px;
-  border-bottom: solid 3px red;
+  padding: 20px;
+  height: 130px;
+}
+
+
+.groupo_navbar {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  bottom: 70px;
+  margin-left: 100px;
+  background:#fdca77;
+  width: 250px;
+  height: 45px;
+  border-radius: 25px;
+  padding-top: 12px; 
+}
+
+
+
+.fas {
+  color: white;
+  font-size: 1.8em;
+}
+
+
+.fas:hover {
+  color: hsl(171, 6%, 75%);
+  font-size: 2.4em;
 }
 
 
 .logo_anim {
-  height: 200px;
-  animation: logo-spin infinite 10s linear;
+  position: absolute;
+  top: 0px; left: 0px;
+
+  height: 100px;
+  animation: logo-spin infinite 8s linear;
 }
 
 
@@ -31,5 +61,15 @@ font-family: 'Comforter', cursive;
 font-weight: bold;
 font-style: italic;
 font-size: 48px;
+color: #fdca77;
+}
 
+.colored_font {
+  color: #fdca77;
+}
+ 
+
+#transition {
+  height: 20px;
+  background: rgb(255, 0, 0, 0.1);
 }

@@ -1,6 +1,23 @@
 #groupo_aside{
-  /*border-left: solid 1px #140f2d;*/
-  width: 25%;
-  background: rgb(244,157,55, 0.8);
+  background: rgb(255, 0, 0, 0.3);
+  border-radius: 25px;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  grid-column: 2/3;
+  grid-row: 1/3;
+}
+
+.prof_pic {
+  margin-top: 20px;
+  width: 250px;
+  border-radius: 25px;
+
+}
+
+#groupo_aside h2 {
+  text-decoration: underline;
 }
 

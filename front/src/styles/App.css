@@ -1,8 +1,15 @@
 #main_page{
-  display: flex;
   min-height: 1200px;
-  width: calc(100% - 20px);
-  margin: 0px 10px;
+  margin: 30px;
+
+  display: grid;
+  grid-template-columns: calc(100% - 380px) 350px ;
+  grid-column-gap: 40px;
+
+  grid-template-rows: 70px 1130px;
+  grid-column-gap: 30px;
+
+
 }
 
 h2 {
@@ -13,5 +20,12 @@ h2 {
 
 
 body {
-  font-family: 'Lora', serif;
+  font-family: 'Poppins', sans-serif;
+  line-height: 120%;
 }
+
+
+a { 
+  color: inherit;
+  text-decoration:none;
+} 
