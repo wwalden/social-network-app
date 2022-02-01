@@ -5,10 +5,10 @@ const messCtrl = require('../controllers/ctrl.mess');
 const auth = require('../middleware/auth');
 
 
-router.get('/', auth, messCtrl.showAllMess);
+router.get('/', messCtrl.showAllMess); //remettre le auth
 router.post('/', auth, messCtrl.createMess);
 
-router.get('/:id', auth, messCtrl.showOneMess); //messid
+router.get('/:id', messCtrl.showOneMess); //messid //remettre le auth
 router.delete('/:id', auth, messCtrl.deleteMess); //messid
 router.put('/:id', auth, messCtrl.updateMess);  //messid
 

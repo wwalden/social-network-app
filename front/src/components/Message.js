@@ -1,5 +1,7 @@
 import React from 'react';
+import GetMess from './GetMess'
 import '../styles/Message.css';
+
 
 
 const Message = () => {
@@ -7,7 +9,7 @@ const Message = () => {
     <div id="mess_container">
       <div className="messages">
         <h3>Ceci est un Message</h3>
-        <p>vgubj yuvbuy bchgbu cbu iugbuc hbuc cuhr cuzev czeuvbc ezze cezrbuycbuikhoi cziuhgbtv</p>
+        <GetMess />
       </div>
       <div className="messages">
         <h3>Ceci est un Message</h3>
@@ -20,6 +22,7 @@ const Message = () => {
     </div>
   )
 }
+
 
 
 
