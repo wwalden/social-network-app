@@ -20,7 +20,8 @@
   width: 250px;
   height: 45px;
   border-radius: 15px;
-  padding-top: 12px; 
+  padding-top: 12px;
+  box-shadow: 2px 3px 5px #cccccc;
 }
 
 
@@ -37,7 +38,8 @@
   height: 18px;
   border-radius: 15px;
   font-size: 0.8em;
-  color: white; 
+  color: white;
+  box-shadow: 2px 3px 5px #cccccc; 
 }
 
 

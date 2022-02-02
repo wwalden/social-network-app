@@ -5,8 +5,9 @@ import '../../styles/Banner.css';
 import Clock from './Clock';
 import NavBar from './NavBar';
 import ConnectionCheck from './ConnectionCheck';
-import GetUser from '../aside/GetUser';
+//import GetUser from '../profile/GetUser';
 
+// Mettre le nom en dynamique!
 
 const Banner = () => {
   return (
@@ -15,7 +16,7 @@ const Banner = () => {
       <Clock />
       <img className="logo_anim" alt='Logo Groupomania' src={logo}/>
       <NavBar />
-      <ConnectionCheck name={<GetUser/>}/>
+      <ConnectionCheck name="admin"/>
     </div>
   )
 }

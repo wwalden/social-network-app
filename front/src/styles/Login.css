@@ -1,0 +1,29 @@
+.flex_center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+
+}
+
+
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.login_pic {
+  margin: 20px;
+  object-fit: cover;
+  border-radius: 25px;
+  box-shadow: 2px 3px 5px #cccccc;
+
+}
+
+
+.form_tools {
+  margin: 5px;
+  border-radius: 5px;
+}

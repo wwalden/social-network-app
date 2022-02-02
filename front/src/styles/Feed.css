@@ -5,6 +5,7 @@
 
   grid-column: 1/2;
   grid-row: 2/3;
+  box-shadow: 2px 3px 5px #cccccc;
 
 }
 
@@ -19,6 +20,15 @@
   font-size: 0.9em;
   display: flex;
   align-items: flex-end;
+  box-shadow: 2px 3px 5px #cccccc;
 
 
+}
+
+.tree_count {
+  font-weight: bold;
+}
+
+.tree_count:hover {
+  font-weight: 1.2em;
 }

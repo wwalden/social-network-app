@@ -9,8 +9,7 @@ router.post('/login', userCtrl.login);
 router.get('/logout', userCtrl.logout);
 
 router.get('/:id', userCtrl.showUser);
-router.put('/:id', auth, userCtrl.updateUser);
+router.put('/:id', userCtrl.updateUser);
 
 
 module.exports = router;
-

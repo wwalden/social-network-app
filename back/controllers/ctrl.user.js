@@ -114,6 +114,7 @@ exports.showUser = (req, res, next) => {
 
 exports.updateUser = async (req, res, next) => {
   try {
+    /*
     if (req.params.id !== res.locals.user) {
       const userInDb = await User.findOne({ where: { id: res.locals.user } })
       const userStatus = userInDb.isAdmin.toString();
@@ -121,6 +122,7 @@ exports.updateUser = async (req, res, next) => {
         return res.status(400).json({ message: "not allowed" })
       }
     }
+    */
     await User.update(
         {bio: req.body.bio, username: req.body.username, email: req.body.email}, {
         where : {

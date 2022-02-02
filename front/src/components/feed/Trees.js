@@ -12,7 +12,7 @@ class Trees extends React.Component {
     return (
       <div className="groupo_trees">
         <a href="http://localhost:3000/home"><p>🌲🌲 Groupomania soutient la planète en aidant <b>REFOREST'ACTION</b> à planter des arbres!
-        Déjà <b>{this.state.treeCount}</b> arbres de plantés cette année! <br></br> cliquez ici pour en savoir plus! 🌲🌲</p></a>
+        Déjà <span className="tree_count">{this.state.treeCount}</span> arbres de plantés cette année! <br></br> cliquez ici pour en savoir plus! 🌲🌲</p></a>
       </div>
     );
   }

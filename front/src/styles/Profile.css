@@ -1,0 +1,17 @@
+.profile_main {
+  width: 70%;
+  background: rgb(255, 0, 0, 0.3);
+  border-radius: 25px;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2px 3px 5px #cccccc;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+}

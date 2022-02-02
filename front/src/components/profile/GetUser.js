@@ -26,12 +26,24 @@ class GetUser extends React.Component {
       )
   }
 
+
   render() {
     const isLoaded = this.state.userData === null ? true : false;
-    let name = isLoaded ? 'Loading...' : this.state.userData.username;
+    const name = isLoaded ? 'Loading...' : this.state.userData.username;
+    const email = isLoaded ? 'Loading...' : this.state.userData.email;
+    const bio = isLoaded ? 'Loading...' : this.state.userData.bio;
+
+    const memberSince = isLoaded ? 'Loading...' : this.state.userData.createdAt;
+    const memberSinceFormated = memberSince.substring(0,10);
 
     return (
-          <p>@{name}</p>
+      <div className="aside_content">
+        <p>{email}</p>
+        <p><b>@{name}</b></p>
+        <p className="aside_bio">{bio}</p>
+        <p className="aside_date">Membre depuis le {memberSinceFormated}</p>
+      </div>
+
     );
   }
 }
