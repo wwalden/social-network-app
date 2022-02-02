@@ -20,6 +20,7 @@ router.put('/:messid/comment/:commentid', messCtrl.updateComment);
 //router.delete('/comment/:id', messCtrl.deleteComment);
 
 //http://localhost:3000/api/?mess=16&comment=23
+// ...meaning: mess/:messid/comment/:commentid
 
 
 module.exports = router;

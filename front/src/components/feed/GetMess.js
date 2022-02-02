@@ -1,32 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const GetMess = () => {
 
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+class GetMess extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isLoaded: null, items: [] };
+  }
 
- 
-  useEffect(() => {
+  componentDidMount() {
     fetch("http://localhost:4200/api/mess")
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
-          setItems(result.items);
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
         },
         (error) => {
-          setIsLoaded(true);
-          setError(error);
+          this.setState({
+            isLoaded: true,
+            error
+          });
         }
       )
-  }, [])
-  
-  if (error) {
-    return <div>Erreur : {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Chargement...</div>;
-  } else {
+  } 
+
+
+  render() {
+    const items = this.state.items;
+    //const isLoaded = this.state.items === null ? true : false;
+    //const name = isLoaded ? 'Loading...' : this.state.messData.id;
+
     return (
       <ul>
       {items.map(item => (
@@ -35,12 +40,30 @@ const GetMess = () => {
         </li>
       ))}
       </ul>
-      
     );
   }
 }
 
+
 export default GetMess;
+
+
+
+
+
+
+
+/*
+return (
+  <ul>
+  {items.map(item => (
+    <li key={item.id}>
+      {item.content}
+    </li>
+  ))}
+  </ul>
+);
+*/
 
 
 

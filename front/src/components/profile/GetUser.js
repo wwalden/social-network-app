@@ -24,7 +24,7 @@ class GetUser extends React.Component {
           });
         }
       )
-  }
+  } 
 
 
   render() {
