@@ -25,7 +25,7 @@ class Message extends React.Component {
           });
         }
       )
-  } 
+  }
 
   render() {
     const items = this.state.items;
