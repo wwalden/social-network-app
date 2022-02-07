@@ -1,17 +1,17 @@
 import '../../css/style.css';
 import React from 'react';
-import Comment from './Comments';
 
 
 
-class Message extends React.Component {
+class Comment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isLoaded: null, items: [] };
+    this.state = { isLoaded: null, messageid: props.messageid, items: [] };
   }
 
+
   componentDidMount() {
-    fetch("http://localhost:4200/api/mess")
+    fetch(`http://localhost:4200/api/mess/${this.state.messageid}/comment`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -32,21 +32,11 @@ class Message extends React.Component {
   render() {
     const items = this.state.items;
     return (
-    <div id="mess_container">
+    <div>
       {items.map(item => (
-        <div className="messages" key={item.id}>
-          <div className="messages_top">
-            <h3>from {item.User.username}</h3>
-            <p>message numéro {item.id}:</p>
+        <div key={item.id}>
+            <p>{item.User.username}</p>
             <p>{item.content}</p>
-          </div>
-          <div className="message_bottom">
-            <p>comments</p>
-            <div>
-              <Comment messageid={item.id} />
-            </div>
-            <p>likes</p>
-          </div>
         </div>
       ))}
     </div>
@@ -55,7 +45,7 @@ class Message extends React.Component {
 }
 
 
-export default Message;
+export default Comment;
 
 
 

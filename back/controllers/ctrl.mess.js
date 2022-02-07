@@ -1,3 +1,6 @@
+// Mettre des 401 à la place des 400 afin de récupérer les messages JSON des erreurs 
+
+
 const Message = require("../models/message");
 const User = require("../models/user");
 const Comment = require("../models/comment");
@@ -7,6 +10,9 @@ Message.belongsTo(User);
 
 Message.hasMany(Comment, {foreignKey: 'messageid'});
 Comment.belongsTo(Message);
+
+User.hasMany(Comment, {foreignKey: 'userId'});
+Comment.belongsTo(User);
 
 
 // Messages Controllers
@@ -33,8 +39,8 @@ exports.createMess = (req, res, next) => {
 };
 
 exports.showOneMess = (req, res, next) => {
-  Message.findOne({ where: { id: req.params.id } })
-    .then(message => res.status(200).json(message))
+  Message.findOne({ where: { id: req.params.messid } })
+    .then(message => res.status(200).json(message.content))
     .catch(error => res.status(400).json({ error }));
 };
 
@@ -100,9 +106,10 @@ exports.deleteMess = async (req, res, next) => {
 
 exports.showComments = (req, res, next) => {
   Comment.findAll({
+    where: {messageid: req.params.messid},
     include: [{
-      model: Message,
-      where: {id: req.params.messid}
+      model: User,
+      required: true
      }]
   })
     .then(comments => res.status(200).json(comments))

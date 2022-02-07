@@ -10,7 +10,7 @@ const Aside = (props) => {
       <form action="http://localhost:3000/profile">
         <input className="form_tool" type="submit" value="Modifier" />
       </form>
-      <img class="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
+      <img className="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
       <GetUser />
     </div>
   )
