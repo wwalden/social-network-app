@@ -78,11 +78,10 @@ exports.login = (req, res, next) => {
           if (!valid) {
             return res.status(401).json({ error: "Mot de passe incorrect" });
           }
-
           const token = jwt.sign({ userId: user.id }, `${process.env.TOKEN_KEY}`, {
             expiresIn: sessionDuration,
           })
-          res.cookie('jwt', token, {httpOnly: true, maxAge: sessionDuration})
+          //res.cookie('jwt', token, {httpOnly: true, maxAge: sessionDuration})
           res.status(200).json({
             userId: user.id,
             
