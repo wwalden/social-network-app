@@ -1,8 +1,8 @@
+import '../css/style.css';
 import Banner from '../components/banner/Banner'
 import Feed from '../components/feed/Feed'
 import Trees from '../components/feed/Trees'
 import Aside from '../components/profile/Aside'
-import '../styles/App.css';
 
 
 const Home = () => {

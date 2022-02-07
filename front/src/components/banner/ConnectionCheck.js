@@ -1,5 +1,5 @@
+import '../../css/style.css';
 import React from 'react';
-import '../../styles/Banner.css';
 
 // se met sur 2 lignes si je mets "Connecté en tant que" ...
 

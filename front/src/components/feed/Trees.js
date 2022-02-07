@@ -1,5 +1,6 @@
+import '../../css/style.css';
 import React from 'react';
-import '../../styles/Feed.css';
+
 
 
 class Trees extends React.Component {

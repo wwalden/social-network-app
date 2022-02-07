@@ -1,7 +1,8 @@
+import '../css/style.css';
 import React from 'react';
 import Banner from '../components/banner/Banner'
 import Aside from '../components/profile/Aside'
-import '../styles/Profile.css';
+
 
 const Profile = () => {
   return (

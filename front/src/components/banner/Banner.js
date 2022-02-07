@@ -1,7 +1,7 @@
+import '../../css/style.css';
 import React from 'react';
 import logoWithName from '../../assets/logo.png'
 import logo from '../../assets/icon.png'
-import '../../styles/Banner.css';
 import Clock from './Clock';
 import NavBar from './NavBar';
 import ConnectionCheck from './ConnectionCheck';

@@ -1,6 +1,7 @@
+import '../../css/style.css';
 import React from 'react';
 import Message from './Message'
-import '../../styles/Feed.css';
+
 
 const Feed = () => {
   return (

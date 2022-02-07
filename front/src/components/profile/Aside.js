@@ -1,5 +1,5 @@
+import '../../css/style.css';
 import React from 'react';
-import '../../styles/Aside.css';
 import GetUser from './GetUser';
 
 const Aside = (props) => {
