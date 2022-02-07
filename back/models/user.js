@@ -32,8 +32,7 @@ module.exports = sequelize.define("User", {
 });
 
 
-/*
-User.hasMany(Message, {foreignKey: 'userId'});
-Message.belongsTo(User, {foreignKey: 'userId'})
-*/
+
+
+
 

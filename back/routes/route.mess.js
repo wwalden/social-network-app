@@ -8,16 +8,16 @@ const auth = require('../middleware/auth');
 router.get('/', messCtrl.showAllMess); //remettre le auth
 router.post('/', auth, messCtrl.createMess);
 
-router.get('/:id', messCtrl.showOneMess); //messid //remettre le auth
-router.delete('/:id', auth, messCtrl.deleteMess); //messid
-router.put('/:id', auth, messCtrl.updateMess);  //messid
+router.get('/:messid', messCtrl.showOneMess); //remettre le auth
+router.delete('/:messid', auth, messCtrl.deleteMess);
+router.put('/:messid', messCtrl.updateMess); //remettre le auth
 
 
-router.post('/:id/comment', messCtrl.addComment); //messid
-
+router.get('/:messid/comment', messCtrl.showComments);
+router.post('/:messid/comment', messCtrl.addComment);
 
 router.put('/:messid/comment/:commentid', messCtrl.updateComment);
-//router.delete('/comment/:id', messCtrl.deleteComment);
+//router.delete('/:messid/comment/:commentid', messCtrl.deleteComment);
 
 //http://localhost:3000/api/?mess=16&comment=23
 // ...meaning: mess/:messid/comment/:commentid

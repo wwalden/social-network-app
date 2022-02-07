@@ -2,12 +2,22 @@ const Message = require("../models/message");
 const User = require("../models/user");
 const Comment = require("../models/comment");
 
+User.hasMany(Message, {foreignKey: 'userId'});
+Message.belongsTo(User);
+
+Message.hasMany(Comment, {foreignKey: 'messageid'});
+Comment.belongsTo(Message);
 
 
 // Messages Controllers
 
 exports.showAllMess = (req, res, next) => {
-  Message.findAll()
+  Message.findAll({
+    include: [{
+      model: User,
+      required: true
+     }]
+  })
     .then(messages => res.status(200).json(messages))
     .catch(error => res.status(400).json({ error }));
 };
@@ -31,6 +41,7 @@ exports.showOneMess = (req, res, next) => {
 
 exports.updateMess = async (req, res, next) => {
   try {
+    /*
     const messInDb = await Message.findOne({ where: { id: req.params.id } })
     const userOfMessInDb = messInDb.userid.toString();
  
@@ -41,13 +52,14 @@ exports.updateMess = async (req, res, next) => {
       return res.status(400).json({ message: "not allowed" })
       }
     }
+    */
     await Message.update(
         {content: req.body.content}, {
         where : {
-          id: req.params.id
+          id: req.params.messid
         }
       })
-    res.status(200).json({ message: 'Message mis à jour !', mess: req.params.id, user: userOfMessInDb, userbis: res.locals.user, newmess: req.body.content})
+    res.status(200).json({ message: 'Message mis à jour !'}) //, mess: req.params.messid, user: userOfMessInDb, userbis: res.locals.user, newmess: req.body.content})
   } catch {
     res.status(400).json({ error})
   }
@@ -85,10 +97,24 @@ exports.deleteMess = async (req, res, next) => {
 // PASSER 2 PARAMETRES ? -- AVEC: http://localhost:3000/api/?mess=16&comment=23
 
 
+
+exports.showComments = (req, res, next) => {
+  Comment.findAll({
+    include: [{
+      model: Message,
+      where: {id: req.params.messid}
+     }]
+  })
+    .then(comments => res.status(200).json(comments))
+    .catch(error => res.status(400).json({ error }));
+};
+
+
+
 exports.addComment = (req, res, next) => {
   const newComment = Comment.create({
-    userid: req.body.userid,
-    messid: req.params.id,
+    userid: 28,
+    messageid: req.params.messid,
     content: req.body.content
   })
     .then((newComment) => res.status(201).json({ Message: newComment.id, content: newComment.content }))

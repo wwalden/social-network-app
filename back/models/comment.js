@@ -8,7 +8,7 @@ module.exports = sequelize.define("Comment", {
       primaryKey: true,
       type: Sequelize.INTEGER(11),
     },
-    messid: {
+    messageid: {
       allowNull: false,
       type: Sequelize.INTEGER(11),
     },

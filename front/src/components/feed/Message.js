@@ -35,7 +35,7 @@ class Message extends React.Component {
       {items.map(item => (
         <div className="messages" key={item.id}>
           <div className="messages_top">
-            <h3>username {item.userid}</h3>
+            <h3>from {item.User.username}</h3>
             <p>message numéro {item.id}:</p>
             <p>{item.content}</p>
           </div>
