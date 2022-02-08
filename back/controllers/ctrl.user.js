@@ -91,7 +91,7 @@ exports.login = (req, res, next) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
-
+ 
 
 // Voir si fonctionne avec react ? sinon gérer en Front
 exports.logout = (req, res, next) => {
