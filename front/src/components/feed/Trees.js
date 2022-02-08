@@ -1,4 +1,5 @@
-import '../../css/style.css';
+import '../../styles/Feed.css'
+import './Feed';
 import React from 'react';
 
 

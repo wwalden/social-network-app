@@ -1,4 +1,4 @@
-import '../../css/style.css';
+import '../../styles/Message.css'
 import React from 'react';
 
 

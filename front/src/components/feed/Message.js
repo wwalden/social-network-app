@@ -1,6 +1,7 @@
-import '../../css/style.css';
+import '../../styles/Message.css'
 import React from 'react';
 import Comment from './Comments';
+import PostMess from './PostMess'
 
 
 
@@ -33,6 +34,9 @@ class Message extends React.Component {
     const items = this.state.items;
     return (
     <div id="mess_container">
+       
+          <PostMess/>
+      
       {items.map(item => (
         <div className="messages" key={item.id}>
           <div className="messages_top">

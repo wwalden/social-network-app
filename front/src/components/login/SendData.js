@@ -1,4 +1,4 @@
-import '../../css/style.css';
+import '../../styles/Login.css'
 import React from 'react';
 
 

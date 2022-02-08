@@ -1,4 +1,4 @@
-import '../css/style.css';
+import '../styles/Profile.css';
 import React from 'react';
 import Banner from '../components/banner/Banner'
 import Aside from '../components/profile/Aside'

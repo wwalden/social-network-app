@@ -1,4 +1,4 @@
-import '../../css/style.css';
+import '../../styles/Login.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookie from './Cookie';

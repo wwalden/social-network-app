@@ -1,4 +1,4 @@
-import '../css/style.css';
+import '../styles/App.css';
 import Banner from '../components/banner/Banner'
 import Feed from '../components/feed/Feed'
 import Trees from '../components/feed/Trees'

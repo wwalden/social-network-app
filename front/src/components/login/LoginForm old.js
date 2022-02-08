@@ -1,4 +1,4 @@
-import '../../css/style.css';
+
 import React from 'react';
 import Cookie from './Cookie';
 import SendData from './SendData';

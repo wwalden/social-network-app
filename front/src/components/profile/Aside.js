@@ -1,4 +1,4 @@
-import '../../css/style.css';
+import '../../styles/Aside.css'
 import React from 'react';
 import GetUser from './GetUser';
 
