@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 module.exports = (req, res, next) => {
   try {
     // OLD: const token = req.headers.authorization.split(" ")[1];
-    const token = req.cookies.jwt;
+    const token = req.headers["x-access-token"];
     const decodedToken = jwt.verify(token, `${process.env.TOKEN_KEY}`);
     const userId = decodedToken.userId.toString();
     res.locals.user = userId;

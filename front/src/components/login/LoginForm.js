@@ -1,7 +1,7 @@
 import '../../css/style.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+import Cookie from './Cookie';
 
 
 
@@ -10,18 +10,22 @@ const LoginForm = () => {
   const [emailLog, setEmailLog] = useState('');
   const [passwordLog, setPasswordLog] = useState('');
 
-  const [loginStatus, setLoginStatus] = useState('');
+  const [loginStatus, setLoginStatus] = useState(false);
 
   axios.defaults.withCredentials = true;
   const loginin = () => {
     axios.post("http://localhost:4200/api/auth/login", {
       email: emailLog,
       password: passwordLog,
-    }).then((response) => {  
+    }).then((response) => { 
       //console.log(response.data.userId)
-      setLoginStatus(response.data.userId) 
+      if (response.data.auth) {
+        setLoginStatus(true) 
+      } else {
+        setLoginStatus(false)
+      }
     }).catch((err) => {
-      setLoginStatus(err.response.data)
+      setLoginStatus(false)
       //console.log(err.response.data)
     })
   }
@@ -29,7 +33,7 @@ const LoginForm = () => {
   useEffect(() => {
     axios.get("http://localhost:4200/api/auth/login").then((response) => {
       if (response.data.loggedIn == true) {
-        setLoginStatus(JSON.stringify(response.data.user.username));
+        setLoginStatus(true);   //JSON.stringify(response.data.user.id));
       }
       
     })
@@ -47,7 +51,6 @@ const LoginForm = () => {
         <button onClick={loginin}>Login</button>
       </div>
       <h1>{JSON.stringify(loginStatus)}</h1>
-      <p>{Cookies.get('userId')}</p>
     </div>
   )
 }

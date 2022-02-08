@@ -1,50 +1,47 @@
 import '../../css/style.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
+const GetUser = () => {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [userData, setuserData] = useState([]);
 
-class GetUser extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isLoaded: null, userData: null };
-  }
-
-  componentDidMount() {
-    fetch("http://localhost:4200/api/auth/19")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            userData: result
-          });
+  const jwtcookie = Cookies.get('jwt');
+  
+  useEffect(() => {
+    axios.get("http://localhost:4200/api/auth/19", {
+      headers: {
+        "x-access-token": `${jwtcookie}`
+      }
+    }).then((result) => {
+          setIsLoaded(true);
+          setuserData(result.data)
         },
         (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
+          setIsLoaded(true);
+          setError(error)
         }
       )
-  } 
+  }, [])
 
-
-  render() {
-    const isLoaded = this.state.userData === null ? true : false;
-    const name = isLoaded ? 'Loading...' : this.state.userData.username;
-    const email = isLoaded ? 'Loading...' : this.state.userData.email;
-    const bio = isLoaded ? 'Loading...' : this.state.userData.bio;
-
-    const memberSince = isLoaded ? 'Loading...' : this.state.userData.createdAt;
-    const memberSinceFormated = memberSince.substring(0,10);
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    
+    
+    // const memberSinceFormated = memberSince.substring(0,10);
 
     return (
       <div className="aside_content">
-        <p>{email}</p>
-        <p><b>@{name}</b></p>
-        <p className="aside_bio">{bio}</p>
-        <p className="aside_date">Membre depuis le {memberSinceFormated}</p>
+        <p>{userData.email}</p>
+        <p><b>@{userData.name}</b></p>
+        <p className="aside_bio">{userData.bio}</p>
+        <p className="aside_date">Membre depuis le {userData.createdAt}</p>
       </div>
-
     );
   }
 }
@@ -55,3 +52,8 @@ export default GetUser;
 
 
 
+
+/*
+WORKING TOKEN
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE5LCJpYXQiOjE2NDQzNDIxNTAsImV4cCI6MTczMDc0MjE1MH0.RuRc2f03F4O0ZOxhEpIs2udHrZs6HG5_uqmk2LkuFPs
+*/

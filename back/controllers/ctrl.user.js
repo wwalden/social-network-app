@@ -8,16 +8,11 @@ const PASSWORD_REGEX  =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/
 const sessionDuration = 24 * 3600 * 1000;
 
 /*
-
 TODO:
-1) PASSER LES FONCTIONS EN ASYNC AWAIT -- Pourquoi l'Update du comment n'est pas Asynchrone???
-2) PASSER MES VARIABLES EN DESTRUCTURING:
-const { email, password } = req.body
-
+1) PASSER LES FONCTIONS EN ASYNC AWAIT -- Pourquoi l'Update du comment n'est pas Asynchrone?
+2) PASSER MES VARIABLES EN DESTRUCTURING: const { email, password } = req.body
 3) découper les fonctions? (pour jwt.sign par exemple)
 4) Remettre les Regex sur le userUpdate (username taille mini par exemple) + Ajouter la modif du mdp
-
-
 */
 
 exports.signup = (req, res, next) => {
@@ -66,6 +61,8 @@ exports.signup = (req, res, next) => {
 };
 
 
+// AJOUTER UN "auth: false" POUR CHAQUE TYPE D'ERREUR? (non?...)
+
 exports.login = (req, res, next) => {
   User.findOne({ where: { email: req.body.email } })
     .then((user) => {
@@ -83,10 +80,11 @@ exports.login = (req, res, next) => {
           })
           req.session.user = user;
           //console.log(req.session.user);
-          //res.cookie('jwt', token, {httpOnly: true, maxAge: sessionDuration})
-          res.status(200).json({
-            userId: user.id,
-            
+          res.cookie('jwt', token, {maxAge: sessionDuration})
+          res.status(200).json({ //userId: user.id
+            auth: true,
+            token: token,
+            userId: user.id
           });
         })
         .catch((error) => res.status(500).json({ error }));
@@ -115,10 +113,21 @@ exports.logout = (req, res, next) => {
 
 
 
-
 exports.showUser = (req, res, next) => {
   User.findOne({ where: { id: req.params.id } })
-    .then(message => res.status(200).json(message))
+    .then((message) => {
+      
+      //const token = req.headers["x-access-token"];
+      //const decodedToken = jwt.verify(token, `${process.env.TOKEN_KEY}`);
+      //const userId = decodedToken.userId.toString();
+      //console.log({yooooooo : token});
+
+      if (req.params.id !== res.locals.user) {
+        return res.status(400).json({ message: "not allowed" })
+      }
+      
+      res.status(200).json(message)
+    })
     .catch(error => res.status(400).json({ error }));
 }
 

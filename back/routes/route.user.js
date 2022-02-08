@@ -9,7 +9,7 @@ router.post('/login', userCtrl.login);
 router.get('/login', userCtrl.checkLogin);
 router.get('/logout', userCtrl.logout);
 
-router.get('/:id', userCtrl.showUser);
+router.get('/:id', auth, userCtrl.showUser);
 router.put('/:id', userCtrl.updateUser);
 
 

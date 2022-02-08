@@ -11,9 +11,9 @@ const messRoutes = require('./routes/route.mess');
 require("dotenv/config");
 require("./database/connection");
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(cors({ // CONFIG ++ ?
   origin: ["http://localhost:3000"],
   methods: ["GET", "POST"],   // AJOUTER LES AUTRES METHODES !!
@@ -23,11 +23,12 @@ app.use(cors({ // CONFIG ++ ?
 app.use(
   session({
     key: "userId",
-    secret: "test", // A METTRE A JOUR !!
+    secret: `${process.env.TOKEN_KEY}`, // A METTRE A JOUR !!
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 60 * 60 * 24
+      expires: 60 * 60 * 24,
+      httpOnly: false
     }
   })
 );
