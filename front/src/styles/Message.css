@@ -32,3 +32,17 @@
   padding: 0px 60px 0px 50px;
 }
 
+
+
+.post_messages {
+  margin: 10px;
+  border-radius: 25px;
+  width: 75%;
+  background: rgb(253, 202, 119);
+}
+
+.text_box {
+  margin: 10px 10px 10px 10px;
+  width: 400px;
+  height: 40px;
+}

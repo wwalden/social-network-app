@@ -22,7 +22,8 @@ exports.showAllMess = (req, res, next) => {
     include: [{
       model: User,
       required: true
-     }]
+     }],
+     order: [['updatedAt', 'DESC']]
   })
     .then(messages => res.status(200).json(messages))
     .catch(error => res.status(400).json({ error }));
