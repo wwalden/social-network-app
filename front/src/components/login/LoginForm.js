@@ -1,6 +1,7 @@
 import '../../css/style.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 
@@ -11,6 +12,7 @@ const LoginForm = () => {
 
   const [loginStatus, setLoginStatus] = useState('');
 
+  axios.defaults.withCredentials = true;
   const loginin = () => {
     axios.post("http://localhost:4200/api/auth/login", {
       email: emailLog,
@@ -24,6 +26,17 @@ const LoginForm = () => {
     })
   }
 
+  useEffect(() => {
+    axios.get("http://localhost:4200/api/auth/login").then((response) => {
+      if (response.data.loggedIn == true) {
+        setLoginStatus(JSON.stringify(response.data.user.username));
+      }
+      
+    })
+  }, [])
+
+
+
   return (
     <div className="login_form">
       <img className="login_pic" src="https://picsum.photos/500/200/?random" alt="another random landscape" />
@@ -34,6 +47,7 @@ const LoginForm = () => {
         <button onClick={loginin}>Login</button>
       </div>
       <h1>{JSON.stringify(loginStatus)}</h1>
+      <p>{Cookies.get('userId')}</p>
     </div>
   )
 }

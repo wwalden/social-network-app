@@ -81,6 +81,8 @@ exports.login = (req, res, next) => {
           const token = jwt.sign({ userId: user.id }, `${process.env.TOKEN_KEY}`, {
             expiresIn: sessionDuration,
           })
+          req.session.user = user;
+          //console.log(req.session.user);
           //res.cookie('jwt', token, {httpOnly: true, maxAge: sessionDuration})
           res.status(200).json({
             userId: user.id,
@@ -92,6 +94,17 @@ exports.login = (req, res, next) => {
     .catch((error) => res.status(500).json({ error }));
 };
  
+
+exports.checkLogin = (req, res, next) => {
+  if (req.session.user) {
+    res.send({loggedIn: true, user: req.session.user})
+  } else {
+    res.send({loggedIn: false})
+  }
+}
+
+
+
 
 // Voir si fonctionne avec react ? sinon gérer en Front
 exports.logout = (req, res, next) => {
