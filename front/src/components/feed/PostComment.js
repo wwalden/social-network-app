@@ -4,14 +4,15 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
  
-const PostComment = () => {
+const PostComment = (props) => {
 
+  const messageid = props.messageid
   const [postMess, setPostMess] = useState('');
 
   const jwtcookie = Cookies.get('jwt');
   axios.defaults.withCredentials = true;
   const posting = () => {
-    axios.post("http://localhost:4200/api/mess/", {
+    axios.post(`http://localhost:4200/api/mess/${messageid}/comment`, {
       content: postMess,
     }, {
       headers: {

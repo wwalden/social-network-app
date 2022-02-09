@@ -38,7 +38,6 @@
 .message_comment {
   font-weight: 300;
   font-size: 0.8em;
-  min-height: 40px;
   background: rgb(255, 0, 0, 0.1);
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;

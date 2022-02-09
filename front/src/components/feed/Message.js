@@ -44,7 +44,7 @@ class Message extends React.Component {
             <p className="username">{item.User.username}</p>
             <p>{item.content}</p>
           </div>
-          <PostComment/>
+          <PostComment messageid={item.id}/>
 
           <div className="message_comment">
               <Comment messageid={item.id} />

@@ -125,7 +125,7 @@ exports.addComment = (req, res, next) => {
     messageid: req.params.messid,
     content: req.body.content
   })
-    .then((newComment) => res.status(201).json({ Message: newComment.id, content: newComment.content }))
+    .then((newComment) => res.status(201).json({ Comment: newComment.id, content: newComment.content }))
     .catch((error) => res.status(400).json({ error }));
 };
 
