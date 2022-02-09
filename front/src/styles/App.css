@@ -3,11 +3,11 @@
   margin: 30px;
 
   display: grid;
-  grid-template-columns: calc(100% - 380px) 350px ;
-  grid-column-gap: 40px;
-
-  grid-template-rows: 70px 800px auto;
+  grid-template-columns: calc(100% - 440px) 350px ;
   grid-column-gap: 30px;
+
+  grid-template-rows: 80px 800px auto;
+  grid-row-gap: 30px;
 
 
 }

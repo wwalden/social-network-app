@@ -4,7 +4,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
  
-const PostMess = () => {
+const PostComment = () => {
 
   const [postMess, setPostMess] = useState('');
 
@@ -29,16 +29,13 @@ const PostMess = () => {
   }
 
   return (
-      <div className="post_messages">
-        <div>
-          <input className="text_box" type='text' name='message' placeholder='ici votre message...' onChange={(e) => {setPostMess(e.target.value)}}/>
-        </div>
-        <div className="button_space">
-          <button className="mess_button" onClick={posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
-        </div>
-      </div>
+    <div className="post_comment">
+      <input className="comment_box" type='text' name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
+      <button onClick={posting}><i className="fas fa-comments"></i></button>
+      <p><i class="fas fa-thumbs-up"></i></p>
+  </div>
   )
 }
 
 
-export default PostMess;
+export default PostComment;

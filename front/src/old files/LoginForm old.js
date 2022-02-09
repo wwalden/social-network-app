@@ -1,7 +1,7 @@
 
 import React from 'react';
-import Cookie from './Cookie';
-import SendData from './SendData';
+import Cookie from '../components/login/Cookie';
+import SendData from '../components/login/SendData';
 
 const LoginForm = () => {
   return (

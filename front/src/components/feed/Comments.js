@@ -34,8 +34,8 @@ class Comment extends React.Component {
     return (
     <div>
       {items.map(item => (
-        <div key={item.id}>
-            <p>{item.User.username}</p>
+        <div className="message_commment_line" key={item.id}>
+            <p className="comment_username">{item.User.username}</p>
             <p>{item.content}</p>
         </div>
       ))}

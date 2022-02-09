@@ -15,7 +15,7 @@
   padding: 10px 20px 0px 20px;
   background: #badfbb;
   border-radius: 15px;
-  height: 50px;
+  min-height: 50px;
   grid-column: 1/2;
   grid-row: 1/2;
   font-weight: 300;

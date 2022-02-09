@@ -1,8 +1,6 @@
 import '../../styles/Login.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Cookie from './Cookie';
-
 
  
 const LoginForm = () => {
@@ -32,7 +30,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     axios.get("http://localhost:4200/api/auth/login").then((response) => {
-      if (response.data.loggedIn == true) {
+      if (response.data.loggedIn === true) {
         setLoginStatus(true);   //JSON.stringify(response.data.user.id));
       }
       

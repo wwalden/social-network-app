@@ -4,6 +4,8 @@
   align-items: center;
 }
 
+/* AFFICHER LES MESSAGES */
+
 .messages {
   margin: 10px;
   border-radius: 25px;
@@ -13,26 +15,52 @@
 
 .messages p {
   margin: 0px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.username {
+  color: grey;
+  font-style: italic;
+  margin-bottom: 5px !important;
 }
 
 .messages_top {
-  padding: 0px 0px 15px 15px;
+  padding: 15px;
 }
 
 
-.message_bottom {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+
+
+
+/* AFFICHER LES COMMENTAIRES */
+
+.message_comment {
   font-weight: 300;
   font-size: 0.8em;
+  min-height: 40px;
   background: rgb(255, 0, 0, 0.1);
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
-  padding: 0px 60px 0px 50px;
+  padding: 20px 60px 20px 50px;
+
 }
 
 
+.message_commment_line {
+  background-color: rgb(245, 245, 245);
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid rgb(143, 143, 143);
+  border-radius: 15px;
+}
+
+.comment_username {
+  color: grey;
+}
+
+
+/* POSTER UN MESSAGE */
 
 .post_messages {
   margin: 10px;
@@ -42,7 +70,97 @@
 }
 
 .text_box {
-  margin: 10px 10px 10px 10px;
-  width: 400px;
+  margin: 15px 10px 15px 10px;
+  width: calc(100% - 35px);
+  padding-left: 10px;
   height: 40px;
+  border-radius: 10px;
+  border: 1px white solid;
+}
+
+.button_space {
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background: rgb(255, 0, 0, 0.1);
+  height: 60px;
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+
+}
+
+.mess_button {
+  background: rgb(141,187,142);
+  border: 0px;
+  padding: 0px 15px;
+  border-radius: 10px;
+  height: 40px;
+  width: 140px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white
+}
+
+.mess_button:hover {
+  font-size: 1.1em;
+  padding: 0px;
+  justify-content: center;
+}
+
+.fas {
+  margin: 2px
+}
+
+
+
+
+/* POSTER UN COMMENTAIRE */
+
+
+.post_comment {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+
+}
+
+.comment_box {
+  margin: 15px 0px 15px 10px;
+  width: 400px;
+  padding-left: 10px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px rgb(212, 212, 212) solid;
+
+}
+
+.post_comment button .fas {
+  color: rgb(97, 97, 97);
+}
+
+.post_comment button {
+  border: none;
+  background-color: rgb(255, 0, 0, 0);
+  border-radius: 50%;
+  color: rgb(97, 97, 97);
+}
+
+.post_comment p {
+  padding-left: 30px;
+
+}
+
+.post_comment p .fas {
+  color: rgb(141,187,142);
+
+}
+
+.fa-comments:hover {
+  font-size: 1.8em;
+}
+
+.post_comment button .fas:hover {
+  color: rgb(199, 199, 199);
 }

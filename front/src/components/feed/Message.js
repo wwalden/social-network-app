@@ -1,7 +1,8 @@
 import '../../styles/Message.css'
 import React from 'react';
 import Comment from './Comments';
-import PostMess from './PostMess'
+import PostMess from './PostMess';
+import PostComment from './PostComment';
 
 
 
@@ -40,17 +41,14 @@ class Message extends React.Component {
       {items.map(item => (
         <div className="messages" key={item.id}>
           <div className="messages_top">
-            <h3>from {item.User.username}</h3>
-            <p>message numéro {item.id}:</p>
+            <p className="username">{item.User.username}</p>
             <p>{item.content}</p>
           </div>
-          <div className="message_bottom">
-            <p>comments</p>
-            <div>
+          <PostComment/>
+
+          <div className="message_comment">
               <Comment messageid={item.id} />
             </div>
-            <p>likes</p>
-          </div>
         </div>
       ))}
     </div>
