@@ -25,7 +25,6 @@ const PostComment = (props) => {
       }
     }).catch((err) => {
       setPostMess("")
-      //console.log(err.response.data)
     })
   }
 
@@ -33,7 +32,7 @@ const PostComment = (props) => {
     <div className="post_comment">
       <input className="comment_box" type='text' name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
       <button onClick={posting}><i className="fas fa-comments"></i></button>
-      <p><i class="fas fa-thumbs-up"></i></p>
+      <p><i className="fas fa-thumbs-up"></i></p>
   </div>
   )
 }

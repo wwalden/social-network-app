@@ -41,7 +41,7 @@ class Message extends React.Component {
       {items.map(item => (
         <div className="messages" key={item.id}>
           <div className="messages_top">
-            <p className="username">{item.User.username}</p>
+            <p className="username"><i className="far fa-user-circle"></i>{item.User.username}</p>
             <p>{item.content}</p>
           </div>
           <PostComment messageid={item.id}/>

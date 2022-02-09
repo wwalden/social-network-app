@@ -83,8 +83,8 @@ exports.login = (req, res, next) => {
           res.cookie('jwt', token, {maxAge: sessionDuration})
           res.status(200).json({ //userId: user.id
             auth: true,
-            token: token,
-            userId: user.id
+            token: token, // A ENLEVER
+            userId: user.id // A ENLEVER
           });
         })
         .catch((error) => res.status(500).json({ error }));
@@ -116,7 +116,7 @@ exports.logout = (req, res, next) => {
 exports.showUser = (req, res, next) => {
   User.findOne({ where: { id: req.params.id } })
     .then((message) => {
-      
+    
       //const token = req.headers["x-access-token"];
       //const decodedToken = jwt.verify(token, `${process.env.TOKEN_KEY}`);
       //const userId = decodedToken.userId.toString();

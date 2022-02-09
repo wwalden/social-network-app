@@ -24,7 +24,6 @@ const PostMess = () => {
       }
     }).catch((err) => {
       setPostMess("")
-      //console.log(err.response.data)
     })
   }
 

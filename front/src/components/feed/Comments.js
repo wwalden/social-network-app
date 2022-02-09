@@ -35,8 +35,9 @@ class Comment extends React.Component {
     <div>
       {items.map(item => (
         <div className="message_commment_line" key={item.id}>
-            <p className="comment_username">{item.User.username}</p>
-            <p>{item.content}</p>
+            <p className="comment_username"><i className="far fa-user-circle"></i>{item.User.username}</p>
+            <p className="comment_date">{item.User.createdAt}</p>
+            <p className="comment_content"><i className="far fa-comment-dots"></i>{item.content}</p>
         </div>
       ))}
     </div>
@@ -46,6 +47,8 @@ class Comment extends React.Component {
 
 
 export default Comment;
+
+
 
 
 

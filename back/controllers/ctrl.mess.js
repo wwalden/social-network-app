@@ -121,7 +121,7 @@ exports.showComments = (req, res, next) => {
 
 exports.addComment = (req, res, next) => {
   const newComment = Comment.create({
-    userid: 28,
+    userid: res.locals.user,
     messageid: req.params.messid,
     content: req.body.content
   })

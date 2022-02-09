@@ -7,7 +7,6 @@ import NavBar from './NavBar';
 import ConnectionCheck from './ConnectionCheck';
 //import GetUser from '../profile/GetUser';
 
-// Mettre le nom en dynamique!
 
 const Banner = () => {
   return (

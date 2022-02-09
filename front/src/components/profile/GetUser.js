@@ -2,16 +2,31 @@ import '../../styles/Aside.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import jwt_decode from 'jwt-decode';
 
+ 
 const GetUser = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [userData, setuserData] = useState([]);
 
+
   const jwtcookie = Cookies.get('jwt');
-  
+
+  const checkUser = () => {
+    if (typeof jwtcookie == 'undefined') {
+      return "";
+    }
+    const decodedToken = jwt_decode(jwtcookie) ? jwt_decode(jwtcookie) : "";
+    const userId = JSON.stringify(decodedToken.userId)
+    return userId;
+  }
+
+
+
+
   useEffect(() => {
-    axios.get("http://localhost:4200/api/auth/19", {
+    axios.get(`http://localhost:4200/api/auth/${checkUser()}`, {
       headers: {
         "x-access-token": `${jwtcookie}`
       }
@@ -23,7 +38,7 @@ const GetUser = () => {
           setIsLoaded(true);
           setError(error)
         }
-      )
+      ).catch((error))
   }, [])
 
   if (error) {
@@ -38,7 +53,7 @@ const GetUser = () => {
     return (
       <div className="aside_content">
         <p>{userData.email}</p>
-        <p><b>@{userData.name}</b></p>
+        <p><b>@{userData.username}</b></p>
         <p className="aside_bio">{userData.bio}</p>
         <p className="aside_date">Membre depuis le {userData.createdAt}</p>
       </div>
