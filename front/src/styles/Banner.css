@@ -49,7 +49,7 @@
 }
 
 
-.fas:hover {
+.navbar_icon:hover {
   color: hsl(171, 6%, 75%);
   font-size: 2.4em;
 }

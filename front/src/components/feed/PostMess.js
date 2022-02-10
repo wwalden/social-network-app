@@ -1,11 +1,10 @@
 import '../../styles/Message.css'
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
  
 const PostMess = () => {
-
   const [postMess, setPostMess] = useState('');
 
   const jwtcookie = Cookies.get('jwt');
@@ -26,6 +25,7 @@ const PostMess = () => {
       setPostMess("")
     })
   }
+
 
   return (
       <div className="post_messages">

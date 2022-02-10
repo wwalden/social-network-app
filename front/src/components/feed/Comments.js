@@ -1,12 +1,13 @@
 import '../../styles/Message.css'
 import React from 'react';
+import {checkUser} from '../../utils/checkUser'
 
 
 
 class Comment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isLoaded: null, messageid: props.messageid, items: [] };
+    this.state = { isLoaded: null, messageid: props.messageid, userid: props.userid, items: [] };
   }
 
 
@@ -35,7 +36,10 @@ class Comment extends React.Component {
     <div>
       {items.map(item => (
         <div className="message_commment_line" key={item.id}>
+          <div className="comment_top">
             <p className="comment_username"><i className="far fa-user-circle"></i>{item.User.username}</p>
+            {checkUser() == this.state.userid && <button className="trash_button"><i className="fas fa-trash"></i></button>}
+          </div>
             <p className="comment_date">{item.User.createdAt}</p>
             <p className="comment_content"><i className="far fa-comment-dots"></i>{item.content}</p>
         </div>

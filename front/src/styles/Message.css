@@ -29,6 +29,25 @@
   padding: 15px;
 }
 
+.fa-trash {
+  position: relative;
+  right: 0px;
+  top: 0px;
+  font-size: 0.9em;
+  color: rgb(97, 97, 97);
+}
+
+.fa-trash:hover {
+  color: rgb(199, 199, 199);
+  font-size: 0.9em !important;
+}
+
+.messages_top_user {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 20px 5px 0px;
+}
+
 
 
 
@@ -79,6 +98,12 @@
   margin-right: 5px;
 }
 
+.comment_top {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 10px 5px 0px;
+}
+
 
 /* POSTER UN MESSAGE */
 
@@ -127,6 +152,7 @@
   font-size: 1.1em;
   padding: 0px;
   justify-content: center;
+  cursor: pointer;
 }
 
 .fas {
@@ -183,4 +209,17 @@
 
 .post_comment button .fas:hover {
   color: rgb(199, 199, 199);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+
+
+/* DELETE */
+
+.trash_button {
+  border: none;
+  background-color: transparent;
 }

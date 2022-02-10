@@ -2,7 +2,7 @@ import '../../styles/Aside.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import jwt_decode from 'jwt-decode';
+import {checkUser} from '../../utils/checkUser'
 
  
 const GetUser = () => {
@@ -12,17 +12,6 @@ const GetUser = () => {
 
 
   const jwtcookie = Cookies.get('jwt');
-
-  const checkUser = () => {
-    if (typeof jwtcookie == 'undefined') {
-      return "";
-    }
-    const decodedToken = jwt_decode(jwtcookie) ? jwt_decode(jwtcookie) : "";
-    const userId = JSON.stringify(decodedToken.userId)
-    return userId;
-  }
-
-
 
 
   useEffect(() => {
