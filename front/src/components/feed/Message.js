@@ -1,6 +1,7 @@
 import '../../styles/Message.css'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import Comment from './Comments';
 import PostMess from './PostMess';
 import PostComment from './PostComment';
@@ -28,6 +29,26 @@ const Message = () => {
       }
     )
   }, [])
+
+
+  const jwtcookie = Cookies.get('jwt');
+  const [trashStatus, setTrashStatus] = useState(false);
+  const deleteMess = (messid) => {
+      const response = axios.delete(`http://localhost:4200/api/mess/${messid}`, {
+        headers: {
+          "x-access-token": `${jwtcookie}`
+        }
+      }).then((response) => { 
+        if (response.status === 200) {
+          setTrashStatus(true)
+          //document.location.reload()
+        } else {
+          setTrashStatus(false)
+        }
+      }).catch((err) => {
+        setTrashStatus(false)
+      })
+    }
   
 
   if (error) {
@@ -43,7 +64,7 @@ const Message = () => {
             <div className="messages_top">
               <div className="messages_top_user">
                 <p className="username"><i className="far fa-user-circle"></i>{item.User.username}</p>
-                {checkUser() == item.userId && <button className="trash_button"><i className="fas fa-trash"></i></button>}
+                {checkUser() == item.userId && <button onClick={deleteMess()} className="trash_button"><i className="fas fa-trash"></i></button>}
               </div>
               <p>{item.content}</p>
             </div>

@@ -72,7 +72,7 @@ exports.updateMess = async (req, res, next) => {
   }
 }
 
-
+ 
 exports.deleteMess = async (req, res, next) => {
   try {
     const messInDb = await Message.findOne({ where: { id: req.params.id } })
@@ -91,7 +91,7 @@ exports.deleteMess = async (req, res, next) => {
         })
       res.status(200).json({ message: 'Message supprimé !', mess: req.params.id, user: userOfMessInDb, userbis: res.locals.user})
   } catch {
-    res.status(400).json({ error })
+    res.status(400).json({ error: "not allowed" })
   }
 }
 

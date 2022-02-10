@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ // CONFIG ++ ?
   origin: ["http://localhost:3000"],
-  methods: ["GET", "POST"],   // AJOUTER LES AUTRES METHODES !!
+  methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],   // AJOUTER LES AUTRES METHODES !!
   credentials: true
 }));
 
