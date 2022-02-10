@@ -19,7 +19,7 @@ const Message = () => {
     axios.get("http://localhost:4200/api/mess")
     .then(
       (result) => {
-        console.log(result.data)
+        //console.log(result.data)
         setIsLoaded(true);
         setItems(result.data);
       },
@@ -28,10 +28,12 @@ const Message = () => {
         setError(error);
       }
     )
-  }, [])
+  })
 
 
   const jwtcookie = Cookies.get('jwt');
+
+/*
   const [trashStatus, setTrashStatus] = useState(false);
   const deleteMess = (messid) => {
       const response = axios.delete(`http://localhost:4200/api/mess/${messid}`, {
@@ -49,6 +51,28 @@ const Message = () => {
         setTrashStatus(false)
       })
     }
+*/
+
+
+    const [postMess, setPostMess] = useState('');
+
+    const posting = () => {
+      axios.post("http://localhost:4200/api/mess/", {
+        content: postMess,
+      }, {
+        headers: {
+          "x-access-token": `${jwtcookie}`
+        }
+      }).then((response) => { 
+        //console.log(response.data)
+        if (response.data.userId > 0) {
+          setPostMess("") 
+          //setItems([...postMess])
+        }
+      }).catch((err) => {
+        setPostMess("")
+      })
+    }
   
 
   if (error) {
@@ -58,13 +82,20 @@ const Message = () => {
   } else {
     return (
       <div id="mess_container">
-        <PostMess/>
+              <div className="post_messages">
+        <div>
+          <input className="text_box" type='text' name='message' placeholder='ici votre message...' onChange={(e) => {setPostMess(e.target.value)}}/>
+        </div>
+        <div className="button_space">
+          <button className="mess_button" onClick={posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
         {items.map(item => (
           <div className="messages" key={item.id}>
             <div className="messages_top">
               <div className="messages_top_user">
                 <p className="username"><i className="far fa-user-circle"></i>{item.User.username}</p>
-                {checkUser() == item.userId && <button onClick={deleteMess()} className="trash_button"><i className="fas fa-trash"></i></button>}
+                {/* {checkUser() == item.userId && <button onClick={deleteMess()} className="trash_button"><i className="fas fa-trash"></i></button>} */}
               </div>
               <p>{item.content}</p>
             </div>

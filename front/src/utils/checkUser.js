@@ -9,6 +9,6 @@ export function checkUser() {
   }
   const decodedToken = jwt_decode(jwtcookie) ? jwt_decode(jwtcookie) : "";
   const userId = JSON.stringify(decodedToken.userId)
-  console.log(userId)
+  //console.log(userId)
   return userId;
 }

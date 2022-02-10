@@ -19,7 +19,7 @@ const PostComment = (props) => {
         "x-access-token": `${jwtcookie}`
       }
     }).then((response) => { 
-      console.log(response.data)
+      //console.log(response.data)
       if (response.data.userId > 0) {
         setPostMess("") 
       }
