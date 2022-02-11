@@ -5,7 +5,6 @@ import logo from '../../assets/icon.png'
 import Clock from './Clock';
 import NavBar from './NavBar';
 import ConnectionCheck from './ConnectionCheck';
-//import GetUser from '../profile/GetUser';
 
 
 const Banner = () => {
@@ -15,7 +14,7 @@ const Banner = () => {
       <Clock />
       <img className="logo_anim" alt='Logo Groupomania' src={logo}/>
       <NavBar />
-      <ConnectionCheck name="admin"/>
+      <ConnectionCheck />
     </div>
   )
 }

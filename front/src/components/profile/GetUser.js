@@ -5,11 +5,12 @@ import Cookies from 'js-cookie';
 import {checkUser} from '../../utils/checkUser'
 
  
-const GetUser = () => {
+const GetUser = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [userData, setuserData] = useState([]);
 
+  const fullData = props.fullData;
 
   const jwtcookie = Cookies.get('jwt');
 
@@ -39,14 +40,20 @@ const GetUser = () => {
     
     // const memberSinceFormated = memberSince.substring(0,10);
 
-    return (
-      <div className="aside_content">
-        <p>{userData.email}</p>
-        <p><b>@{userData.username}</b></p>
-        <p className="aside_bio">{userData.bio}</p>
-        <p className="aside_date">Membre depuis le {userData.createdAt}</p>
-      </div>
-    );
+    if (fullData) {
+      return (
+        <div className="aside_content">
+          <p>{userData.email}</p>
+          <p><b>@{userData.username}</b></p>
+          <p className="aside_bio">{userData.bio}</p>
+          <p className="aside_date">Membre depuis le {userData.createdAt}</p>
+        </div>
+      );
+    } else {
+      return <p>{userData.username}</p>
+    }
+
+
   }
 }
 

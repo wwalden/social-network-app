@@ -11,7 +11,7 @@ const Aside = (props) => {
         <input className="form_tool" type="submit" value="Modifier" />
       </form>
       <img className="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
-      <GetUser />
+      <GetUser fullData= {true}/>
     </div>
   )
 }
