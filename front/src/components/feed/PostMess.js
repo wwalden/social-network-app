@@ -33,7 +33,7 @@ const PostMess = () => {
           <input className="text_box" type='text' name='message' placeholder='ici votre message...' onChange={(e) => {setPostMess(e.target.value)}}/>
         </div>
         <div className="button_space">
-          <button className="mess_button" onClick={posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
+          <button className="mess_button" onSubmit={posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
         </div>
       </div>
   )

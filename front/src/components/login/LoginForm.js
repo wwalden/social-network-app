@@ -18,7 +18,8 @@ const LoginForm = () => {
     }).then((response) => { 
       //console.log(response.data.userId)
       if (response.data.auth) {
-        setLoginStatus(true) 
+        setLoginStatus(true)
+        window.location.reload();
       } else {
         setLoginStatus(false)
       }
@@ -31,7 +32,8 @@ const LoginForm = () => {
   useEffect(() => {
     axios.get("http://localhost:4200/api/auth/login").then((response) => {
       if (response.data.loggedIn === true) {
-        setLoginStatus(true);   //JSON.stringify(response.data.user.id));
+        setLoginStatus(true);
+        //JSON.stringify(response.data.user.id));
       }
       
     })
