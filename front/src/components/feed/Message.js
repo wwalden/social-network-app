@@ -33,26 +33,39 @@ const Message = () => {
 
   const jwtcookie = Cookies.get('jwt');
 
-/*
-  const [trashStatus, setTrashStatus] = useState(false);
-  const deleteMess = (messid) => {
-      const response = axios.delete(`http://localhost:4200/api/mess/${messid}`, {
-        headers: {
-          "x-access-token": `${jwtcookie}`
-        }
-      }).then((response) => { 
+// ${messid}
+//  const [trashStatus, setTrashStatus] = useState(false);
+  const deleteMess = async (messid) => {
+      const response = await axios.delete(`http://localhost:4200/api/mess/${messid}`, {
+        //headers: {
+          //"x-access-token": `${jwtcookie}`
+        //}
+      });
+      
+      if (response.status === 200) {
+        console.log("ok!")
+        //document.location.reload()
+      } else {
+        console.log(messid)
+      }
+
+      /*
+      
+      
+      then((response) => { 
         if (response.status === 200) {
-          setTrashStatus(true)
+          console.log("ok!")
           //document.location.reload()
         } else {
-          setTrashStatus(false)
+          console.log("error")
         }
       }).catch((err) => {
-        setTrashStatus(false)
+        console.log("error")
       })
+      */
     }
-*/
 
+   
 
     const [postMess, setPostMess] = useState('');
 
@@ -95,7 +108,7 @@ const Message = () => {
             <div className="messages_top">
               <div className="messages_top_user">
                 <p className="username"><i className="far fa-user-circle"></i>{item.User.username}</p>
-                {/* {checkUser() == item.userId && <button onClick={deleteMess()} className="trash_button"><i className="fas fa-trash"></i></button>} */}
+                {checkUser() == item.userId && <button onClick={() => deleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>}
               </div>
               <p>{item.content}</p>
             </div>

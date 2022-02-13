@@ -75,6 +75,7 @@ exports.updateMess = async (req, res, next) => {
  
 exports.deleteMess = async (req, res, next) => {
   try {
+    /*
     const messInDb = await Message.findOne({ where: { id: req.params.id } })
     const userOfMessInDb = messInDb.userid.toString();
     if (userOfMessInDb !== res.locals.user) {
@@ -84,12 +85,13 @@ exports.deleteMess = async (req, res, next) => {
         return res.status(400).json({ message: "not allowed" })
       }
     }
+    */
       await Message.destroy({
           where : {
-            id: req.params.id
+            id: req.params.messid
           }
         })
-      res.status(200).json({ message: 'Message supprimé !', mess: req.params.id, user: userOfMessInDb, userbis: res.locals.user})
+      res.status(200).json({ message: 'Message supprimé !' })
   } catch {
     res.status(400).json({ error: "not allowed" })
   }
@@ -143,3 +145,20 @@ exports.updateComment = (req, res, next) => {
     res.status(400).json({ error })
   }
 };
+
+
+
+
+exports.deleteComment = async (req, res, next) => {
+  try {
+    await Comment.destroy({
+      where : {
+        id: req.params.commentid
+      }
+    })
+    res.status(200).json({ message: 'Commentaire supprimé !' })
+  } catch {
+    res.status(400).json({ error })
+  }
+};
+

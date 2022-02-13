@@ -28,6 +28,22 @@ const Comment = (props) => {
     )
   })
 
+  const deleteComment = async (commentid) => {
+    const response = await axios.delete(`http://localhost:4200/api/mess/${messageid}/comment/${commentid}`, {
+      //headers: {
+        //"x-access-token": `${jwtcookie}`
+      //}
+    });
+    
+    if (response.status === 200) {
+      console.log("ok!")
+      //document.location.reload()
+    } else {
+      console.log(commentid)
+    }
+  }
+
+
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -40,7 +56,7 @@ const Comment = (props) => {
         <div className="message_commment_line" key={item.id}>
           <div className="comment_top">
             <p className="comment_username"><i className="far fa-user-circle"></i>{item.User.username}</p>
-            {checkUser() == userid && <button className="trash_button"><i className="fas fa-trash"></i></button>}
+            {checkUser() == userid && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>}
           </div>
             <p className="comment_date">{item.User.createdAt}</p>
             <p className="comment_content"><i className="far fa-comment-dots"></i>{item.content}</p>
