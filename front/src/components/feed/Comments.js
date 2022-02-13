@@ -56,7 +56,7 @@ const Comment = (props) => {
         <div className="message_commment_line" key={item.id}>
           <div className="comment_top">
             <p className="comment_username"><i className="far fa-user-circle"></i>{item.User.username}</p>
-            {checkUser() == userid && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>}
+            {checkUser() == item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>}
           </div>
             <p className="comment_date">{item.User.createdAt}</p>
             <p className="comment_content"><i className="far fa-comment-dots"></i>{item.content}</p>
