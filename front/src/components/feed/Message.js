@@ -24,9 +24,9 @@ const Message = () => {
   const [trashStatus, setTrashStatus] = useState("");
   const DeleteMess = async (messid) => {
       const response = await axios.delete(`http://localhost:4200/api/mess/${messid}`, {
-        //headers: {
-          //"x-access-token": `${jwtcookie}`
-        //}
+        headers: {
+          "x-access-token": `${jwtcookie}`
+        }
       });
       
       if (response.status === 200) {
@@ -86,7 +86,11 @@ const Message = () => {
 
 
     useEffect (() => {
-      axios.get("http://localhost:4200/api/mess")
+      axios.get("http://localhost:4200/api/mess", {
+        headers: {
+          "x-access-token": `${jwtcookie}`
+        }
+      })
       .then(
         (result) => {
           //console.log(result.data)

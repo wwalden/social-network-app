@@ -9,6 +9,7 @@ module.exports = (req, res, next) => {
     const decodedToken = jwt.verify(token, `${process.env.TOKEN_KEY}`);
     const userId = decodedToken.userId.toString();
     res.locals.user = userId;
+    console.log(userId)
     next();
   } catch {
     res.status(401).json({

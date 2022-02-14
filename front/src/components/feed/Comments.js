@@ -26,9 +26,9 @@ const Comment = (props) => {
 
   const deleteComment = async (commentid) => {
     const response = await axios.delete(`http://localhost:4200/api/mess/${messageid}/comment/${commentid}`, {
-      //headers: {
-        //"x-access-token": `${jwtcookie}`
-      //}
+      headers: {
+        "x-access-token": `${jwtcookie}`
+      }
     });
     
     if (response.status === 200) {
@@ -61,7 +61,11 @@ const Comment = (props) => {
 
 
   useEffect (() => {
-    axios.get(`http://localhost:4200/api/mess/${messageid}/comment`)
+    axios.get(`http://localhost:4200/api/mess/${messageid}/comment`, {
+      headers: {
+        "x-access-token": `${jwtcookie}`
+      }
+    })
     .then(
       (result) => {
         //console.log(result.data)

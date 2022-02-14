@@ -17,7 +17,13 @@ Comment.belongsTo(User);
 
 // Messages Controllers
 
-exports.showAllMess = (req, res, next) => {
+exports.showAllMess = async (req, res, next) => {
+
+  const userInDb = await User.findOne({ where: { id: res.locals.user } })
+  if (!userInDb) {
+    return res.status(400).json({ message: "not allowed" })
+  }
+
   Message.findAll({
     include: [{
       model: User,
@@ -39,12 +45,21 @@ exports.createMess = (req, res, next) => {
     .catch((error) => res.status(400).json({ error }));
 };
 
-exports.showOneMess = (req, res, next) => {
+
+/*
+exports.showOneMess = async (req, res, next) => {
+
+  const userInDb = await User.findOne({ where: { id: res.locals.user } })
+  if (!userInDb) {
+    return res.status(400).json({ message: "not allowed" })
+  }
+
+
   Message.findOne({ where: { id: req.params.messid } })
     .then(message => res.status(200).json(message.content))
     .catch(error => res.status(400).json({ error }));
 };
-
+*/
 
 exports.updateMess = async (req, res, next) => {
   try {
@@ -75,8 +90,7 @@ exports.updateMess = async (req, res, next) => {
  
 exports.deleteMess = async (req, res, next) => {
   try {
-    /*
-    const messInDb = await Message.findOne({ where: { id: req.params.id } })
+    const messInDb = await Message.findOne({ where: { id: req.params.messid } })
     const userOfMessInDb = messInDb.userid.toString();
     if (userOfMessInDb !== res.locals.user) {
       const userInDb = await User.findOne({ where: { id: res.locals.user } })
@@ -85,7 +99,7 @@ exports.deleteMess = async (req, res, next) => {
         return res.status(400).json({ message: "not allowed" })
       }
     }
-    */
+    
       await Message.destroy({
           where : {
             id: req.params.messid
@@ -107,7 +121,14 @@ exports.deleteMess = async (req, res, next) => {
 
 
 
-exports.showComments = (req, res, next) => {
+exports.showComments = async (req, res, next) => {
+
+
+  const userInDb = await User.findOne({ where: { id: res.locals.user } })
+  if (!userInDb) {
+    return res.status(400).json({ message: "not allowed" })
+  }
+
   Comment.findAll({
     where: {messageid: req.params.messid},
     include: [{
@@ -151,6 +172,15 @@ exports.updateComment = (req, res, next) => {
 
 exports.deleteComment = async (req, res, next) => {
   try {
+    
+    const commInDb = await Comment.findOne({ where: { id: req.params.commentid } })
+    const userOfCommInDb = commInDb.userid.toString();
+    
+    if (userOfCommInDb !== res.locals.user) {
+      return res.status(400).json({ message: "not allowed" })
+
+    }
+
     await Comment.destroy({
       where : {
         id: req.params.commentid
@@ -158,7 +188,7 @@ exports.deleteComment = async (req, res, next) => {
     })
     res.status(200).json({ message: 'Commentaire supprimé !' })
   } catch {
-    res.status(400).json({ error })
+    res.status(400).json({ error: "not allowed" })
   }
 };
 
