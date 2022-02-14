@@ -4,6 +4,7 @@
 const Message = require("../models/message");
 const User = require("../models/user");
 const Comment = require("../models/comment");
+const Like = require("../models/like");
 
 User.hasMany(Message, {foreignKey: 'userId'});
 Message.belongsTo(User);
@@ -192,3 +193,49 @@ exports.deleteComment = async (req, res, next) => {
   }
 };
 
+
+
+exports.likeMess = async (req, res, next) => {
+  try {
+    console.log(res.locals.user);
+    const UserInLikes = await Like.findOne({ where: { messid: req.params.messid, userid: res.locals.user} })
+    
+    let userAlreadyLiked;
+    if (UserInLikes) {
+      userAlreadyLiked = true;
+    } else {
+      userAlreadyLiked = false
+    }
+
+    console.log(userAlreadyLiked);
+
+
+    if (!userAlreadyLiked) {
+      await Message.increment(
+        {likes: 1}, {
+          where : {
+            id: req.params.messid
+          }
+        })
+
+        await Likes.create({
+          messid: req.params.messid,
+          userid: res.locals.user
+        })
+
+
+
+    } else {
+      await Message.increment(
+        {likes: -1}, {
+          where : {
+            id: req.params.messid
+          }
+        })
+    }
+
+      res.status(200).json({ message: 'Message mis à jour!' })
+  } catch {
+    res.status(400).json({ error: "not allowed" })
+  }
+};

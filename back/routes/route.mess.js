@@ -14,6 +14,8 @@ router.get('/:messid/comment', auth, messCtrl.showComments);
 router.post('/:messid/comment', auth, messCtrl.addComment);
 router.delete('/:messid/comment/:commentid', auth, messCtrl.deleteComment);
 
+router.post('/:messid/like', auth, messCtrl.likeMess);
+
 
 //router.get('/:messid', auth, messCtrl.showOneMess);
 //router.put('/:messid', messCtrl.updateMess); //remettre le auth

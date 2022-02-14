@@ -16,8 +16,4 @@ module.exports = sequelize.define("Like", {
       allowNull: false,
       type: Sequelize.INTEGER(11),
     },
-    inc: {
-      allowNull: false,
-      type: Sequelize.INTEGER(11),
-    }
 });

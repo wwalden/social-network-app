@@ -11,6 +11,7 @@ const Comment = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const messageid = props.messageid;
+  const messagelikes = props.messagelikes;
 
 
   axios.defaults.withCredentials = true;
@@ -63,6 +64,31 @@ const Comment = (props) => {
   }
 
 
+
+  const [likeStatus, setLikeStatus] = useState("");
+  const LikeMess = async () => {
+      const response = await axios.post(`http://localhost:4200/api/mess/28/like`, {
+        content: "balbla",
+      }, {
+        headers: {
+          "x-access-token": `${jwtcookie}`
+        }
+      });
+      
+      if (response.status === 200) {
+        console.log("ok!")
+        setLikeStatus(messageid)
+        //document.location.reload()
+      } else {
+        console.log("error")
+      }
+  }
+
+
+
+
+
+
   useEffect (() => {
     axios.get(`http://localhost:4200/api/mess/${messageid}/comment`, {
       headers: {
@@ -100,8 +126,8 @@ const Comment = (props) => {
           <button onClick={posting}><i className="fas fa-comments"></i></button>
         </div>
         <div className="flex">
-          <a title="likez!"><button><i className="fas fa-thumbs-up"></i></button></a>
-          <p>{Math.floor(Math.random()*150)}</p>
+          <a title="likez!"><button onClick={LikeMess}><i className="fas fa-thumbs-up"></i></button></a>
+          <p>{messagelikes}</p>
           <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
 
         </div>

@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Comment from './Comments';
-import PostMess from './PostMess old';
-import PostComment from './PostComment old';
 import {checkUser} from '../../utils/checkUser'
 
 
@@ -96,7 +94,7 @@ const Message = () => {
       })
       .then(
         (result) => {
-          //console.log(result.data)
+          console.log(result.data)
           setIsLoaded(true);
           setItems(result.data);
         },
@@ -133,7 +131,7 @@ const Message = () => {
               </div>
               <p>{item.content}</p>
             </div>
-            <Comment messageid={item.id} userid={item.userId} messagecontent={item.content}/>
+            <Comment messageid={item.id} userid={item.userId} messagecontent={item.content} messagelikes={item.likes}/>
           </div>
         ))}
       </div>
