@@ -83,7 +83,24 @@ const Message = () => {
         //setPostMess("")
       //})
     }
-
+/*
+    const [likeStatus, setLikeStatus] = useState("");
+    useEffect (() => {
+        const response = axios.get(`http://localhost:4200/api/mess/${messageid}/like`, {
+          headers: {
+            "x-access-token": `${jwtcookie}`
+          }
+        });
+        
+        if (response.status === 200) {
+          console.log(response.data.message)
+          setLikeStatus(response.data.message)
+          //document.location.reload()
+        } else {
+          console.log("error")
+        }
+    }, [])
+*/
 
 
     useEffect (() => {
@@ -95,6 +112,7 @@ const Message = () => {
       .then(
         (result) => {
           console.log(result.data)
+          console.log(result.data[2].Likes.length)
           setIsLoaded(true);
           setItems(result.data);
         },
@@ -131,7 +149,7 @@ const Message = () => {
               </div>
               <p>{item.content}</p>
             </div>
-            <Comment messageid={item.id} userid={item.userId} messagecontent={item.content} messagelikes={item.likes}/>
+            <Comment messageid={item.id} userid={item.userId} messagecontent={item.content} messagelikes={item.likes} likestatus={true}/>
           </div>
         ))}
       </div>

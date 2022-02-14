@@ -15,6 +15,9 @@ Comment.belongsTo(Message);
 User.hasMany(Comment, {foreignKey: 'userId'});
 Comment.belongsTo(User);
 
+Message.hasMany(Like, {foreignKey: 'messid'});
+Like.belongsTo(Message);
+
 
 // Messages Controllers
 
@@ -26,14 +29,27 @@ exports.showAllMess = async (req, res, next) => {
   }
 
   Message.findAll({
-    include: [{
-      model: User,
-      required: true
-     }],
-     order: [['updatedAt', 'DESC']]
+    include: [
+      {
+        model: User,
+        required: true
+
+      },
+     {
+      model: Like,
+      required: false, attributes: {
+        exclude: ['Likes.messageId']
+      },
+     }
+    ],
+     order: [['createdAt', 'DESC']]
   })
-    .then(messages => res.status(200).json(messages))
-    .catch(error => res.status(400).json({ error }));
+    .then((messages) => {
+      console.log("ok!")
+      res.status(200).json(messages)})
+    .catch((error) => {
+      console.log(error)
+      res.status(400).json({ error })});
 };
 
 
@@ -209,7 +225,6 @@ exports.likeMess = async (req, res, next) => {
 
     console.log(userAlreadyLiked);
 
-
     if (!userAlreadyLiked) {
       await Message.increment(
         {likes: 1}, {
@@ -218,11 +233,10 @@ exports.likeMess = async (req, res, next) => {
           }
         })
 
-        await Likes.create({
+        await Like.create({
           messid: req.params.messid,
           userid: res.locals.user
         })
-
 
 
     } else {
@@ -232,9 +246,32 @@ exports.likeMess = async (req, res, next) => {
             id: req.params.messid
           }
         })
+      await Like.destroy(
+        { where: { messid: req.params.messid, userid: res.locals.user} }
+        )
     }
 
-      res.status(200).json({ message: 'Message mis à jour!' })
+      res.status(200).json({ message: res.locals.user + req.params.messid + userAlreadyLiked})
+  } catch {
+    res.status(400).json({ error: "not allowed" })
+  }
+};
+
+
+
+
+exports.getLikeStatus = async (req, res, next) => {
+  try {
+    const didTheUserLiked = await Like.findOne({ where: { messid: req.params.messid, userid: res.locals.user} })
+    //console.log(didTheUserLiked)
+    let userAlreadyLiked;
+    if (didTheUserLiked) {
+      userAlreadyLiked = true;
+    } else {
+      userAlreadyLiked = false
+    }
+    res.status(200).json({ message: userAlreadyLiked})
+
   } catch {
     res.status(400).json({ error: "not allowed" })
   }

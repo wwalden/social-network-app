@@ -200,8 +200,14 @@
 
 }
 
-.fa-thumbs-up {
+.green {
   color: rgb(141,187,142) !important;
+
+}
+
+
+.red {
+  color: rgb(255, 0, 0, 0.3) !important;
 
 }
 

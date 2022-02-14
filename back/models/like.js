@@ -16,4 +16,8 @@ module.exports = sequelize.define("Like", {
       allowNull: false,
       type: Sequelize.INTEGER(11),
     },
+    MessageId: {
+      allowNull: true,
+      type: Sequelize.INTEGER(11),
+    },
 });

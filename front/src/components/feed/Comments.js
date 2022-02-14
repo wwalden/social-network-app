@@ -12,6 +12,7 @@ const Comment = (props) => {
   const [items, setItems] = useState([]);
   const messageid = props.messageid;
   const messagelikes = props.messagelikes;
+  const likestatus = props.likestatus;
 
 
   axios.defaults.withCredentials = true;
@@ -65,10 +66,11 @@ const Comment = (props) => {
 
 
 
-  const [likeStatus, setLikeStatus] = useState("");
+
+  const [likes, setLikes] = useState("");
   const LikeMess = async () => {
-      const response = await axios.post(`http://localhost:4200/api/mess/28/like`, {
-        content: "balbla",
+      const response = await axios.post(`http://localhost:4200/api/mess/${messageid}/like`, {
+        content: "",
       }, {
         headers: {
           "x-access-token": `${jwtcookie}`
@@ -76,17 +78,13 @@ const Comment = (props) => {
       });
       
       if (response.status === 200) {
-        console.log("ok!")
-        setLikeStatus(messageid)
+        //console.log(response.data.message)
+        setLikes(response.data.message)
         //document.location.reload()
       } else {
         console.log("error")
       }
   }
-
-
-
-
 
 
   useEffect (() => {
@@ -125,12 +123,16 @@ const Comment = (props) => {
           <input className="comment_box" type='text' value={inputValue} name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
           <button onClick={posting}><i className="fas fa-comments"></i></button>
         </div>
-        <div className="flex">
-          <a title="likez!"><button onClick={LikeMess}><i className="fas fa-thumbs-up"></i></button></a>
-          <p>{messagelikes}</p>
+        {likestatus && <div className="flex">
+          <a title="likez!"><button onClick={LikeMess}><i className="fas fa-thumbs-up green"></i></button></a>
+          <p className="green">{messagelikes}</p>
           <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
-
-        </div>
+        </div> }
+        {!likestatus && <div className="flex">
+          <a title="likez!"><button onClick={LikeMess}><i className="fas fa-thumbs-up red"></i></button></a>
+          <p className="red">{messagelikes}</p>
+          <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
+        </div> }
   </div>
 
 

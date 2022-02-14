@@ -50,7 +50,7 @@ const GetUser = (props) => {
         </div>
       );
     } else {
-      return <p>connecté en tant que {userData.username}</p>
+      return <p>connecté en tant que: {userData.username}</p>
     }
 
 
