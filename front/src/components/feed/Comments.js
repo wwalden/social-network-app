@@ -2,6 +2,7 @@ import '../../styles/Message.css'
 import React, { useState, useEffect } from 'react';
 import {checkUser} from '../../utils/checkUser'
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 
@@ -16,9 +17,13 @@ const Comment = (props) => {
 
 
   const [trashStatus, setTrashStatus] = useState("");
+  const [commIsPosted, setCommIsPosted] = useState('');
+  const [postMess, setPostMess] = useState(''); //useLess right??
+
+  const jwtcookie = Cookies.get('jwt');
 
 
-  
+
   const deleteComment = async (commentid) => {
     const response = await axios.delete(`http://localhost:4200/api/mess/${messageid}/comment/${commentid}`, {
       //headers: {
@@ -37,6 +42,23 @@ const Comment = (props) => {
 
 
 
+  const posting = () => {
+    axios.post(`http://localhost:4200/api/mess/${messageid}/comment`, {
+      content: postMess,
+    }, {
+      headers: {
+        "x-access-token": `${jwtcookie}`
+      }
+    }).then((response) => { 
+      //console.log(response)
+      if (response.data.Comment) {
+        setCommIsPosted(response.data.Comment) 
+      }
+    }).catch((err) => {
+      setCommIsPosted("")
+    })
+  }
+
 
   useEffect (() => {
     axios.get(`http://localhost:4200/api/mess/${messageid}/comment`)
@@ -51,7 +73,7 @@ const Comment = (props) => {
         setError(error);
       }
     )
-  }, [trashStatus])
+  }, [trashStatus, commIsPosted])
 
 
 
@@ -64,7 +86,17 @@ const Comment = (props) => {
     return <div>Loading...</div>;
   } else {
     return (
-    <div>
+<div>
+      <div className="post_comment">
+      <input className="comment_box" type='text' name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
+      <button onClick={posting}><i className="fas fa-comments"></i></button>
+      <p><i className="fas fa-thumbs-up"></i></p>
+  </div>
+
+
+
+
+    <div className="message_comment">
       {items.map(item => (
         <div className="message_commment_line" key={item.id}>
           <div className="comment_top">
@@ -75,6 +107,8 @@ const Comment = (props) => {
             <p className="comment_content"><i className="far fa-comment-dots"></i>{item.content}</p>
         </div>
       ))}
+    </div>
+
     </div>
     );
   }

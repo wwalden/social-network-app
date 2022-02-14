@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Comment from './Comments';
-import PostMess from './PostMess';
-import PostComment from './PostComment';
+import PostMess from './PostMess old';
+import PostComment from './PostComment old';
 import {checkUser} from '../../utils/checkUser'
 
 
@@ -126,10 +126,7 @@ const Message = () => {
               </div>
               <p>{item.content}</p>
             </div>
-            <PostComment messageid={item.id}/>
-            <div className="message_comment">
-              <Comment messageid={item.id} userid={item.userId}/>
-            </div>
+            <Comment messageid={item.id} userid={item.userId}/>
           </div>
         ))}
       </div>
