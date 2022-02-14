@@ -1,16 +1,24 @@
-.flex_center {
+.flex_start {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
-  align-items: center;
+  align-items: flex-start;
   width: 70%;
+  min-height: 50px;
 
 }
 
 
-.flex_start {
-  align-items: flex-start !important;
+.flex_start  p {
+  margin-top: 0px;
 }
+
+
+.flex_start div p {
+  margin: 0px;
+  color: rgb(255, 0, 0, 0.7)
+}
+
+
 
 .signup_page {
   display: flex;
@@ -39,7 +47,7 @@ h1 {
 
 
 .signup_field {
-  margin: 5px;
+  margin: 0px;
   border-radius: 5px;
   border: none;
   width: 250px;

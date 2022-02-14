@@ -8,7 +8,7 @@ const ConnectionCheck = (props) => {
   const name = props.name
   return (
     <div className="groupo_check">
-      <a href="http://localhost:3000/login"></a><GetUser fullData={false}/>
+      <GetUser fullData={false}/>
     </div>
   )
 }

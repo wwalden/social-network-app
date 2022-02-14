@@ -18,6 +18,8 @@ const Comment = (props) => {
 
   const [trashStatus, setTrashStatus] = useState("");
   const [commIsPosted, setCommIsPosted] = useState('');
+  const [inputValue, setInputValue] = useState();
+
   const [postMess, setPostMess] = useState(''); //useLess right??
 
   const jwtcookie = Cookies.get('jwt');
@@ -52,7 +54,9 @@ const Comment = (props) => {
     }).then((response) => { 
       //console.log(response)
       if (response.data.Comment) {
-        setCommIsPosted(response.data.Comment) 
+        setCommIsPosted(response.data.Comment)
+        setInputValue("")
+        setInputValue()
       }
     }).catch((err) => {
       setCommIsPosted("")
@@ -92,7 +96,7 @@ const Comment = (props) => {
     return (
 <div>
       <div className="post_comment">
-      <input className="comment_box" type='text' name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
+      <input className="comment_box" type='text' value={inputValue} name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
       <button onClick={posting}><i className="fas fa-comments"></i></button>
       <p><i className="fas fa-thumbs-up"></i></p>
   </div>

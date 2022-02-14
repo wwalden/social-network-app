@@ -61,6 +61,7 @@ const Message = () => {
 
     const [postMess, setPostMess] = useState('');
     const [messIsPosted, setMessIsPosted] = useState('');
+    const [inputValue, setInputValue] = useState();
 
     const Posting = async () => {
       const response = await axios.post("http://localhost:4200/api/mess/", {
@@ -74,7 +75,9 @@ const Message = () => {
         //console.log(response.data)
         if (response) {
           console.log(response)
-          setMessIsPosted(response.data.Message) 
+          setMessIsPosted(response.data.Message)
+          setInputValue("")
+          setInputValue()
           //setItems([...postMess])
         }
       //}
@@ -115,7 +118,7 @@ const Message = () => {
       <div id="mess_container">
               <div className="post_messages">
         <div>
-          <input className="text_box" type='text' name='message' placeholder='ici votre message...' onChange={(e) => {setPostMess(e.target.value)}}/>
+          <input className="text_box" type='text' value={inputValue} name='message' placeholder='ici votre message...' onChange={(e) => {setPostMess(e.target.value)}}/>
         </div>
         <div className="button_space">
           <button className="mess_button" onClick={Posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
