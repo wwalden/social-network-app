@@ -104,7 +104,7 @@ const Message = () => {
       )
     }, [trashStatus, messIsPosted])
 
-  
+   
 
   if (error) {
     return <div>Error: {error.message}</div>;

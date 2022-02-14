@@ -11,6 +11,7 @@ const Login = () => {
       <div id="transition"></div>
       <div className="login_form">
         <LoginForm/>
+        <p>vous n'avez pas de compte? <a className="underlined" href="http://localhost:3000/signin">cliquez ici</a> pour en créer un</p>
       </div>
     </div>
   )

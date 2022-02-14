@@ -10,7 +10,7 @@ const Profile = () => {
       <Banner />
       <div id="transition"></div>
       <div className="center">
-        <Aside className={"profile_main"}/>
+        <Aside className={"profile_main"} fullData={true}/>
       </div>
     </div>
   )

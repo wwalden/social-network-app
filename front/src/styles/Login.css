@@ -28,4 +28,6 @@
   border-radius: 5px;
 }
 
-
+.underlined {
+  text-decoration: underline;
+}

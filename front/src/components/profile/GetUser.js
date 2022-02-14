@@ -32,7 +32,7 @@ const GetUser = (props) => {
   }, [])
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>non connecté</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
@@ -50,7 +50,7 @@ const GetUser = (props) => {
         </div>
       );
     } else {
-      return <p>{userData.username}</p>
+      return <p>connecté en tant que &nbsp; {userData.username}</p>
     }
 
 

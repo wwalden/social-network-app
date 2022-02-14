@@ -156,3 +156,22 @@ exports.updateUser = async (req, res, next) => {
   }
 
 }
+
+
+exports.deleteUser = async (req, res, next) => {
+  try {
+    if (req.params.id !== res.locals.user) {
+        return res.status(400).json({ message: "not allowed" })
+    }
+    
+    await User.destroy({
+        where : {
+          id: req.params.id
+        }
+      })
+    res.status(200).json({ message: 'User supprimé !' })
+  } catch {
+    res.status(400).json({ error})
+  }
+
+}

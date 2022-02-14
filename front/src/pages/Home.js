@@ -13,7 +13,7 @@ const Home = () => {
       <div id="main_page">
         <Trees />
         <Feed />
-        <Aside className={"groupo_aside"}/>
+        <Aside className={"groupo_aside"} fullData={false}/>
       </div>
     </div>
 )
