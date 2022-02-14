@@ -1,4 +1,4 @@
-import '../../styles/Message.css'
+import '../../styles/Message.css' // USELESS !!
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -133,7 +133,7 @@ const Message = () => {
               </div>
               <p>{item.content}</p>
             </div>
-            <Comment messageid={item.id} userid={item.userId}/>
+            <Comment messageid={item.id} userid={item.userId} messagecontent={item.content}/>
           </div>
         ))}
       </div>

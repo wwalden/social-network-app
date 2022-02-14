@@ -58,7 +58,7 @@ h1 {
   height: 100px;
 }
 
-button {
+.signup_form button {
   margin-top: 30px;
   border-radius: 5px;
   border: none;

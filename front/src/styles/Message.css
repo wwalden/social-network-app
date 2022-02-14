@@ -156,7 +156,8 @@
 }
 
 .fas {
-  margin: 2px
+  margin: 2px;
+  cursor: pointer;
 }
 
 
@@ -168,7 +169,8 @@
 .post_comment {
   display: flex;
   align-items: center;
-  padding: 5px 20px;
+  justify-content: space-between;
+  padding: 5px 50px 5px 20px;
 
 }
 
@@ -198,8 +200,17 @@
 
 }
 
-.post_comment p .fas {
-  color: rgb(141,187,142);
+.fa-thumbs-up {
+  color: rgb(141,187,142) !important;
+
+}
+
+.fa-thumbs-up:hover {
+  font-size: 2em !important;
+}
+
+.fa-share:hover {
+  font-size: 2em !important;
 
 }
 
@@ -213,6 +224,21 @@
 
 button:hover {
   cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.flex p {
+  padding: 5px 30px 0px 0px;
+  color: rgb(141,187,142)
+}
+
+.fa-share {
+  color: rgb(253, 202, 119) !important;
 }
 
 

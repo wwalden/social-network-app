@@ -11,7 +11,7 @@ const Comment = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const messageid = props.messageid;
-  const userid = props.userid;
+
 
   axios.defaults.withCredentials = true;
 
@@ -23,7 +23,6 @@ const Comment = (props) => {
   const [postMess, setPostMess] = useState(''); //useLess right??
 
   const jwtcookie = Cookies.get('jwt');
-
 
 
   const deleteComment = async (commentid) => {
@@ -96,9 +95,16 @@ const Comment = (props) => {
     return (
 <div>
       <div className="post_comment">
-      <input className="comment_box" type='text' value={inputValue} name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
-      <button onClick={posting}><i className="fas fa-comments"></i></button>
-      <p><i className="fas fa-thumbs-up"></i></p>
+        <div>
+          <input className="comment_box" type='text' value={inputValue} name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
+          <button onClick={posting}><i className="fas fa-comments"></i></button>
+        </div>
+        <div className="flex">
+          <a title="likez!"><button><i className="fas fa-thumbs-up"></i></button></a>
+          <p>{Math.floor(Math.random()*150)}</p>
+          <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
+
+        </div>
   </div>
 
 
