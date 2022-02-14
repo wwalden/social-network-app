@@ -13,6 +13,31 @@ const Comment = (props) => {
   const userid = props.userid;
 
   axios.defaults.withCredentials = true;
+
+
+  const [trashStatus, setTrashStatus] = useState("");
+
+
+  
+  const deleteComment = async (commentid) => {
+    const response = await axios.delete(`http://localhost:4200/api/mess/${messageid}/comment/${commentid}`, {
+      //headers: {
+        //"x-access-token": `${jwtcookie}`
+      //}
+    });
+    
+    if (response.status === 200) {
+      //console.log("ok!")
+      //document.location.reload()
+      setTrashStatus(commentid)
+    } else {
+      console.log(commentid)
+    }
+  }
+
+
+
+
   useEffect (() => {
     axios.get(`http://localhost:4200/api/mess/${messageid}/comment`)
     .then(
@@ -26,22 +51,10 @@ const Comment = (props) => {
         setError(error);
       }
     )
-  })
+  }, [trashStatus])
 
-  const deleteComment = async (commentid) => {
-    const response = await axios.delete(`http://localhost:4200/api/mess/${messageid}/comment/${commentid}`, {
-      //headers: {
-        //"x-access-token": `${jwtcookie}`
-      //}
-    });
-    
-    if (response.status === 200) {
-      console.log("ok!")
-      //document.location.reload()
-    } else {
-      console.log(commentid)
-    }
-  }
+
+
 
 
 

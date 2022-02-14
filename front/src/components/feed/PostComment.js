@@ -1,16 +1,20 @@
 import '../../styles/Message.css'
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
  
+
+
 const PostComment = (props) => {
 
   const messageid = props.messageid
   const [postMess, setPostMess] = useState('');
+  const [commIsPosted, setCommIsPosted] = useState('');
 
   const jwtcookie = Cookies.get('jwt');
   axios.defaults.withCredentials = true;
+
   const posting = () => {
     axios.post(`http://localhost:4200/api/mess/${messageid}/comment`, {
       content: postMess,
@@ -20,13 +24,15 @@ const PostComment = (props) => {
       }
     }).then((response) => { 
       //console.log(response.data)
-      if (response.data.userId > 0) {
-        setPostMess("") 
+      if (response.Comment) {
+        setCommIsPosted(response.Comment) 
       }
     }).catch((err) => {
       setPostMess("")
     })
   }
+
+
 
   return (
     <div className="post_comment">

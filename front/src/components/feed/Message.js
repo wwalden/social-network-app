@@ -15,27 +15,14 @@ const Message = () => {
   const [items, setItems] = useState([]);
 
   axios.defaults.withCredentials = true;
-  useEffect (() => {
-    axios.get("http://localhost:4200/api/mess")
-    .then(
-      (result) => {
-        //console.log(result.data)
-        setIsLoaded(true);
-        setItems(result.data);
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    )
-  })
+
 
 
   const jwtcookie = Cookies.get('jwt');
 
 // ${messid}
-//  const [trashStatus, setTrashStatus] = useState(false);
-  const deleteMess = async (messid) => {
+  const [trashStatus, setTrashStatus] = useState("");
+  const DeleteMess = async (messid) => {
       const response = await axios.delete(`http://localhost:4200/api/mess/${messid}`, {
         //headers: {
           //"x-access-token": `${jwtcookie}`
@@ -43,11 +30,16 @@ const Message = () => {
       });
       
       if (response.status === 200) {
-        console.log("ok!")
+        //console.log(messid)
+        setTrashStatus(messid)
         //document.location.reload()
       } else {
         console.log(messid)
       }
+
+
+
+
 
       /*
       
@@ -68,24 +60,46 @@ const Message = () => {
    
 
     const [postMess, setPostMess] = useState('');
+    const [messIsPosted, setMessIsPosted] = useState('');
 
-    const posting = () => {
-      axios.post("http://localhost:4200/api/mess/", {
+    const Posting = async () => {
+      const response = await axios.post("http://localhost:4200/api/mess/", {
         content: postMess,
       }, {
         headers: {
           "x-access-token": `${jwtcookie}`
         }
-      }).then((response) => { 
+      })
+      //.then((response) => { 
         //console.log(response.data)
-        if (response.data.userId > 0) {
-          setPostMess("") 
+        if (response) {
+          console.log(response)
+          setMessIsPosted(response.data.Message) 
           //setItems([...postMess])
         }
-      }).catch((err) => {
-        setPostMess("")
-      })
+      //}
+      //).catch((err) => {
+        //setPostMess("")
+      //})
     }
+
+
+
+    useEffect (() => {
+      axios.get("http://localhost:4200/api/mess")
+      .then(
+        (result) => {
+          //console.log(result.data)
+          setIsLoaded(true);
+          setItems(result.data);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+    }, [trashStatus, messIsPosted])
+
   
 
   if (error) {
@@ -100,7 +114,7 @@ const Message = () => {
           <input className="text_box" type='text' name='message' placeholder='ici votre message...' onChange={(e) => {setPostMess(e.target.value)}}/>
         </div>
         <div className="button_space">
-          <button className="mess_button" onClick={posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
+          <button className="mess_button" onClick={Posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
         </div>
       </div>
         {items.map(item => (
@@ -108,7 +122,7 @@ const Message = () => {
             <div className="messages_top">
               <div className="messages_top_user">
                 <p className="username"><i className="far fa-user-circle"></i>{item.User.username}</p>
-                {checkUser() == item.userId && <button onClick={() => deleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>}
+                {checkUser() == item.userId && <button onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>}
               </div>
               <p>{item.content}</p>
             </div>
