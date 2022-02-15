@@ -129,10 +129,10 @@ const Message = () => {
     //console.log(user)
     for (let i=0; i<likesArray.length; i++) {
       if(likesArray[i].userid == user) {
-        return "trou";
+        return true;
       }
     }
-    return "nonoon";
+    return false;
   }
 
 
@@ -185,18 +185,17 @@ const Message = () => {
               <p>{item.content}</p>
             </div>
 
-             <div className="flex">
+             {checkLikeStatus(item.Likes, checkUser()) && <div className="flex">
               <a title="likez!"><button onClick={() => LikeMess(item.id)}><i className="fas fa-thumbs-up green"></i></button></a>
               <p className="green">{item.likes}</p>
-              <p>{checkLikeStatus(item.Likes, checkUser())}</p>
               <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
-            </div>
+            </div>}
 
-            {/* {!likeStatus && <div className="flex">
+            {!checkLikeStatus(item.Likes, checkUser()) && <div className="flex">
               <a title="likez!"><button onClick={() => LikeMess(item.id)}><i className="fas fa-thumbs-up red"></i></button></a>
               <p className="red">{item.likes}</p>
               <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
-            </div> } */}
+            </div> }
 
             <Comment messageid={item.id} userid={item.userId} messagecontent={item.content} />
           </div>
