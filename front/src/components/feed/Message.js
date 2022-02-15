@@ -57,32 +57,32 @@ const Message = () => {
 
    
 
-    const [postMess, setPostMess] = useState('');
-    const [messIsPosted, setMessIsPosted] = useState('');
-    const [inputValue, setInputValue] = useState();
+  const [postMess, setPostMess] = useState('');
+  const [messIsPosted, setMessIsPosted] = useState('');
+  const [inputValue, setInputValue] = useState();
 
-    const Posting = async () => {
-      const response = await axios.post("http://localhost:4200/api/mess/", {
-        content: postMess,
-      }, {
-        headers: {
-          "x-access-token": `${jwtcookie}`
-        }
-      })
-      //.then((response) => { 
-        //console.log(response.data)
-        if (response) {
-          console.log(response)
-          setMessIsPosted(response.data.Message)
-          setInputValue("")
-          setInputValue()
-          //setItems([...postMess])
-        }
-      //}
-      //).catch((err) => {
-        //setPostMess("")
-      //})
-    }
+  const Posting = async () => {
+    const response = await axios.post("http://localhost:4200/api/mess/", {
+      content: postMess,
+    }, {
+      headers: {
+        "x-access-token": `${jwtcookie}`
+      }
+    })
+    //.then((response) => { 
+      //console.log(response.data)
+      if (response) {
+        console.log(response)
+        setMessIsPosted(response.data.Message)
+        setInputValue("")
+        setInputValue()
+        //setItems([...postMess])
+      }
+    //}
+    //).catch((err) => {
+      //setPostMess("")
+    //})
+  }
 /*
     const [likeStatus, setLikeStatus] = useState("");
     useEffect (() => {
@@ -103,6 +103,41 @@ const Message = () => {
 */
 
 
+
+  const [likes, setLikes] = useState("");
+  const LikeMess = async (messid) => {
+      const response = await axios.post(`http://localhost:4200/api/mess/${messid}/like`, {
+        content: "",
+      }, {
+        headers: {
+          "x-access-token": `${jwtcookie}`
+        }
+      });
+      
+      if (response.status === 200) {
+        //console.log(response.data.message)
+        setLikes(response.data.message)
+        //document.location.reload()
+      } else {
+        console.log("error")
+      }
+  }
+
+
+  const checkLikeStatus = (likesArray, user) => {
+    //console.log(likesArray[0].userid)
+    //console.log(user)
+    for (let i=0; i<likesArray.length; i++) {
+      if(likesArray[i].userid == user) {
+        return "trou";
+      }
+    }
+    return "nonoon";
+  }
+
+
+
+
     useEffect (() => {
       axios.get("http://localhost:4200/api/mess", {
         headers: {
@@ -121,7 +156,7 @@ const Message = () => {
           setError(error);
         }
       )
-    }, [trashStatus, messIsPosted])
+    }, [trashStatus, messIsPosted, likes])
 
    
 
@@ -149,7 +184,21 @@ const Message = () => {
               </div>
               <p>{item.content}</p>
             </div>
-            <Comment messageid={item.id} userid={item.userId} messagecontent={item.content} messagelikes={item.likes} likestatus={true}/>
+
+             <div className="flex">
+              <a title="likez!"><button onClick={() => LikeMess(item.id)}><i className="fas fa-thumbs-up green"></i></button></a>
+              <p className="green">{item.likes}</p>
+              <p>{checkLikeStatus(item.Likes, checkUser())}</p>
+              <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
+            </div>
+
+            {/* {!likeStatus && <div className="flex">
+              <a title="likez!"><button onClick={() => LikeMess(item.id)}><i className="fas fa-thumbs-up red"></i></button></a>
+              <p className="red">{item.likes}</p>
+              <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
+            </div> } */}
+
+            <Comment messageid={item.id} userid={item.userId} messagecontent={item.content} />
           </div>
         ))}
       </div>

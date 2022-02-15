@@ -169,7 +169,6 @@
 .post_comment {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 5px 50px 5px 20px;
 
 }
@@ -187,6 +186,14 @@
 .post_comment button .fas {
   color: rgb(97, 97, 97);
 }
+
+.flex button {
+  border: none;
+  background-color: rgb(255, 0, 0, 0);
+  border-radius: 50%;
+  color: rgb(97, 97, 97);
+}
+
 
 .post_comment button {
   border: none;
@@ -235,10 +242,12 @@ button:hover {
 .flex {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
+  margin: 20px 0px 0px 30px;
 }
 
 .flex p {
+  margin-left: 5px;
   padding: 5px 30px 0px 0px;
   color: rgb(141,187,142)
 }

@@ -67,24 +67,7 @@ const Comment = (props) => {
 
 
 
-  const [likes, setLikes] = useState("");
-  const LikeMess = async () => {
-      const response = await axios.post(`http://localhost:4200/api/mess/${messageid}/like`, {
-        content: "",
-      }, {
-        headers: {
-          "x-access-token": `${jwtcookie}`
-        }
-      });
-      
-      if (response.status === 200) {
-        //console.log(response.data.message)
-        setLikes(response.data.message)
-        //document.location.reload()
-      } else {
-        console.log("error")
-      }
-  }
+
 
 
   useEffect (() => {
@@ -117,41 +100,24 @@ const Comment = (props) => {
     return <div>Loading...</div>;
   } else {
     return (
-<div>
-      <div className="post_comment">
-        <div>
-          <input className="comment_box" type='text' value={inputValue} name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
-          <button onClick={posting}><i className="fas fa-comments"></i></button>
+      <div>
+        <div className="post_comment">
+            <input className="comment_box" type='text' value={inputValue} name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
+            <button onClick={posting}><i className="fas fa-comments"></i></button>
         </div>
-        {likestatus && <div className="flex">
-          <a title="likez!"><button onClick={LikeMess}><i className="fas fa-thumbs-up green"></i></button></a>
-          <p className="green">{messagelikes}</p>
-          <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
-        </div> }
-        {!likestatus && <div className="flex">
-          <a title="likez!"><button onClick={LikeMess}><i className="fas fa-thumbs-up red"></i></button></a>
-          <p className="red">{messagelikes}</p>
-          <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
-        </div> }
-  </div>
-
-
-
-
-    <div className="message_comment">
-      {items.map(item => (
-        <div className="message_commment_line" key={item.id}>
-          <div className="comment_top">
-            <p className="comment_username"><i className="far fa-user-circle"></i>{item.User.username}</p>
-            {checkUser() == item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>}
-          </div>
-            <p className="comment_date">{item.User.createdAt}</p>
-            <p className="comment_content"><i className="far fa-comment-dots"></i>{item.content}</p>
+        <div className="message_comment">
+          {items.map(item => (
+            <div className="message_commment_line" key={item.id}>
+              <div className="comment_top">
+                <p className="comment_username"><i className="far fa-user-circle"></i>{item.User.username}</p>
+                {checkUser() == item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>}
+              </div>
+                <p className="comment_date">{item.User.createdAt}</p>
+                <p className="comment_content"><i className="far fa-comment-dots"></i>{item.content}</p>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
-
-    </div>
+      </div>
     );
   }
 }
