@@ -109,10 +109,12 @@ exports.deleteMess = async (req, res, next) => {
   try {
     const messInDb = await Message.findOne({ where: { id: req.params.messid } })
     const userOfMessInDb = messInDb.userid.toString();
+    console.log(userOfMessInDb)
+    console.log(res.locals.user)
     if (userOfMessInDb !== res.locals.user) {
       const userInDb = await User.findOne({ where: { id: res.locals.user } })
       const userStatus = userInDb.isAdmin.toString();
-      if (userStatus !== true) {
+      if (userStatus !== "Admin") {
         return res.status(400).json({ message: "not allowed" })
       }
     }

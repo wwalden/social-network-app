@@ -139,7 +139,7 @@ exports.updateUser = async (req, res, next) => {
     if (req.params.id !== res.locals.user) {
       const userInDb = await User.findOne({ where: { id: res.locals.user } })
       const userStatus = userInDb.isAdmin.toString();
-      if (userStatus !== true) {
+      if (userStatus !== "Admin") {
         return res.status(400).json({ message: "not allowed" })
       }
     }

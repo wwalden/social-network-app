@@ -72,7 +72,7 @@ const Message = () => {
     //.then((response) => { 
       //console.log(response.data)
       if (response) {
-        console.log(response)
+        //console.log(response)
         setMessIsPosted(response.data.Message)
         setInputValue("")
         setInputValue()
@@ -135,6 +135,15 @@ const Message = () => {
     return false;
   }
 
+  const checkAdminStatus = (item) => {
+    if (UserIsAdmin == "Admin") {
+      return <button onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+    } else {
+      return checkUser() == item.userId && <button onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+    }
+
+  }
+
 
 
 
@@ -146,8 +155,8 @@ const Message = () => {
       })
       .then(
         (result) => {
-          console.log(result.data)
-          console.log(result.data[2].Likes.length)
+          //console.log(result.data)
+          //console.log(result.data[2].Likes.length)
           setIsLoaded(true);
           setItems(result.data);
         },
@@ -157,6 +166,10 @@ const Message = () => {
         }
       )
     }, [trashStatus, messIsPosted, likes])
+
+    let isAdminData = localStorage.getItem("isAdmin");
+    //console.log(isAdminData)
+    let UserIsAdmin = (isAdminData == "Admin" ? "Admin" : "Standard");
 
    
 
@@ -180,7 +193,7 @@ const Message = () => {
             <div className="messages_top">
               <div className="messages_top_user">
                 <p className="username"><i className="far fa-user-circle"></i>{item.User.username}</p>
-                {checkUser() == item.userId && <button onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>}
+                {checkAdminStatus(item)}
               </div>
               <p>{item.content}</p>
             </div>

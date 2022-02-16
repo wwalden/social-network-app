@@ -23,6 +23,8 @@ const GetUser = (props) => {
     }).then((result) => {
           setIsLoaded(true);
           setuserData(result.data)
+          localStorage.setItem("isAdmin", result.data.isAdmin);
+          //console.log(localStorage.getItem("isAdmin"))
         },
         (error) => {
           setIsLoaded(true);

@@ -8,7 +8,8 @@ const NavBar = () => {
 
   const logout = () => {
     Cookies.remove('jwt');
-    Cookies.remove('userId')
+    Cookies.remove('userId');
+    localStorage.removeItem("isAdmin");
   }
 
 
