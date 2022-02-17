@@ -1,20 +1,11 @@
 import '../../styles/Aside.css'
 import React from 'react';
 import GetUser from './GetUser';
-import {checkUser} from '../../utils/checkUser'
-import axios from 'axios';
-import Cookies from 'js-cookie';
-
-const jwtcookie = Cookies.get('jwt');
 
 
 const Aside = (props) => {
   const className = props.className
   const fullData = props.fullData
-
-
-
-
 
   if (!fullData) {
     return (
