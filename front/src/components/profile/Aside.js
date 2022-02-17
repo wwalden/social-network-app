@@ -7,6 +7,7 @@ const Aside = (props) => {
   const className = props.className
   const fullData = props.fullData
 
+
   if (!fullData) {
     return (
       <div className={className}>

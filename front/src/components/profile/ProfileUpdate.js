@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import GetUser from './GetUser';
 
 
 const ProfileUpdate = () => {
@@ -66,11 +67,13 @@ const ProfileUpdate = () => {
   }
 
 
+
   return (
     <div className="signup_page">
-      <h1>Créer un compte</h1>
+      <h1>Modification</h1>
       <div className="signup_form">
         <div className="flex_start">
+        < GetUser />
           <p>Nouveau nom d'utilisateur:</p>
           <div>
             <input className="signup_field" type='username' name='username' placeholder='username...' onChange={(e) => {setUsernameLog(e.target.value)}}/>
