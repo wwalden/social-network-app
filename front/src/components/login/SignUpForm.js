@@ -106,7 +106,7 @@ const SignUpForm = () => {
         <div className="flex_center flex_start">
           <p>Entrez votre bio:</p>
           <div>
-            <input className="signup_field field_bio" type='bio' name='bio' placeholder='bio...' autofocus onChange={(e) => {setBioLog(e.target.value)}}/>
+            <input className="signup_field field_bio" type='text' name='bio' placeholder='bio...' autofocus onChange={(e) => {setBioLog(e.target.value)}}/>
             <p>{bioErrorMessage}</p>
           </div>
 

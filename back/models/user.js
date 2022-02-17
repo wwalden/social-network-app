@@ -27,7 +27,7 @@ module.exports = sequelize.define("User", {
     },
     isAdmin: {
       allowNull: false,
-      type: Sequelize.BOOLEAN,
+      type: Sequelize.STRING(255),
     }
 });
 
