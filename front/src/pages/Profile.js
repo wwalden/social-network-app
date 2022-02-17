@@ -5,6 +5,7 @@ import Aside from '../components/profile/Aside'
 import axios from 'axios';
 import {checkUser} from '../utils/checkUser'
 import Cookies from 'js-cookie';
+import ProfileUpdate from '../components/profile/ProfileUpdate';
 
 const jwtcookie = Cookies.get('jwt');
 
@@ -42,7 +43,7 @@ const Profile = () => {
     }
   }
 
-
+ 
     return (
       <div>
         <Banner />
@@ -55,6 +56,7 @@ const Profile = () => {
             {pageType &&
               <div>
                 <p>ici le formulaire de changement</p>
+                < ProfileUpdate />
               </div>
             }
             {!pageType &&
