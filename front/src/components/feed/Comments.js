@@ -64,7 +64,11 @@ const Comment = (props) => {
     })
   }
 
-
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      posting()
+    }
+  }
 
 
 
@@ -102,7 +106,7 @@ const Comment = (props) => {
     return (
       <div>
         <div className="post_comment">
-            <input className="comment_box" type='text' value={inputValue} name='message' placeholder='ajoutez un commentaire!' onChange={(e) => {setPostMess(e.target.value)}}/>
+            <input className="comment_box" type='text' value={inputValue} name='message' placeholder='ajoutez un commentaire!' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
             <button onClick={posting}><i className="fas fa-comments"></i></button>
         </div>
         <div className="message_comment">

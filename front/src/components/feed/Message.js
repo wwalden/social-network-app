@@ -102,7 +102,11 @@ const Message = () => {
     }, [])
 */
 
-
+const handleKeyDown = (event) => {
+  if (event.key === 'Enter') {
+    Posting()
+  }
+}
 
   const [likes, setLikes] = useState("");
   const LikeMess = async (messid) => {
@@ -144,7 +148,11 @@ const Message = () => {
 
   }
 
+  const shareContent = async (item) => {
+    await navigator.clipboard.writeText(item);
+    alert("message copié!")
 
+  }
 
 
     useEffect (() => {
@@ -171,7 +179,7 @@ const Message = () => {
     //console.log(isAdminData)
     let UserIsAdmin = (isAdminData == "Admin" ? "Admin" : "Standard");
 
-   
+
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -182,7 +190,7 @@ const Message = () => {
       <div id="mess_container">
               <div className="post_messages">
         <div>
-          <input className="text_box" type='text' value={inputValue} name='message' placeholder='ici votre message...' onChange={(e) => {setPostMess(e.target.value)}}/>
+          <input className="text_box" type='text' value={inputValue} name='message' placeholder='ici votre message...' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
         </div>
         <div className="button_space">
           <button className="mess_button" onClick={Posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
@@ -201,13 +209,13 @@ const Message = () => {
              {checkLikeStatus(item.Likes, checkUser()) && <div className="flex">
               <a title="likez!"><button onClick={() => LikeMess(item.id)}><i className="fas fa-thumbs-up green"></i></button></a>
               <p className="green">{item.likes}</p>
-              <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
+              <a title="copiez le texte et partagez-le!"><button onClick={() => {shareContent(item.content)}}><i className="fas fa-share"></i></button></a>
             </div>}
 
             {!checkLikeStatus(item.Likes, checkUser()) && <div className="flex">
               <a title="likez!"><button onClick={() => LikeMess(item.id)}><i className="fas fa-thumbs-up red"></i></button></a>
               <p className="red">{item.likes}</p>
-              <a title="copiez le texte et partagez-le!"><button><i className="fas fa-share"></i></button></a>
+              <a title="copiez le texte et partagez-le!"><button onClick={() => {shareContent(item.content)}}><i className="fas fa-share"></i></button></a>
             </div> }
 
             <Comment messageid={item.id} userid={item.userId} messagecontent={item.content} />
