@@ -107,6 +107,7 @@ exports.checkLogin = (req, res, next) => {
 // Voir si fonctionne avec react ? sinon gérer en Front
 exports.logout = (req, res, next) => {
   res.cookie('jwt', '', { maxAge: 1 });
+  //req.session.destroy();    CHECK IF IT WORKS !!
   res.redirect('/');
 }
 
@@ -135,29 +136,29 @@ exports.showUser = (req, res, next) => {
 
 exports.updateUser = async (req, res, next) => {
   try {
-    /*
+    
     if (req.params.id !== res.locals.user) {
-      const userInDb = await User.findOne({ where: { id: res.locals.user } })
-      const userStatus = userInDb.isAdmin.toString();
-      if (userStatus !== "Admin") {
-        return res.status(400).json({ message: "not allowed" })
-      }
+      return res.status(400).json({ error: new Error("wrong user: not allowed") })
     }
-    */
+
+    const userInDb = await User.findOne({ where: { id: res.locals.user } })
+    const userEmail = userInDb.email;
+    console.log(userEmail);
+
     await User.update(
-        {bio: req.body.bio, username: req.body.username, email: req.body.email}, {
+        {email: "!USER_DELETED_" + userEmail}, {
         where : {
           id: req.params.id
         }
       })
-    res.status(200).json({ message: 'User mis à jour !' })
+    res.status(200).json({ message: 'User supprimé !' })
   } catch {
-    res.status(400).json({ error})
+    res.status(400).json({ error: new Error("error in deletion process: not allowed")})
   }
 
 }
 
-
+/*
 exports.deleteUser = async (req, res, next) => {
   try {
     if (req.params.id !== res.locals.user) {
@@ -173,5 +174,6 @@ exports.deleteUser = async (req, res, next) => {
   } catch {
     res.status(400).json({ error})
   }
-
 }
+
+*/

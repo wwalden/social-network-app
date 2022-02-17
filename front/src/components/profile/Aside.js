@@ -12,23 +12,7 @@ const Aside = (props) => {
   const className = props.className
   const fullData = props.fullData
 
-  const deleteUser = async () => {
-    const response = await axios.delete(`http://localhost:4200/api/auth/${checkUser()}`, {
-      headers: {
-        "x-access-token": `${jwtcookie}`
-      }
-    });
-    
-    if (response.status === 200) {
-      //console.log(messid)
-      window.alert("utilisateur supprimé!")
-      Cookies.remove('jwt');
-      Cookies.remove('userId')
-      document.location.reload()
-    } else {
-      console.log("erreur")
-    }
-  }
+
 
 
 
@@ -45,12 +29,7 @@ const Aside = (props) => {
     )
   } else {
     return (
-    <div className={className}>
-      <h2>mon Profil</h2>
-        <button className="form_tool" type="submit" onClick={deleteUser}>Supprimer</button>
-      <img className="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
       <GetUser fullData= {true}/>
-    </div>
     )
   }
 }
