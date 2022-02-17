@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import GetUser from './GetUser';
+import {checkUser} from '../../utils/checkUser';
+import Cookies from 'js-cookie';
+
 
 
 const ProfileUpdate = () => {
@@ -14,12 +17,15 @@ const ProfileUpdate = () => {
   const [updateStatus, setUpdateStatus] = useState(false);
   axios.defaults.withCredentials = true;
 
+  const jwtcookie = Cookies.get('jwt');
+
   let usernameErrorMessage = "";
   let emailErrorMessage = "";
   let passwordErrorMessage = "";
   let confirmPasswordErrorMessage = "";
   let bioErrorMessage = "";
 
+  /*
   if (usernameLog.length < 3) {
     usernameErrorMessage = "nom d'utilisateur trop court"
   }
@@ -36,6 +42,7 @@ const ProfileUpdate = () => {
     confirmPasswordErrorMessage = "le mot de passe saisi doit être identique"
 
   }
+  */
 
   const noError = usernameErrorMessage == "" && emailErrorMessage == "" && passwordErrorMessage == "" && confirmPasswordErrorMessage == "" && bioErrorMessage == "";
   //console.log(noError);
@@ -46,17 +53,21 @@ const ProfileUpdate = () => {
       return window.alert("Veuillez corriger le formulaire!")
     }
 
-    axios.put("http://localhost:4200/api/auth/signup", {
+    axios.put(`http://localhost:4200/api/auth/${checkUser()}`, {
       email: emailLog,
       username: usernameLog,
       password: passwordLog,
       bio: bioLog
+    }, {
+      headers: {
+        "x-access-token": `${jwtcookie}`
+      }
     }).then((response) => { 
       //console.log(response.data.userId)
-      if (response.status === 201) {
-        window.alert("utilisateur créé!")
+      if (response.status === 200) {
+        window.alert("modifications enregistrées!")
         setUpdateStatus(true)
-        window.location.href = "http://localhost:3000/login";
+        window.location.href = "http://localhost:3000/profile";
       } else {
         setUpdateStatus(false)
       }
@@ -72,8 +83,12 @@ const ProfileUpdate = () => {
     <div className="signup_page">
       <h1>Modification</h1>
       <div className="signup_form">
-        <div className="flex_start">
-        < GetUser />
+        <div>
+          <div>
+            < GetUser fullData="Light"/>
+          </div>
+          <div className="flex_start">
+
           <p>Nouveau nom d'utilisateur:</p>
           <div>
             <input className="signup_field" type='username' name='username' placeholder='username...' onChange={(e) => {setUsernameLog(e.target.value)}}/>
@@ -108,11 +123,17 @@ const ProfileUpdate = () => {
         <div className="flex_center flex_start">
           <p>Modifiez votre bio:</p>
           <div>
-            <input className="signup_field field_bio" type='bio' name='bio' placeholder='bio...' autofocus onChange={(e) => {setBioLog(e.target.value)}}/>
+            <input className="signup_field field_bio" type='bio' name='bio' placeholder='bio...' autoFocus onChange={(e) => {setBioLog(e.target.value)}}/>
             <p>{bioErrorMessage}</p>
           </div>
 
         </div>
+
+
+
+
+          </div>
+
 
         <button onClick={updateprofile}>Soummettre</button>      
       </div>   

@@ -42,7 +42,7 @@ const GetUser = (props) => {
     
     // const memberSinceFormated = memberSince.substring(0,10);
 
-    if (fullData) {
+    if (fullData === "Full") {
       return (
         <div className="aside_content">
           <p>{userData.email}</p>
@@ -51,11 +51,17 @@ const GetUser = (props) => {
           <p className="aside_date">Membre depuis le {userData.createdAt}</p>
         </div>
       );
-    } else {
+    } else if (fullData === "Small"){
       return <p>connecté en tant que: {userData.username}</p>
+    } else if (fullData === "Light") {
+      return (
+        <div>
+          <p>{userData.email}</p>
+          <p><b>{userData.username}</b></p>
+          <p>{userData.bio}</p>
+        </div>
+      );
     }
-
-
   }
 }
 

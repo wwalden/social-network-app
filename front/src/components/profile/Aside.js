@@ -3,9 +3,12 @@ import React from 'react';
 import GetUser from './GetUser';
 
 
+
 const Aside = (props) => {
   const className = props.className
   const fullData = props.fullData
+  // nimp avec les props "Fulldata" qui sont 2 fois les mêmes: changer ça!"
+  // renommer celle-ci, qui se déverse soit dans "Home" soit dans "Profile"
 
 
   if (!fullData) {
@@ -16,12 +19,12 @@ const Aside = (props) => {
           <input className="form_tool" type="submit" value="Modifier" />
         </form>
         <img className="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
-        <GetUser fullData= {true}/>
+        <GetUser fullData= "Full"/>
       </div>
     )
   } else {
     return (
-      <GetUser fullData= {true}/>
+      <GetUser fullData= "Full"/>
     )
   }
 }

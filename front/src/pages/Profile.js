@@ -6,6 +6,7 @@ import axios from 'axios';
 import {checkUser} from '../utils/checkUser'
 import Cookies from 'js-cookie';
 import ProfileUpdate from '../components/profile/ProfileUpdate';
+import GetUser from '../components/profile/GetUser';
 
 const jwtcookie = Cookies.get('jwt');
 
@@ -23,9 +24,7 @@ const Profile = () => {
   const deleteUser = async () => {
     let answer = window.confirm("Confirmez-vous la suppression de votre compte? Cette opération est irréversible");
     if (answer) {
-      const response = await axios.put(`http://localhost:4200/api/auth/${checkUser()}`, {
-        bio: "",
-      },{
+      const response = await axios.delete(`http://localhost:4200/api/auth/${checkUser()}`,{
         headers: {
           "x-access-token": `${jwtcookie}`
         }
@@ -62,7 +61,7 @@ const Profile = () => {
             {!pageType &&
               <div>
                 <img className="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
-                <Aside fullData={true}/>
+                <Aside fullData={true} />
               </div>
             }
           </div>

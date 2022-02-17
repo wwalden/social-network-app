@@ -134,7 +134,7 @@ exports.showUser = (req, res, next) => {
 
 
 
-exports.updateUser = async (req, res, next) => {
+exports.deleteUser = async (req, res, next) => {
   try {
     
     if (req.params.id !== res.locals.user) {
@@ -143,7 +143,6 @@ exports.updateUser = async (req, res, next) => {
 
     const userInDb = await User.findOne({ where: { id: res.locals.user } })
     const userEmail = userInDb.email;
-    console.log(userEmail);
 
     await User.update(
         {email: "!USER_DELETED_" + userEmail}, {
@@ -158,22 +157,35 @@ exports.updateUser = async (req, res, next) => {
 
 }
 
-/*
-exports.deleteUser = async (req, res, next) => {
+
+
+exports.updateUser = async (req, res, next) => {
   try {
-    if (req.params.id !== res.locals.user) {
-        return res.status(400).json({ message: "not allowed" })
-    }
     
-    await User.destroy({
+    console.log(req.params.id)
+    console.log(res.locals.user)
+
+    if (req.params.id !== res.locals.user) {
+      return res.status(400).json({ error: new Error("wrong user: not allowed") })
+    }
+
+
+    const userInDb = await User.findOne({ where: { id: res.locals.user } })
+
+    userEmail = req.body.email ? req.body.email : userInDb.email
+    userUsername = req.body.username ? req.body.username : userInDb.username
+    userPassword = req.body.password ? await bcrypt.hash(req.body.password, 10) : userInDb.password
+    userBio = req.body.bio ? req.body.bio : userInDb.bio
+
+    await User.update(
+        {email: userEmail, username: userUsername, password: userPassword, bio: userBio}, {
         where : {
           id: req.params.id
         }
       })
-    res.status(200).json({ message: 'User supprimé !' })
+    res.status(200).json({ message: 'User mis à jour !' })
   } catch {
-    res.status(400).json({ error})
+    res.status(400).json({ error: new Error("error in deletion process: not allowed")})
   }
-}
 
-*/
+}

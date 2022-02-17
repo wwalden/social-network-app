@@ -8,7 +8,7 @@ const ConnectionCheck = (props) => {
   const name = props.name
   return (
     <div className="groupo_check">
-      <GetUser fullData={false}/>
+      <GetUser fullData="Small"/>
     </div>
   )
 }
