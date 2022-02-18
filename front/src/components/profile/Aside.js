@@ -18,8 +18,10 @@ const Aside = (props) => {
         <form action="http://localhost:3000/profile">
           <input className="form_tool" type="submit" value="Modifier" />
         </form>
-        <img className="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
-        <GetUser fullData= "Full"/>
+        <div className="flex_center_aside">
+          <img className="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
+          <GetUser fullData= "Full"/>
+        </div>
       </div>
     )
   } else {

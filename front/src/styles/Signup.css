@@ -65,3 +65,19 @@ h1 {
   padding: 10px 15px;
 }
 
+
+
+
+
+@media screen and (min-width:480px) and (max-width:1200px) {
+  .signup_form {
+    width: 95%;
+    max-width: 800px;
+  }
+
+  .flex_start {
+    width: 90%;
+    max-width: 500px;
+  }
+
+}

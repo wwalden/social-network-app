@@ -59,7 +59,7 @@ const Profile = () => {
               </div>
             }
             {!pageType &&
-              <div>
+              <div className="flex_center_aligned">
                 <img className="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
                 <Aside fullData={true} />
               </div>

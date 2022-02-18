@@ -92,3 +92,45 @@ color: #fdca77;
   background: rgb(255, 0, 0, 0.1);
 }
 
+
+
+
+
+/* Tablet Display */
+
+@media screen and (min-width:480px) and (max-width:1200px) {
+
+
+
+  .groupo_banner {
+    display: flex;
+    flex-direction: column;
+    height: 220px;
+  }
+
+  .groupo_logo {
+    align-self: flex-end;
+  }
+
+
+  .groupo_navbar {
+    right: 80px;
+    bottom: 0px;
+
+  }
+
+  .groupo_check {
+    right: 80px;
+    top: 8px;
+  
+  }
+
+
+  .logo_anim {
+    height: 80px;
+  }
+
+
+
+
+}

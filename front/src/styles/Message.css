@@ -264,3 +264,17 @@ button:hover {
   border: none;
   background-color: transparent;
 }
+
+
+
+
+
+@media screen and (min-width:480px) and (max-width:1200px) {
+
+
+  .messages {
+    width: 85%;
+
+  }
+
+}

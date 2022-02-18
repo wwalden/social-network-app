@@ -29,3 +29,20 @@ a {
   color: inherit;
   text-decoration:none;
 } 
+
+
+
+
+
+/* Tablet Display */
+
+@media screen and (min-width:480px) and (max-width:1200px) {
+
+
+  #main_page {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+}
