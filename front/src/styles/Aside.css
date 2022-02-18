@@ -15,12 +15,10 @@
   border-radius: 5px;
 }
 
-
 .prof_pic {
   margin-top: 25px;
   width: 250px;
   border-radius: 25px;
-
 }
 
 .groupo_aside h2 {
@@ -59,19 +57,22 @@
   justify-content: center;
   margin-bottom: 20px;
   flex-direction: column;
-
 }
 
 
+
+/* MEDIA QUERIES */
+
 /* Tablet Display */
-
 @media screen and (min-width:480px) and (max-width:1023px) {
-
-
   .groupo_aside {
     display: none;
-
-
   }
+}
 
+/* Mobile Display */
+@media only screen and (max-width: 479px) {
+  .groupo_aside {
+    display: none;
+  }
 }

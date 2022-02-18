@@ -23,8 +23,6 @@
   display: flex;
   align-items: flex-end;
   box-shadow: 2px 3px 5px #cccccc;
-
-
 }
 
 .tree_count {
@@ -36,14 +34,21 @@
 }
 
 
+/* MEDIA QUERIES */
 
-
-
+/* Tablet Display */
 @media screen and (min-width:480px) and (max-width:1200px) {
-
-
   #groupo_feed {
     margin: 0px 10px;
   }
+}
 
+/* Mobile Display */
+@media only screen and (max-width: 479px) {
+  .groupo_trees {
+    display: none;
+  }
+  #groupo_feed {
+    margin: 0px;
+  }
 }

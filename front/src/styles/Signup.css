@@ -7,18 +7,14 @@
 
 }
 
-
 .flex_start  p {
   margin-top: 0px;
 }
-
 
 .flex_start div p {
   margin: 0px;
   color: rgb(255, 0, 0, 0.7)
 }
-
-
 
 .signup_page {
   display: flex;
@@ -27,10 +23,10 @@
   margin-top: 30px
 }
 
-
 .signup_form {
   background: rgb(253, 202, 119, 0.7);
   border-radius: 25px;
+  margin-top: 40px;
   padding: 30px 0px;
   display: flex;
   flex-direction: column;
@@ -40,19 +36,12 @@
   font-size: 0.8em;
 }
 
-
-h1 {
-  margin-bottom: 60px;
-}
-
-
 .signup_field {
   margin: 0px;
   border-radius: 5px;
   border: none;
   width: 250px;
 }
-
 
 .field_bio {
   height: 100px;
@@ -67,17 +56,14 @@ h1 {
 
 
 
-
-
+/* Tablet Display */
 @media screen and (min-width:480px) and (max-width:1200px) {
   .signup_form {
     width: 95%;
     max-width: 800px;
   }
-
   .flex_start {
     width: 90%;
     max-width: 500px;
   }
-
 }

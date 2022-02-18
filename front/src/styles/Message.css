@@ -4,6 +4,7 @@
   align-items: center;
 }
 
+
 /* AFFICHER LES MESSAGES */
 
 .messages {
@@ -49,9 +50,6 @@
 }
 
 
-
-
-
 /* AFFICHER LES COMMENTAIRES */
 
 .message_comment {
@@ -61,10 +59,7 @@
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   padding: 20px 60px 20px 50px;
-  
-
 }
-
 
 .message_commment_line {
   background-color: rgb(245, 245, 245);
@@ -92,7 +87,6 @@
 .comment_content {
   font-size: 0.9em;
 }
-
 
 .far {
   margin-right: 5px;
@@ -161,16 +155,12 @@
 }
 
 
-
-
 /* POSTER UN COMMENTAIRE */
-
 
 .post_comment {
   display: flex;
   align-items: center;
   padding: 5px 50px 5px 20px;
-
 }
 
 .comment_box {
@@ -180,7 +170,6 @@
   height: 30px;
   border-radius: 5px;
   border: 1px rgb(212, 212, 212) solid;
-
 }
 
 .post_comment button .fas {
@@ -194,7 +183,6 @@
   color: rgb(97, 97, 97);
 }
 
-
 .post_comment button {
   border: none;
   background-color: rgb(255, 0, 0, 0);
@@ -204,18 +192,14 @@
 
 .post_comment p {
   padding-left: 30px;
-
 }
 
 .green {
   color: rgb(141,187,142) !important;
-
 }
-
 
 .red {
   color: rgb(255, 0, 0, 0.3) !important;
-
 }
 
 .fa-thumbs-up:hover {
@@ -224,7 +208,6 @@
 
 .fa-share:hover {
   font-size: 2em !important;
-
 }
 
 .fa-comments:hover {
@@ -257,9 +240,7 @@ button:hover {
 }
 
 
-
 /* DELETE */
-
 .trash_button {
   border: none;
   background-color: transparent;
@@ -267,14 +248,18 @@ button:hover {
 
 
 
+/* MEDIA QUERIES */
 
-
+/* Tablet Display */
 @media screen and (min-width:480px) and (max-width:1200px) {
-
-
   .messages {
     width: 85%;
-
   }
+}
 
+/* Mobile Display */
+@media only screen and (max-width: 479px) {
+  .messages {
+    width: calc(100% - 20px);
+  }
 }

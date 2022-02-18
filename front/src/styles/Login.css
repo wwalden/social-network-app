@@ -1,11 +1,8 @@
-.flex_center {
+h1 {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
-
+  margin-bottom: 30px;
 }
-
-
 
 .login_form {
   display: flex;
@@ -13,15 +10,12 @@
   align-items: center;
 }
 
-
 .login_pic {
   margin: 20px;
   object-fit: cover;
   border-radius: 25px;
   box-shadow: 2px 3px 5px #cccccc;
-
 }
-
 
 .form_tools {
   margin: 5px;
@@ -30,4 +24,24 @@
 
 .underlined {
   text-decoration: underline;
+}
+
+
+
+/* Mobile Display */
+@media only screen and (max-width: 479px) {
+  .login_pic {
+    width: 90%;
+  }
+  .login_form {
+    margin: 40px 0px;
+  }
+  .login_form > p {
+    margin: 20px 0px;
+    font-size: 0.8em;
+  }
+  .login_form > button {
+flex-grow: 3
+  }
+  
 }
