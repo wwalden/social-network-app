@@ -8,10 +8,25 @@ const LoginForm = () => {
   const [emailLog, setEmailLog] = useState('');
   const [passwordLog, setPasswordLog] = useState('');
 
+
+  let emailErrorMessage = "";
+  const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (!EMAIL_REGEX.test(emailLog)) {
+    emailErrorMessage = "email non valide"
+  }
+
+
+
+
+
   const [loginStatus, setLoginStatus] = useState(false);
  
   axios.defaults.withCredentials = true;
   const loginin = () => {
+    if (emailErrorMessage !== "") {
+      return window.alert("email non valide!")
+    }
+
     axios.post("http://localhost:4200/api/auth/login", {
       email: emailLog,
       password: passwordLog,

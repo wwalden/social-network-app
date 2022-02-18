@@ -20,15 +20,20 @@ const SignUpForm = () => {
   let confirmPasswordErrorMessage = "";
   let bioErrorMessage = "";
 
-  if (usernameLog.length < 3) {
-    usernameErrorMessage = "nom d'utilisateur trop court"
+  const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  //regex password: at least 8 chars (uppercase AND lowercase), at least one number, at least one special char
+  const PASSWORD_REGEX  =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+
+  
+  if (usernameLog.length >= 17 || usernameLog.length <= 5) {
+    usernameErrorMessage = "doit faire entre 6 et 16 caractères"
   }
 
-  if (emailLog.length < 3) {
+  if (!EMAIL_REGEX.test(emailLog)) {
     emailErrorMessage = "email non valide"
   }
 
-  if (passwordLog < 3) {
+  if (!PASSWORD_REGEX.test(passwordLog)) {
     passwordErrorMessage = "mot de passe non valide"
   }
 
@@ -88,7 +93,10 @@ const SignUpForm = () => {
         </div>
 
         <div className="flex_start">
-          <p>Mot de passe:</p>
+          <div className="flex_center_aligned">
+            <p className="black">Mot de passe:</p>
+            <p className="black small">(au moins 8 caractères, majuscules/minuscules, un chiffre, un caractère spécial)</p>
+          </div>
           <div>
             <input className="signup_field" type='password' name='password' placeholder='password...' onChange={(e) => {setPasswordLog(e.target.value)}}/>
             <p>{passwordErrorMessage}</p>
@@ -106,7 +114,7 @@ const SignUpForm = () => {
         <div className="flex_center flex_start">
           <p>Entrez votre bio:</p>
           <div>
-            <input className="signup_field field_bio" type='text' name='bio' placeholder='bio...' autofocus onChange={(e) => {setBioLog(e.target.value)}}/>
+            <textarea className="signup_field" name='bio' placeholder='bio...' rows="5" onChange={(e) => {setBioLog(e.target.value)}}/>
             <p>{bioErrorMessage}</p>
           </div>
 

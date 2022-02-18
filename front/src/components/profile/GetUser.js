@@ -11,6 +11,7 @@ const GetUser = (props) => {
   const [userData, setuserData] = useState([]);
 
   const fullData = props.fullData;
+  const classprops = props.classprops
 
   const jwtcookie = Cookies.get('jwt');
 
@@ -55,10 +56,10 @@ const GetUser = (props) => {
       return <p>connecté en tant que: {userData.username}</p>
     } else if (fullData === "Light") {
       return (
-        <div>
-          <p>{userData.email}</p>
-          <p><b>{userData.username}</b></p>
-          <p>{userData.bio}</p>
+        <div className={classprops}>
+          <p>votre email actuel: {userData.email}</p>
+          <p>votre nom d'utilisateur actuel: "{userData.username}"</p>
+          <p>votre bio actuelle: "{userData.bio}"</p>
         </div>
       );
     }

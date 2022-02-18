@@ -54,7 +54,6 @@ const Profile = () => {
             <button className="form_tool" type="submit" onClick={allowChange}>Modifier</button>
             {pageType &&
               <div>
-                <p>ici le formulaire de changement</p>
                 < ProfileUpdate />
               </div>
             }
