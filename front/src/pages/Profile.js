@@ -52,10 +52,7 @@ const Profile = () => {
             <h2>mon Profil</h2>
             <button className="form_tool" type="submit" onClick={deleteUser}>Supprimer</button>
             <button className="form_tool" type="submit" onClick={allowChange}>Modifier</button>
-            {pageType &&
-              <div>
-                < ProfileUpdate />
-              </div>
+            {pageType && < ProfileUpdate />
             }
             {!pageType &&
               <div className="flex_center_aligned">

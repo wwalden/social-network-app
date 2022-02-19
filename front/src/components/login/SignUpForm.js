@@ -110,7 +110,7 @@ const SignUpForm = () => {
             <p>{confirmPasswordErrorMessage}</p>
           </div>
         </div>
-
+ 
         <div className="flex_center flex_start">
           <p>Entrez votre bio:</p>
           <div>

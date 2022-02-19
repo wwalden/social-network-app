@@ -86,10 +86,10 @@ const ProfileUpdate = () => {
   };
 
   return (
-    <div>
+    <div className="full_width">
       <GetUser fullData="Light" classprops="profileupdate_current"/>
       <div className="profileupdate_form">
-        <div className="flex_start">
+        <div className="flex_start_update">
           <p>Nouveau nom d'utilisateur:</p>
           <div>
             <input
@@ -105,7 +105,7 @@ const ProfileUpdate = () => {
           </div>
         </div>
 
-        <div className="flex_start">
+        <div className="flex_start_update">
           <p>Nouvel email:</p>
           <div>
             <input
@@ -121,7 +121,7 @@ const ProfileUpdate = () => {
           </div>
         </div>
 
-        <div className="flex_start">
+        <div className="flex_start_update">
           <p>Nouveau Mot de passe:</p>
           <div>
             <input
@@ -137,7 +137,7 @@ const ProfileUpdate = () => {
           </div>
         </div>
 
-        <div className="flex_start">
+        <div className="flex_start_update">
           <p>Confirmez le nouveau mot de passe:</p>
           <div>
             <input
@@ -153,12 +153,12 @@ const ProfileUpdate = () => {
           </div>
         </div>
 
-        <div className="flex_center flex_start">
+        <div className="flex_center flex_start_update">
           <p>Modifiez votre bio:</p>
           <div>
-            <input
+            <textarea
               className="signup_field field_bio"
-              type="bio"
+              rows= "5"
               name="bio"
               placeholder="bio..."
               autoFocus
@@ -169,8 +169,9 @@ const ProfileUpdate = () => {
             <p>{bioErrorMessage}</p>
           </div>
         </div>
+
+        <button class="form_tool" onClick={updateprofile}>Soumettre</button>
       </div>
-      <button onClick={updateprofile}>Soumettre</button>
     </div>
   );
 };

@@ -48,7 +48,7 @@ const GetUser = (props) => {
         <div className="aside_content">
           <p>{userData.email}</p>
           <p><b>@{userData.username}</b></p>
-          <p className="aside_bio">{userData.bio}</p>
+          <p className="aside_bio">Bio: {userData.bio}</p>
           <p className="aside_date">Membre depuis le {userData.createdAt}</p>
         </div>
       );
