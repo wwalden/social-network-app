@@ -11,7 +11,6 @@ const SignUpForm = () => {
   const [confirmPasswordLog, setConfirmPasswordLog] = useState(''); 
   const [bioLog, setBioLog] = useState('');
 
-  const [signupStatus, setSignupStatus] = useState(false);
   axios.defaults.withCredentials = true;
 
   let usernameErrorMessage = "";
@@ -20,6 +19,7 @@ const SignUpForm = () => {
   let confirmPasswordErrorMessage = "";
   let bioErrorMessage = "";
 
+  //eslint-disable-next-line
   const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   //regex password: at least 8 chars (uppercase AND lowercase), at least one number, at least one special char
   const PASSWORD_REGEX  =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
@@ -42,8 +42,7 @@ const SignUpForm = () => {
 
   }
 
-  const noError = usernameErrorMessage == "" && emailErrorMessage == "" && passwordErrorMessage == "" && confirmPasswordErrorMessage == "" && bioErrorMessage == "";
-  //console.log(noError);
+  const noError = usernameErrorMessage === "" && emailErrorMessage === "" && passwordErrorMessage === "" && confirmPasswordErrorMessage === "" && bioErrorMessage === "";
 
   const signup = () => {
 
@@ -57,17 +56,14 @@ const SignUpForm = () => {
       password: passwordLog,
       bio: bioLog
     }).then((response) => { 
-      //console.log(response.data.userId)
       if (response.status === 201) {
         window.alert("utilisateur créé!")
-        setSignupStatus(true)
         window.location.href = "http://localhost:3000/login";
       } else {
-        setSignupStatus(false)
+        window.alert("erreur, veuillez réessayer");
       }
     }).catch((err) => {
-      setSignupStatus(false)
-      //console.log(err.response.data)
+      console.log(err.response.data)
     })
   }
 

@@ -13,10 +13,10 @@ const GetUser = (props) => {
   const fullData = props.fullData;
   const classprops = props.classprops
 
-  const jwtcookie = Cookies.get('jwt');
 
 
   useEffect(() => {
+    const jwtcookie = Cookies.get('jwt');
     axios.get(`http://localhost:4200/api/auth/${checkUser()}`, {
       headers: {
         "x-access-token": `${jwtcookie}`
@@ -31,7 +31,7 @@ const GetUser = (props) => {
           setIsLoaded(true);
           setError(error)
         }
-      ).catch((error))
+      ).catch((error) => (console.log(error)))
   }, [])
 
   if (error) {

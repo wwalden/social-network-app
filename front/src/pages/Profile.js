@@ -6,7 +6,7 @@ import axios from 'axios';
 import {checkUser} from '../utils/checkUser'
 import Cookies from 'js-cookie';
 import ProfileUpdate from '../components/profile/ProfileUpdate';
-import GetUser from '../components/profile/GetUser';
+
 
 const jwtcookie = Cookies.get('jwt');
 

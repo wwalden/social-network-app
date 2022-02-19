@@ -11,8 +11,6 @@ const Comment = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const messageid = props.messageid;
-  const messagelikes = props.messagelikes;
-  const likestatus = props.likestatus;
 
 
   axios.defaults.withCredentials = true;
@@ -35,8 +33,6 @@ const Comment = (props) => {
     });
     
     if (response.status === 200) {
-      //console.log("ok!")
-      //document.location.reload()
       setTrashStatus(commentid)
     } else {
       console.log(commentid)
@@ -71,12 +67,12 @@ const Comment = (props) => {
   }
 
   let isAdminData = localStorage.getItem("isAdmin");
-  let UserIsAdmin = (isAdminData == "Admin" ? "Admin" : "Standard");
+  let UserIsAdmin = (isAdminData === "Admin" ? "Admin" : "Standard");
   const checkAdminStatus = (item) => {
-    if (UserIsAdmin == "Admin") {
+    if (UserIsAdmin === "Admin") {
       return <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     } else {
-      return checkUser() == item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+      return checkUser() === item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     }
 
   }
@@ -85,6 +81,7 @@ const Comment = (props) => {
 
 
   useEffect (() => {
+    const jwtcookie = Cookies.get('jwt');
     axios.get(`http://localhost:4200/api/mess/${messageid}/comment`, {
       headers: {
         "x-access-token": `${jwtcookie}`
@@ -92,7 +89,6 @@ const Comment = (props) => {
     })
     .then(
       (result) => {
-        //console.log(result.data)
         setIsLoaded(true);
         setItems(result.data);
       },
@@ -101,7 +97,7 @@ const Comment = (props) => {
         setError(error);
       }
     )
-  }, [trashStatus, commIsPosted])
+  }, [trashStatus, commIsPosted]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
 

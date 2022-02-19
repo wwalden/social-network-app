@@ -1,5 +1,5 @@
 import '../../styles/Login.css'
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
  
@@ -10,16 +10,11 @@ const LoginForm = () => {
 
 
   let emailErrorMessage = "";
+  //eslint-disable-next-line
   const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if (!EMAIL_REGEX.test(emailLog)) {
     emailErrorMessage = "email non valide"
   }
-
-
-
-
-
-  const [loginStatus, setLoginStatus] = useState(false);
  
   axios.defaults.withCredentials = true;
   const loginin = () => {
@@ -31,16 +26,11 @@ const LoginForm = () => {
       email: emailLog,
       password: passwordLog,
     }).then((response) => { 
-      //console.log(response.data.userId)
       if (response.data.auth) {
-        setLoginStatus(true)
         window.location.reload();
-      } else {
-        setLoginStatus(false)
-      }
-    }).catch((err) => {
-      setLoginStatus(false)
-      //console.log(err.response.data)
+      } 
+    }).catch((error) => {
+      console.log(error);
     })
   }
 

@@ -11,7 +11,6 @@ const ProfileUpdate = () => {
   const [confirmPasswordLog, setConfirmPasswordLog] = useState("");
   const [bioLog, setBioLog] = useState("");
 
-  const [updateStatus, setUpdateStatus] = useState(false);
   axios.defaults.withCredentials = true;
 
   const jwtcookie = Cookies.get("jwt");
@@ -22,12 +21,13 @@ const ProfileUpdate = () => {
   let confirmPasswordErrorMessage = "";
   let bioErrorMessage = "";
 
+  //eslint-disable-next-line
   const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   //regex password: at least 8 chars (uppercase AND lowercase), at least one number, at least one special char
   const PASSWORD_REGEX  =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
 
   
-  if (usernameLog.length >= 17 || usernameLog.length <= 5 && usernameLog.length !== 0) {
+  if ((usernameLog.length >= 17 || usernameLog.length <= 5) && usernameLog.length !== 0) {
     usernameErrorMessage = "! 6 à 16 car."
   }
 
@@ -46,12 +46,11 @@ const ProfileUpdate = () => {
 
 
   const noError =
-    usernameErrorMessage == "" &&
-    emailErrorMessage == "" &&
-    passwordErrorMessage == "" &&
-    confirmPasswordErrorMessage == "" &&
-    bioErrorMessage == "";
-  //console.log(noError);
+    usernameErrorMessage === "" &&
+    emailErrorMessage === "" &&
+    passwordErrorMessage === "" &&
+    confirmPasswordErrorMessage === "" &&
+    bioErrorMessage === "";
 
   const updateprofile = () => {
     if (!noError) {
@@ -74,18 +73,15 @@ const ProfileUpdate = () => {
         }
       )
       .then((response) => {
-        //console.log(response.data.userId)
         if (response.status === 200) {
           window.alert("modifications enregistrées!");
-          setUpdateStatus(true);
           window.location.href = "http://localhost:3000/profile";
         } else {
-          setUpdateStatus(false);
+          window.alert("erreur, veuillez réessayer");
         }
       })
       .catch((err) => {
-        setUpdateStatus(false);
-        //console.log(err.response.data)
+        console.log(err.response.data)
       });
   };
 

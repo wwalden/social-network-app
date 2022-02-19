@@ -10,8 +10,6 @@ const NavBar = () => {
   const jwtcookie = Cookies.get('jwt');
  
   const logout = async () => {
-
-
     Cookies.remove('jwt');
     Cookies.remove('userId');
     localStorage.removeItem("isAdmin");
