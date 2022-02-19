@@ -12,14 +12,10 @@ const jwtcookie = Cookies.get('jwt');
 
 
 const Profile = () => {
-
   const [pageType, setPageType] = useState(false);
-
   const allowChange = () => {
     setPageType(true)
-
   }
-
 
   const deleteUser = async () => {
     let answer = window.confirm("Confirmez-vous la suppression de votre compte? Cette opération est irréversible");
@@ -29,7 +25,6 @@ const Profile = () => {
           "x-access-token": `${jwtcookie}`
         }
       });
-      
       if (response.status === 200) {
         window.alert("utilisateur supprimé!")
         Cookies.remove('jwt');
@@ -42,7 +37,6 @@ const Profile = () => {
     }
   }
 
- 
     return (
       <div>
         <Banner />

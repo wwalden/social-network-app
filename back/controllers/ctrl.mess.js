@@ -42,7 +42,7 @@ exports.showAllMess = async (req, res, next) => {
       res.status(200).json(messages);
     })
     .catch((error) => {
-      res.status(400).json({ error });
+      res.status(404).json({ error });
     });
 };
 
@@ -52,7 +52,7 @@ exports.createMess = (req, res, next) => {
     content: req.body.content,
   })
     .then((newMess) => res.status(201).json({ Message: newMess.id }))
-    .catch((error) => res.status(400).json({ error }));
+    .catch((error) => res.status(404).json({ error }));
 };
 
 
@@ -66,7 +66,7 @@ exports.deleteMess = async (req, res, next) => {
       const userInDb = await User.findOne({ where: { id: res.locals.user } });
       const userStatus = userInDb.isAdmin.toString();
       if (userStatus !== "Admin") {
-        return res.status(400).json({ message: "not allowed" });
+        return res.status(401).json({ message: "not allowed" });
       }
     }
 
@@ -77,7 +77,7 @@ exports.deleteMess = async (req, res, next) => {
     });
     res.status(200).json({ message: "Message supprimé !" });
   } catch {
-    res.status(400).json({ error: "not allowed" });
+    res.status(404).json({ error: "not found" });
   }
 };
 
@@ -86,9 +86,8 @@ exports.deleteMess = async (req, res, next) => {
 exports.showComments = async (req, res, next) => {
   const userInDb = await User.findOne({ where: { id: res.locals.user } });
   if (!userInDb) {
-    return res.status(400).json({ message: "not allowed" });
+    return res.status(401).json({ message: "not allowed" });
   }
-
   Comment.findAll({
     where: { messageid: req.params.messid },
     include: [
@@ -99,7 +98,7 @@ exports.showComments = async (req, res, next) => {
     ],
   })
     .then((comments) => res.status(200).json(comments))
-    .catch((error) => res.status(400).json({ error }));
+    .catch((error) => res.status(404).json({ error }));
 };
 
 exports.addComment = (req, res, next) => {
@@ -109,9 +108,7 @@ exports.addComment = (req, res, next) => {
     content: req.body.content,
   })
     .then((newComment) =>
-      res
-        .status(201)
-        .json({ Comment: newComment.id, content: newComment.content })
+      res.status(201).json({ Comment: newComment.id, content: newComment.content })
     )
     .catch((error) => res.status(400).json({ error }));
 };
@@ -126,7 +123,7 @@ exports.deleteComment = async (req, res, next) => {
       const userInDb = await User.findOne({ where: { id: res.locals.user } });
       const userStatus = userInDb.isAdmin.toString();
       if (userStatus !== "Admin") {
-        return res.status(400).json({ message: "not allowed" });
+        return res.status(401).json({ message: "not allowed" });
       }
     }
     await Comment.destroy({
@@ -136,7 +133,7 @@ exports.deleteComment = async (req, res, next) => {
     });
     res.status(200).json({ message: "Commentaire supprimé !" });
   } catch {
-    res.status(400).json({ error: "not allowed" });
+    res.status(404).json({ error: "not found" });
   }
 };
 
@@ -185,7 +182,7 @@ exports.likeMess = async (req, res, next) => {
         message: res.locals.user + req.params.messid + userAlreadyLiked,
       });
   } catch {
-    res.status(400).json({ error: "not allowed" });
+    res.status(404).json({ error: "not found" });
   }
 };
 
@@ -202,6 +199,6 @@ exports.getLikeStatus = async (req, res, next) => {
     }
     res.status(200).json({ message: userAlreadyLiked });
   } catch {
-    res.status(400).json({ error: "not allowed" });
+    res.status(404).json({ error: "not found" });
   }
 };

@@ -43,9 +43,9 @@ exports.signup = (req, res, next) => {
         isAdmin: 0,
       })
         .then((newUser) => res.status(201).json({ userId: newUser.id }))
-        .catch((error) => res.status(400).json({ error }));
+        .catch((error) => res.status(404).json({ error }));
     })
-    .catch((error) => res.status(500).json({ error }));
+    .catch((error) => res.status(404).json({ error }));
 };
 
 
@@ -70,9 +70,9 @@ exports.login = (req, res, next) => {
             auth: true,
           });
         })
-        .catch((error) => res.status(500).json({ error }));
+        .catch((error) => res.status(404).json({ error }));
     })
-    .catch((error) => res.status(500).json({ error }));
+    .catch((error) => res.status(404).json({ error }));
 };
 
 
@@ -83,7 +83,7 @@ exports.logout = (req, res, next) => {
     req.session.destroy();
     res.status(200).json({message: "lougout with success"})
   } catch {
-    res.status(400).json({
+    res.status(404).json({
       error: new Error("logout error"),
   })
   }
@@ -105,7 +105,7 @@ exports.showUser = (req, res, next) => {
 exports.deleteUser = async (req, res, next) => {
   try {
     if (req.params.id !== res.locals.user) {
-      return res.status(400).json({ error: new Error("wrong user: not allowed") })
+      return res.status(401).json({ error: new Error("wrong user: not allowed") })
     }
     const userInDb = await User.findOne({ where: { id: res.locals.user } })
     const userEmail = userInDb.email;
@@ -117,7 +117,7 @@ exports.deleteUser = async (req, res, next) => {
       })
     res.status(200).json({ message: 'User supprimé !' })
   } catch {
-    res.status(400).json({ error: new Error("error in deletion process: not allowed")})
+    res.status(404).json({ error: new Error("error in deletion process: not allowed")})
   }
 }
 
@@ -125,7 +125,7 @@ exports.deleteUser = async (req, res, next) => {
 exports.updateUser = async (req, res, next) => {
   try {
     if (req.params.id !== res.locals.user) {
-      return res.status(400).json({ error: new Error("wrong user: not allowed") })
+      return res.status(401).json({ error: new Error("wrong user: not allowed") })
     }
     const userInDb = await User.findOne({ where: { id: res.locals.user } })
     userEmail = req.body.email ? req.body.email : userInDb.email
@@ -140,7 +140,7 @@ exports.updateUser = async (req, res, next) => {
       })
     res.status(200).json({ message: 'User mis à jour !' })
   } catch {
-    res.status(400).json({ error: new Error("error in deletion process: not allowed")})
+    res.status(404).json({ error: new Error("error in deletion process: not allowed")})
   }
 
 }
