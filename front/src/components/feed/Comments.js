@@ -70,6 +70,16 @@ const Comment = (props) => {
     }
   }
 
+  let isAdminData = localStorage.getItem("isAdmin");
+  let UserIsAdmin = (isAdminData == "Admin" ? "Admin" : "Standard");
+  const checkAdminStatus = (item) => {
+    if (UserIsAdmin == "Admin") {
+      return <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+    } else {
+      return checkUser() == item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+    }
+
+  }
 
 
 
@@ -114,8 +124,8 @@ const Comment = (props) => {
             <div className="message_commment_line" key={item.id}>
               <div className="comment_top">
                 <p className="comment_username"><i className="far fa-user-circle"></i>{item.User.username}</p>
-                {checkUser() == item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>}
-              </div>
+                {checkAdminStatus(item)}
+            </div>
                 <p className="comment_date">{item.User.createdAt}</p>
                 <p className="comment_content"><i className="far fa-comment-dots"></i>{item.content}</p>
             </div>
