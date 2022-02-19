@@ -22,24 +22,28 @@ const ProfileUpdate = () => {
   let confirmPasswordErrorMessage = "";
   let bioErrorMessage = "";
 
-  /*
-  if (usernameLog.length < 3) {
-    usernameErrorMessage = "nom d'utilisateur trop court"
+  const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  //regex password: at least 8 chars (uppercase AND lowercase), at least one number, at least one special char
+  const PASSWORD_REGEX  =  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+
+  
+  if (usernameLog.length >= 17 || usernameLog.length <= 5 && usernameLog.length !== 0) {
+    usernameErrorMessage = "! 6 à 16 car."
   }
 
-  if (emailLog.length < 3) {
+  if (!EMAIL_REGEX.test(emailLog) && emailLog.length !== 0) {
     emailErrorMessage = "email non valide"
   }
 
-  if (passwordLog < 3) {
+  if (!PASSWORD_REGEX.test(passwordLog) && passwordLog.length !== 0) {
     passwordErrorMessage = "mot de passe non valide"
   }
 
   if (passwordLog !== confirmPasswordLog) {
-    confirmPasswordErrorMessage = "le mot de passe saisi doit être identique"
+    confirmPasswordErrorMessage = "doit être identique"
 
   }
-  */
+
 
   const noError =
     usernameErrorMessage == "" &&
@@ -101,7 +105,7 @@ const ProfileUpdate = () => {
                 setUsernameLog(e.target.value);
               }}
             />
-            <p>{usernameErrorMessage}</p>
+            <p className="small">{usernameErrorMessage}</p>
           </div>
         </div>
 
@@ -117,12 +121,15 @@ const ProfileUpdate = () => {
                 setEmailLog(e.target.value);
               }}
             />
-            <p>{emailErrorMessage}</p>
+            <p className="small">{emailErrorMessage}</p>
           </div>
         </div>
 
         <div className="flex_start_update">
-          <p>Nouveau Mot de passe:</p>
+          <div className="flex_center_password">
+            <p className="margin_top">Nouveau Mot de passe:</p>
+            <p className="black small">(+ de 8 car., maj et min, un chiffre + un car. spécial)</p>
+          </div>
           <div>
             <input
               className="signup_field"
@@ -133,7 +140,7 @@ const ProfileUpdate = () => {
                 setPasswordLog(e.target.value);
               }}
             />
-            <p>{passwordErrorMessage}</p>
+            <p className="small">{passwordErrorMessage}</p>
           </div>
         </div>
 
@@ -149,7 +156,7 @@ const ProfileUpdate = () => {
                 setConfirmPasswordLog(e.target.value);
               }}
             />
-            <p>{confirmPasswordErrorMessage}</p>
+            <p className="small">{confirmPasswordErrorMessage}</p>
           </div>
         </div>
 

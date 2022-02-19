@@ -79,6 +79,26 @@
     min-height: 50px;
 }
 
+.flex_start_update div p {
+  margin: 0px;
+  color: rgb(255, 0, 0, 0.7)
+}
+
+.profileupdate_form p {
+  margin-top: 0px;
+}
+
+
+.flex_center_password {
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.flex_center_password p {
+  color: black !important;
+}
 
 
 
@@ -87,10 +107,31 @@
   .profile_main {
     width: 100%;
   }
+  .flex_start_update p {
+    margin: 15px 0px 0px 0px;
+  }
+  .margin_top {
+    margin: 15px 0px 0px 0px !important;
+  }
+  .flex_center_password {
+    margin-bottom: 0px;
+  }
   .flex_start_update {
     display: flex;
+    width: 80%;
     flex-direction: column;
 }
+}
 
+
+
+/* Tablet Display */
+@media screen and (min-width:480px) and (max-width:1200px) {
+  .signup_field {
+    width: 180px !important;
+  }
+  .profileupdate_form {
+    font-size: 0.9em;
+  }
 
 }

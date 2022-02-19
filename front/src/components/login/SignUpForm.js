@@ -26,7 +26,7 @@ const SignUpForm = () => {
 
   
   if (usernameLog.length >= 17 || usernameLog.length <= 5) {
-    usernameErrorMessage = "doit faire entre 6 et 16 caractères"
+    usernameErrorMessage = "! 6 à 16 caractères"
   }
 
   if (!EMAIL_REGEX.test(emailLog)) {
@@ -38,7 +38,7 @@ const SignUpForm = () => {
   }
 
   if (passwordLog !== confirmPasswordLog) {
-    confirmPasswordErrorMessage = "le mot de passe saisi doit être identique"
+    confirmPasswordErrorMessage = "doit être identique"
 
   }
 

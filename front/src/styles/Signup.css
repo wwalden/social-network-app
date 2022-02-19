@@ -66,6 +66,30 @@
 
 
 
+
+/* Mobile Display */
+@media only screen and (max-width: 479px) {
+  .signup_form {
+    width: 95%;
+    max-width: 800px;
+  }
+  .flex_start {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 500px;
+    margin-bottom: 20px;
+  }
+  .flex_start p {
+    margin-bottom: 0px;
+  }
+  .flex_center_aligned {
+    margin-bottom: 0px;
+  }
+}
+
+
+
 /* Tablet Display */
 @media screen and (min-width:480px) and (max-width:1200px) {
   .signup_form {
