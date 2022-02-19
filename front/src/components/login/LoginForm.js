@@ -34,8 +34,14 @@ const LoginForm = () => {
       <img className="login_pic" src="https://picsum.photos/478/200/?random" alt="another random landscape" />
       <div className="login_form">
         <h2>login</h2>
-        <input className="form_tools" type='email' name='email' placeholder='email...' onChange={(e) => {setEmailLog(e.target.value)}}/>
-        <input className="form_tools" type='password' name='password' placeholder='password...' onChange={(e) => {setPasswordLog(e.target.value)}}/>
+        <div>
+          <label for="email">email:</label>
+          <input className="form_tools" id="email" type='email' name='email' placeholder='email...' onChange={(e) => {setEmailLog(e.target.value)}}/>
+        </div>
+        <div className="loginPass">
+          <label for="password">mot de passe:</label>
+          <input className="form_tools" id="password" type='password' name='password' placeholder='password...' onChange={(e) => {setPasswordLog(e.target.value)}}/>
+        </div>
         <button onClick={loginin}>Login</button>
       </div>
     </div>

@@ -70,44 +70,44 @@ const SignUpForm = () => {
       <h2>Créer un compte</h2>
       <div className="signup_form">
         <div className="flex_start">
-          <p>Nom d'utilisateur:</p>
+          <label for="username">Nom d'utilisateur:</label>
           <div>
-            <input className="signup_field" type='username' name='username' placeholder='username...' onChange={(e) => {setUsernameLog(e.target.value)}}/>
+            <input className="signup_field" type='username' id="username" name='username' placeholder='username...' onChange={(e) => {setUsernameLog(e.target.value)}}/>
             <p>{usernameErrorMessage}</p>
           </div>
         </div>
 
         <div className="flex_start">
-          <p>Email:</p>
+          <label for="email">Email:</label>
           <div>
-            <input className="signup_field" type='email' name='email' placeholder='email...' onChange={(e) => {setEmailLog(e.target.value)}}/>
+            <input className="signup_field" id="email" type='email' name='email' placeholder='email...' onChange={(e) => {setEmailLog(e.target.value)}}/>
             <p>{emailErrorMessage}</p>
           </div>
         </div>
 
         <div className="flex_start">
           <div className="flex_center_aligned">
-            <p className="black">Mot de passe:</p>
+            <label for="password" className="black">Mot de passe:</label>
             <p className="black small">(au moins 8 caractères, majuscules/minuscules, un chiffre, un caractère spécial)</p>
           </div>
           <div>
-            <input className="signup_field" type='password' name='password' placeholder='password...' onChange={(e) => {setPasswordLog(e.target.value)}}/>
+            <input className="signup_field" id= "password" type='password' name='password' placeholder='password...' onChange={(e) => {setPasswordLog(e.target.value)}}/>
             <p>{passwordErrorMessage}</p>
           </div>
         </div>
 
         <div className="flex_start">
-          <p>Confirmez le mot de passe:</p>
+          <label for="passconfirm">Confirmez le mot de passe:</label>
           <div>
-            <input className="signup_field" type='password' name='password' placeholder='password...' onChange={(e) => {setConfirmPasswordLog(e.target.value)}}/>
+            <input className="signup_field" type='password' id="passconfirm" name='password' placeholder='password...' onChange={(e) => {setConfirmPasswordLog(e.target.value)}}/>
             <p>{confirmPasswordErrorMessage}</p>
           </div>
         </div>
  
         <div className="flex_center flex_start">
-          <p>Entrez votre bio:</p>
+          <label for="bio">Entrez votre bio:</label>
           <div>
-            <textarea className="signup_field" name='bio' placeholder='bio...' rows="5" onChange={(e) => {setBioLog(e.target.value)}}/>
+            <textarea className="signup_field" name='bio' id="bio" placeholder='bio...' rows="5" onChange={(e) => {setBioLog(e.target.value)}}/>
             <p>{bioErrorMessage}</p>
           </div>
 

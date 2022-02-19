@@ -90,11 +90,12 @@ const ProfileUpdate = () => {
       <GetUser fullData="Light" classprops="profileupdate_current"/>
       <div className="profileupdate_form">
         <div className="flex_start_update">
-          <p>Nouveau nom d'utilisateur:</p>
+          <label for="username">Nouveau nom d'utilisateur:</label>
           <div>
-            <input
+            <input 
               className="signup_field"
               type="username"
+              id="username"
               name="username"
               placeholder="username..."
               onChange={(e) => {
@@ -106,11 +107,12 @@ const ProfileUpdate = () => {
         </div>
 
         <div className="flex_start_update">
-          <p>Nouvel email:</p>
+          <label for="email">Nouvel email:</label>
           <div>
             <input
               className="signup_field"
               type="email"
+              id="email"
               name="email"
               placeholder="email..."
               onChange={(e) => {
@@ -123,13 +125,14 @@ const ProfileUpdate = () => {
 
         <div className="flex_start_update">
           <div className="flex_center_password">
-            <p className="margin_top">Nouveau Mot de passe:</p>
+            <label for="password" className="margin_top">Nouveau Mot de passe:</label>
             <p className="black small">(+ de 8 car., maj et min, un chiffre + un car. spécial)</p>
           </div>
           <div>
             <input
               className="signup_field"
               type="password"
+              id="password"
               name="password"
               placeholder="password..."
               onChange={(e) => {
@@ -141,12 +144,13 @@ const ProfileUpdate = () => {
         </div>
 
         <div className="flex_start_update">
-          <p>Confirmez le nouveau mot de passe:</p>
+          <label for="confirmpass">Confirmez le nouveau mot de passe:</label>
           <div>
             <input
               className="signup_field"
               type="password"
               name="password"
+              id="confirmpass"
               placeholder="password..."
               onChange={(e) => {
                 setConfirmPasswordLog(e.target.value);
@@ -157,12 +161,13 @@ const ProfileUpdate = () => {
         </div>
 
         <div className="flex_center flex_start_update">
-          <p>Modifiez votre bio:</p>
+          <label for="bio">Modifiez votre bio:</label>
           <div>
             <textarea
               className="signup_field field_bio"
               rows= "5"
               name="bio"
+              id="bio"
               placeholder="bio..."
               autoFocus
               onChange={(e) => {

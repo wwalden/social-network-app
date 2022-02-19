@@ -26,6 +26,11 @@ h2 {
   text-decoration: underline;
 }
 
+.loginPass {
+  margin-bottom: 30px;
+  position: relative;
+  right: 29px;
+}
 
 
 /* Mobile Display */
