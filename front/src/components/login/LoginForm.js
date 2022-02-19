@@ -1,14 +1,10 @@
-import '../../styles/Login.css'
 import React, { useState } from 'react';
 import axios from 'axios';
 
  
 const LoginForm = () => {
-
   const [emailLog, setEmailLog] = useState('');
   const [passwordLog, setPasswordLog] = useState('');
-
-
   let emailErrorMessage = "";
   //eslint-disable-next-line
   const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -21,7 +17,6 @@ const LoginForm = () => {
     if (emailErrorMessage !== "") {
       return window.alert("email non valide!")
     }
-
     axios.post("http://localhost:4200/api/auth/login", {
       email: emailLog,
       password: passwordLog,
@@ -33,9 +28,6 @@ const LoginForm = () => {
       console.log(error);
     })
   }
-
-
-
 
   return (
     <div>
@@ -51,14 +43,4 @@ const LoginForm = () => {
 }
 
 
-
-
-
-
 export default LoginForm;
-
-
-
-
-// maximus200@email.com
-// azerty

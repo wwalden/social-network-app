@@ -7,9 +7,6 @@ import GetUser from './GetUser';
 const Aside = (props) => {
   const className = props.className
   const fullData = props.fullData
-  // nimp avec les props "Fulldata" qui sont 2 fois les mêmes: changer ça!"
-  // renommer celle-ci, qui se déverse soit dans "Home" soit dans "Profile"
-
 
   if (!fullData) {
     return (

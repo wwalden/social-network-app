@@ -1,14 +1,9 @@
-import '../../styles/Banner.css'
 import React from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-
-
 const NavBar = () => {
- 
   const jwtcookie = Cookies.get('jwt');
- 
   const logout = async () => {
     Cookies.remove('jwt');
     Cookies.remove('userId');
@@ -24,7 +19,6 @@ const NavBar = () => {
       alert("logout impossible!")
     }
   }
-
 
   return (
     <div className="groupo_navbar">

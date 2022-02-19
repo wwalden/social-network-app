@@ -1,4 +1,3 @@
-import '../../styles/Banner.css'
 import React from 'react';
 import logoWithName from '../../assets/logo.png'
 import logo from '../../assets/icon.png'

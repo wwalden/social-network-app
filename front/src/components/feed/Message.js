@@ -1,4 +1,3 @@
-import '../../styles/Message.css' // USELESS !!
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -6,56 +5,26 @@ import Comment from './Comments';
 import {checkUser} from '../../utils/checkUser'
 
  
-
 const Message = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
   axios.defaults.withCredentials = true;
-
-
-
   const jwtcookie = Cookies.get('jwt');
-
-// ${messid}
   const [trashStatus, setTrashStatus] = useState("");
   const DeleteMess = async (messid) => {
-      const response = await axios.delete(`http://localhost:4200/api/mess/${messid}`, {
-        headers: {
-          "x-access-token": `${jwtcookie}`
-        }
-      });
-      
-      if (response.status === 200) {
-        //console.log(messid)
-        setTrashStatus(messid)
-        //document.location.reload()
-      } else {
-        console.log(messid)
+    const response = await axios.delete(`http://localhost:4200/api/mess/${messid}`, {
+      headers: {
+        "x-access-token": `${jwtcookie}`
       }
-
-
-
-
-
-      /*
-      
-      
-      then((response) => { 
-        if (response.status === 200) {
-          console.log("ok!")
-          //document.location.reload()
-        } else {
-          console.log("error")
-        }
-      }).catch((err) => {
-        console.log("error")
-      })
-      */
+    });
+    if (response.status === 200) {
+      setTrashStatus(messid)
+    } else {
+      console.log(messid)
     }
-
-   
+  }
 
   const [postMess, setPostMess] = useState('');
   const [messIsPosted, setMessIsPosted] = useState('');
@@ -69,44 +38,19 @@ const Message = () => {
         "x-access-token": `${jwtcookie}`
       }
     })
-    //.then((response) => { 
-      //console.log(response.data)
-      if (response) {
-        //console.log(response)
-        setMessIsPosted(response.data.Message)
-        setInputValue("")
-        setInputValue()
-        //setItems([...postMess])
-      }
-    //}
-    //).catch((err) => {
-      //setPostMess("")
-    //})
+    if (response) {
+      setMessIsPosted(response.data.Message)
+      setInputValue("")
+      setInputValue()
+    }
   }
-/*
-    const [likeStatus, setLikeStatus] = useState("");
-    useEffect (() => {
-        const response = axios.get(`http://localhost:4200/api/mess/${messageid}/like`, {
-          headers: {
-            "x-access-token": `${jwtcookie}`
-          }
-        });
-        
-        if (response.status === 200) {
-          console.log(response.data.message)
-          setLikeStatus(response.data.message)
-          //document.location.reload()
-        } else {
-          console.log("error")
-        }
-    }, [])
-*/
 
-const handleKeyDown = (event) => {
-  if (event.key === 'Enter') {
-    Posting()
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      Posting()
+    }
   }
-}
 
   const [likes, setLikes] = useState("");
   const LikeMess = async (messid) => {
@@ -119,9 +63,7 @@ const handleKeyDown = (event) => {
       });
       
       if (response.status === 200) {
-        //console.log(response.data.message)
         setLikes(response.data.message)
-        //document.location.reload()
       } else {
         console.log("error")
       }
@@ -129,10 +71,8 @@ const handleKeyDown = (event) => {
 
 
   const checkLikeStatus = (likesArray, user) => {
-    //console.log(likesArray[0].userid)
-    //console.log(user)
     for (let i=0; i<likesArray.length; i++) {
-      if(likesArray[i].userid == user) {
+      if(likesArray[i].userid === Number(user)) {
         return true;
       }
     }
@@ -140,10 +80,10 @@ const handleKeyDown = (event) => {
   }
 
   const checkAdminStatus = (item) => {
-    if (UserIsAdmin == "Admin") {
+    if (UserIsAdmin === "Admin") {
       return <button onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     } else {
-      return checkUser() == item.userId && <button onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+      return Number(checkUser()) === item.userId && <button onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     }
 
   }
@@ -154,32 +94,27 @@ const handleKeyDown = (event) => {
 
   }
 
+  useEffect (() => {
+    const jwtcookie = Cookies.get('jwt');
+    axios.get("http://localhost:4200/api/mess", {
+      headers: {
+        "x-access-token": `${jwtcookie}`
+      }
+    })
+    .then(
+      (result) => {
+        setIsLoaded(true);
+        setItems(result.data);
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    )
+  }, [trashStatus, messIsPosted, likes]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    useEffect (() => {
-      axios.get("http://localhost:4200/api/mess", {
-        headers: {
-          "x-access-token": `${jwtcookie}`
-        }
-      })
-      .then(
-        (result) => {
-          //console.log(result.data)
-          //console.log(result.data[2].Likes.length)
-          setIsLoaded(true);
-          setItems(result.data);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    }, [trashStatus, messIsPosted, likes])
-
-    let isAdminData = localStorage.getItem("isAdmin");
-    //console.log(isAdminData)
-    let UserIsAdmin = (isAdminData == "Admin" ? "Admin" : "Standard");
-
-
+  let isAdminData = localStorage.getItem("isAdmin");
+  let UserIsAdmin = (isAdminData === "Admin" ? "Admin" : "Standard");
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -207,15 +142,15 @@ const handleKeyDown = (event) => {
             </div>
 
              {checkLikeStatus(item.Likes, checkUser()) && <div className="flex">
-              <a title="likez!"><button onClick={() => LikeMess(item.id)}><i className="fas fa-thumbs-up green"></i></button></a>
+              <button title="likez!" onClick={() => LikeMess(item.id)}><i className="fas fa-thumbs-up green"></i></button>
               <p className="green">{item.likes}</p>
-              <a title="copiez le texte et partagez-le!"><button onClick={() => {shareContent(item.content)}}><i className="fas fa-share"></i></button></a>
+              <button title="copiez le texte et partagez-le!" onClick={() => {shareContent(item.content)}}><i className="fas fa-share"></i></button>
             </div>}
 
             {!checkLikeStatus(item.Likes, checkUser()) && <div className="flex">
-              <a title="likez!"><button onClick={() => LikeMess(item.id)}><i className="fas fa-thumbs-up red"></i></button></a>
+              <button title="likez!" onClick={() => LikeMess(item.id)}><i className="fas fa-thumbs-up red"></i></button>
               <p className="red">{item.likes}</p>
-              <a title="copiez le texte et partagez-le!"><button onClick={() => {shareContent(item.content)}}><i className="fas fa-share"></i></button></a>
+              <button title="copiez le texte et partagez-le!" onClick={() => {shareContent(item.content)}}><i className="fas fa-share"></i></button>
             </div> }
 
             <Comment messageid={item.id} userid={item.userId} messagecontent={item.content} />

@@ -1,29 +1,21 @@
-import '../../styles/Message.css'
 import React, { useState, useEffect } from 'react';
 import {checkUser} from '../../utils/checkUser'
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
 
-
 const Comment = (props) => {
+  const messageid = props.messageid;
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const messageid = props.messageid;
-
-
-  axios.defaults.withCredentials = true;
-
-
   const [trashStatus, setTrashStatus] = useState("");
   const [commIsPosted, setCommIsPosted] = useState('');
   const [inputValue, setInputValue] = useState();
-
-  const [postMess, setPostMess] = useState(''); //useLess right??
+  const [postMess, setPostMess] = useState('');
 
   const jwtcookie = Cookies.get('jwt');
-
+  axios.defaults.withCredentials = true;
 
   const deleteComment = async (commentid) => {
     const response = await axios.delete(`http://localhost:4200/api/mess/${messageid}/comment/${commentid}`, {
@@ -31,15 +23,12 @@ const Comment = (props) => {
         "x-access-token": `${jwtcookie}`
       }
     });
-    
     if (response.status === 200) {
       setTrashStatus(commentid)
     } else {
       console.log(commentid)
     }
   }
-
-
 
   const posting = () => {
     axios.post(`http://localhost:4200/api/mess/${messageid}/comment`, {
@@ -49,7 +38,6 @@ const Comment = (props) => {
         "x-access-token": `${jwtcookie}`
       }
     }).then((response) => { 
-      //console.log(response)
       if (response.data.Comment) {
         setCommIsPosted(response.data.Comment)
         setInputValue("")
@@ -74,11 +62,7 @@ const Comment = (props) => {
     } else {
       return Number(checkUser()) === item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     }
-
   }
-
-
-
 
   useEffect (() => {
     const jwtcookie = Cookies.get('jwt');
@@ -98,10 +82,6 @@ const Comment = (props) => {
       }
     )
   }, [trashStatus, commIsPosted]) // eslint-disable-line react-hooks/exhaustive-deps
-
-
-
-
 
 
   if (error) {
@@ -131,7 +111,6 @@ const Comment = (props) => {
     );
   }
 }
-
 
 export default Comment;
 

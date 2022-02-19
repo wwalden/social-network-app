@@ -1,8 +1,5 @@
-import '../../styles/Feed.css'
 import './Feed';
 import React from 'react';
-
-
 
 class Trees extends React.Component {
   constructor(props) {

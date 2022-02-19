@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../../styles/Signup.css';
-
 
 const SignUpForm = () => {
-
   const [emailLog, setEmailLog] = useState('');
   const [usernameLog, setUsernameLog] = useState('');
   const [passwordLog, setPasswordLog] = useState(''); 

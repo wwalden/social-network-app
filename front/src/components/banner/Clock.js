@@ -1,6 +1,4 @@
-import '../../styles/Banner.css'
 import React from 'react';
-
 
 class Clock extends React.Component {
   constructor(props) {

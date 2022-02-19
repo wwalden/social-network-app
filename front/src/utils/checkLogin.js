@@ -15,7 +15,3 @@ export function checkLogin() {
     return false
   }
 }
-
-
-
-// Passer plutôt un élément "auth" dans le token??

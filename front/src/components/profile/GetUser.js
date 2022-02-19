@@ -25,7 +25,6 @@ const GetUser = (props) => {
           setIsLoaded(true);
           setuserData(result.data)
           localStorage.setItem("isAdmin", result.data.isAdmin);
-          //console.log(localStorage.getItem("isAdmin"))
         },
         (error) => {
           setIsLoaded(true);
@@ -39,10 +38,6 @@ const GetUser = (props) => {
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    
-    
-    // const memberSinceFormated = memberSince.substring(0,10);
-
     if (fullData === "Full") {
       return (
         <div className="aside_content">
@@ -66,14 +61,5 @@ const GetUser = (props) => {
   }
 }
 
-
 export default GetUser;
 
-
-
-
-
-/*
-WORKING TOKEN
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE5LCJpYXQiOjE2NDQzNDIxNTAsImV4cCI6MTczMDc0MjE1MH0.RuRc2f03F4O0ZOxhEpIs2udHrZs6HG5_uqmk2LkuFPs
-*/
