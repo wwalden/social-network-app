@@ -25,6 +25,7 @@ app.use(
     key: "userId",
     secret: `${process.env.TOKEN_KEY}`,
     resave: false,
+    cookie: { maxAge: 1 },
     saveUninitialized: false,
   })
 );

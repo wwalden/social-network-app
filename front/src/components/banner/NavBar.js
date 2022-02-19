@@ -1,15 +1,30 @@
 import '../../styles/Banner.css'
 import React from 'react';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 
 
 const NavBar = () => {
+ 
+  const jwtcookie = Cookies.get('jwt');
+ 
+  const logout = async () => {
 
-  const logout = () => {
+
     Cookies.remove('jwt');
     Cookies.remove('userId');
     localStorage.removeItem("isAdmin");
+    axios.defaults.withCredentials = true;
+    const response = await axios.get("http://localhost:4200/api/auth/logout", {
+      headers: {
+        "x-access-token": `${jwtcookie}`
+      }
+    });
+
+    if (response.status !== 200) {
+      alert("logout impossible!")
+    }
   }
 
 

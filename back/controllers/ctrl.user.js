@@ -76,6 +76,19 @@ exports.login = (req, res, next) => {
 };
 
 
+exports.logout = (req, res, next) => {
+  try {
+    res.cookie('jwt', '', { maxAge: 1 });
+    res.cookie('userID', '', { maxAge: 1 });
+    req.session.destroy();
+    res.status(200).json({message: "lougout with success"})
+  } catch {
+    res.status(400).json({
+      error: new Error("logout error"),
+  })
+  }
+}
+
 //User Controllers
 exports.showUser = (req, res, next) => {
   User.findOne({ where: { id: req.params.id } })
