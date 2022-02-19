@@ -1,280 +1,207 @@
-// Mettre des 401 à la place des 400 afin de récupérer les messages JSON des erreurs 
-
-
 const Message = require("../models/message");
 const User = require("../models/user");
 const Comment = require("../models/comment");
 const Like = require("../models/like");
 
-User.hasMany(Message, {foreignKey: 'userId'});
+User.hasMany(Message, { foreignKey: "userId" });
 Message.belongsTo(User);
 
-Message.hasMany(Comment, {foreignKey: 'messageid'});
-Comment.belongsTo(Message, {onDelete: 'cascade'});
+Message.hasMany(Comment, { foreignKey: "messageid" });
+Comment.belongsTo(Message, { onDelete: "cascade" });
 
-User.hasMany(Comment, {foreignKey: 'userId'});
+User.hasMany(Comment, { foreignKey: "userId" });
 Comment.belongsTo(User);
 
-Message.hasMany(Like, {foreignKey: 'messid'});
+Message.hasMany(Like, { foreignKey: "messid" });
 Like.belongsTo(Message);
 
 
-// Messages Controllers
-
+//Messages Controllers
 exports.showAllMess = async (req, res, next) => {
-
-  const userInDb = await User.findOne({ where: { id: res.locals.user } })
+  const userInDb = await User.findOne({ where: { id: res.locals.user } });
   if (!userInDb) {
-    return res.status(400).json({ message: "not allowed" })
+    return res.status(401).json({ message: "not allowed" });
   }
-
   Message.findAll({
     include: [
       {
         model: User,
-        required: true
-
+        required: true,
       },
-     {
-      model: Like,
-      required: false, attributes: {
-        exclude: ['Likes.messageId']
+      {
+        model: Like,
+        required: false,
+        attributes: {
+          exclude: ["Likes.messageId"],
+        },
       },
-     }
     ],
-     order: [['createdAt', 'DESC']]
+    order: [["createdAt", "DESC"]],
   })
     .then((messages) => {
-      console.log("ok!")
-      res.status(200).json(messages)})
+      res.status(200).json(messages);
+    })
     .catch((error) => {
-      console.log(error)
-      res.status(400).json({ error })});
+      res.status(400).json({ error });
+    });
 };
-
 
 exports.createMess = (req, res, next) => {
   const newMess = Message.create({
     userid: res.locals.user,
-    content: req.body.content
+    content: req.body.content,
   })
     .then((newMess) => res.status(201).json({ Message: newMess.id }))
     .catch((error) => res.status(400).json({ error }));
 };
 
 
-/*
-exports.showOneMess = async (req, res, next) => {
-
-  const userInDb = await User.findOne({ where: { id: res.locals.user } })
-  if (!userInDb) {
-    return res.status(400).json({ message: "not allowed" })
-  }
-
-
-  Message.findOne({ where: { id: req.params.messid } })
-    .then(message => res.status(200).json(message.content))
-    .catch(error => res.status(400).json({ error }));
-};
-*/
-
-exports.updateMess = async (req, res, next) => {
-  try {
-    /*
-    const messInDb = await Message.findOne({ where: { id: req.params.id } })
-    const userOfMessInDb = messInDb.userid.toString();
- 
-    if (userOfMessInDb !== res.locals.user) {
-      const userInDb = await User.findOne({ where: { id: res.locals.user } })
-      const userStatus = userInDb.isAdmin.toString();
-      if (userStatus !== true) {
-      return res.status(400).json({ message: "not allowed" })
-      }
-    }
-    */
-    await Message.update(
-        {content: req.body.content}, {
-        where : {
-          id: req.params.messid
-        }
-      })
-    res.status(200).json({ message: 'Message mis à jour !'}) //, mess: req.params.messid, user: userOfMessInDb, userbis: res.locals.user, newmess: req.body.content})
-  } catch {
-    res.status(400).json({ error})
-  }
-}
-
- 
 exports.deleteMess = async (req, res, next) => {
   try {
-    const messInDb = await Message.findOne({ where: { id: req.params.messid } })
+    const messInDb = await Message.findOne({
+      where: { id: req.params.messid },
+    });
     const userOfMessInDb = messInDb.userid.toString();
-    console.log(userOfMessInDb)
-    console.log(res.locals.user)
     if (userOfMessInDb !== res.locals.user) {
-      const userInDb = await User.findOne({ where: { id: res.locals.user } })
+      const userInDb = await User.findOne({ where: { id: res.locals.user } });
       const userStatus = userInDb.isAdmin.toString();
       if (userStatus !== "Admin") {
-        return res.status(400).json({ message: "not allowed" })
+        return res.status(400).json({ message: "not allowed" });
       }
     }
-    
-      await Message.destroy({
-          where : {
-            id: req.params.messid
-          }
-        })
-      res.status(200).json({ message: 'Message supprimé !' })
+
+    await Message.destroy({
+      where: {
+        id: req.params.messid,
+      },
+    });
+    res.status(200).json({ message: "Message supprimé !" });
   } catch {
-    res.status(400).json({ error: "not allowed" })
+    res.status(400).json({ error: "not allowed" });
   }
-}
+};
 
 
-// Likes Controllers
-
-
-
-// Comments Controllers
-// PASSER 2 PARAMETRES ? -- AVEC: http://localhost:3000/api/?mess=16&comment=23
-
-
-
+//Comments Controllers
 exports.showComments = async (req, res, next) => {
-
-
-  const userInDb = await User.findOne({ where: { id: res.locals.user } })
+  const userInDb = await User.findOne({ where: { id: res.locals.user } });
   if (!userInDb) {
-    return res.status(400).json({ message: "not allowed" })
+    return res.status(400).json({ message: "not allowed" });
   }
 
   Comment.findAll({
-    where: {messageid: req.params.messid},
-    include: [{
-      model: User,
-      required: true
-     }]
+    where: { messageid: req.params.messid },
+    include: [
+      {
+        model: User,
+        required: true,
+      },
+    ],
   })
-    .then(comments => res.status(200).json(comments))
-    .catch(error => res.status(400).json({ error }));
+    .then((comments) => res.status(200).json(comments))
+    .catch((error) => res.status(400).json({ error }));
 };
-
-
 
 exports.addComment = (req, res, next) => {
   const newComment = Comment.create({
     userid: res.locals.user,
     messageid: req.params.messid,
-    content: req.body.content
+    content: req.body.content,
   })
-    .then((newComment) => res.status(201).json({ Comment: newComment.id, content: newComment.content }))
+    .then((newComment) =>
+      res
+        .status(201)
+        .json({ Comment: newComment.id, content: newComment.content })
+    )
     .catch((error) => res.status(400).json({ error }));
 };
 
-
-exports.updateComment = (req, res, next) => {
-  try {
-    Comment.update(
-      {content: req.body.content}, {
-      where : {
-        id: req.params.id
-      }
-    })
-    res.status(200).json({ message: 'Commentaire mis à jour !'})
-  } catch {
-    res.status(400).json({ error })
-  }
-};
-
-
-
-
 exports.deleteComment = async (req, res, next) => {
   try {
-    
-    const commInDb = await Comment.findOne({ where: { id: req.params.commentid } })
+    const commInDb = await Comment.findOne({
+      where: { id: req.params.commentid },
+    });
     const userOfCommInDb = commInDb.userid.toString();
-    
     if (userOfCommInDb !== res.locals.user) {
-      return res.status(400).json({ message: "not allowed" })
-
-    }
-
-    await Comment.destroy({
-      where : {
-        id: req.params.commentid
+      const userInDb = await User.findOne({ where: { id: res.locals.user } });
+      const userStatus = userInDb.isAdmin.toString();
+      if (userStatus !== "Admin") {
+        return res.status(400).json({ message: "not allowed" });
       }
-    })
-    res.status(200).json({ message: 'Commentaire supprimé !' })
+    }
+    await Comment.destroy({
+      where: {
+        id: req.params.commentid,
+      },
+    });
+    res.status(200).json({ message: "Commentaire supprimé !" });
   } catch {
-    res.status(400).json({ error: "not allowed" })
+    res.status(400).json({ error: "not allowed" });
   }
 };
 
 
-
+// Likes Controllers
 exports.likeMess = async (req, res, next) => {
   try {
-    console.log(res.locals.user);
-    const UserInLikes = await Like.findOne({ where: { messid: req.params.messid, userid: res.locals.user} })
-    
+    const UserInLikes = await Like.findOne({
+      where: { messid: req.params.messid, userid: res.locals.user },
+    });
     let userAlreadyLiked;
     if (UserInLikes) {
       userAlreadyLiked = true;
     } else {
-      userAlreadyLiked = false
+      userAlreadyLiked = false;
     }
-
-    console.log(userAlreadyLiked);
-
     if (!userAlreadyLiked) {
       await Message.increment(
-        {likes: 1}, {
-          where : {
-            id: req.params.messid
-          }
-        })
-
-        await Like.create({
-          messid: req.params.messid,
-          userid: res.locals.user
-        })
-
-
+        { likes: 1 },
+        {
+          where: {
+            id: req.params.messid,
+          },
+        }
+      );
+      await Like.create({
+        messid: req.params.messid,
+        userid: res.locals.user,
+      });
     } else {
       await Message.increment(
-        {likes: -1}, {
-          where : {
-            id: req.params.messid
-          }
-        })
-      await Like.destroy(
-        { where: { messid: req.params.messid, userid: res.locals.user} }
-        )
+        { likes: -1 },
+        {
+          where: {
+            id: req.params.messid,
+          },
+        }
+      );
+      await Like.destroy({
+        where: { messid: req.params.messid, userid: res.locals.user },
+      });
     }
-
-      res.status(200).json({ message: res.locals.user + req.params.messid + userAlreadyLiked})
+    res
+      .status(200)
+      .json({
+        message: res.locals.user + req.params.messid + userAlreadyLiked,
+      });
   } catch {
-    res.status(400).json({ error: "not allowed" })
+    res.status(400).json({ error: "not allowed" });
   }
 };
 
-
-
-
 exports.getLikeStatus = async (req, res, next) => {
   try {
-    const didTheUserLiked = await Like.findOne({ where: { messid: req.params.messid, userid: res.locals.user} })
-    //console.log(didTheUserLiked)
+    const didTheUserLiked = await Like.findOne({
+      where: { messid: req.params.messid, userid: res.locals.user },
+    });
     let userAlreadyLiked;
     if (didTheUserLiked) {
       userAlreadyLiked = true;
     } else {
-      userAlreadyLiked = false
+      userAlreadyLiked = false;
     }
-    res.status(200).json({ message: userAlreadyLiked})
-
+    res.status(200).json({ message: userAlreadyLiked });
   } catch {
-    res.status(400).json({ error: "not allowed" })
+    res.status(400).json({ error: "not allowed" });
   }
 };

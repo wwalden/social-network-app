@@ -44,15 +44,6 @@ const LoginForm = () => {
     })
   }
 
-  useEffect(() => {
-    axios.get("http://localhost:4200/api/auth/login").then((response) => {
-      if (response.data.loggedIn === true) {
-        setLoginStatus(true);
-        //JSON.stringify(response.data.user.id));
-      }
-      
-    })
-  }, [])
 
 
 
