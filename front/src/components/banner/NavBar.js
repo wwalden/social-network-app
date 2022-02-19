@@ -14,7 +14,6 @@ const NavBar = () => {
         "x-access-token": `${jwtcookie}`
       }
     });
-
     if (response.status !== 200) {
       alert("logout impossible!")
     }

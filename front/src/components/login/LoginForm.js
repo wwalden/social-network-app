@@ -35,11 +35,11 @@ const LoginForm = () => {
       <div className="login_form">
         <h2>login</h2>
         <div>
-          <label for="email">email:</label>
+          <label htmlFor="email">email:</label>
           <input className="form_tools" id="email" type='email' name='email' placeholder='email...' onChange={(e) => {setEmailLog(e.target.value)}}/>
         </div>
         <div className="loginPass">
-          <label for="password">mot de passe:</label>
+          <label htmlFor="password">mot de passe:</label>
           <input className="form_tools" id="password" type='password' name='password' placeholder='password...' onChange={(e) => {setPasswordLog(e.target.value)}}/>
         </div>
         <button onClick={loginin}>Login</button>

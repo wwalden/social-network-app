@@ -9,9 +9,9 @@ import ConnectionCheck from './ConnectionCheck';
 const Banner = () => {
   return (
     <header className="groupo_banner">
-      <img src={logoWithName} alt='Logo Groupomania with text' className='groupo_logo' />
+      <img src={logoWithName} alt='Logo Groupomania with text' className='groupo_logo' width="300" height="50"/>
       <Clock />
-      <img className="logo_anim" alt='Logo Groupomania' src={logo}/>
+      <img className="logo_anim" height="100px" alt='Logo Groupomania' src={logo}/>
       <NavBar />
       <ConnectionCheck />
     </header>

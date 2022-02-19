@@ -90,7 +90,7 @@ const ProfileUpdate = () => {
       <GetUser fullData="Light" classprops="profileupdate_current"/>
       <div className="profileupdate_form">
         <div className="flex_start_update">
-          <label for="username">Nouveau nom d'utilisateur:</label>
+          <label htmlFor="username">Nouveau nom d'utilisateur:</label>
           <div>
             <input 
               className="signup_field"
@@ -107,7 +107,7 @@ const ProfileUpdate = () => {
         </div>
 
         <div className="flex_start_update">
-          <label for="email">Nouvel email:</label>
+          <label htmlFor="email">Nouvel email:</label>
           <div>
             <input
               className="signup_field"
@@ -125,7 +125,7 @@ const ProfileUpdate = () => {
 
         <div className="flex_start_update">
           <div className="flex_center_password">
-            <label for="password" className="margin_top">Nouveau Mot de passe:</label>
+            <label htmlFor="password" className="margin_top">Nouveau Mot de passe:</label>
             <p className="black small">(+ de 8 car., maj et min, un chiffre + un car. spécial)</p>
           </div>
           <div>
@@ -144,7 +144,7 @@ const ProfileUpdate = () => {
         </div>
 
         <div className="flex_start_update">
-          <label for="confirmpass">Confirmez le nouveau mot de passe:</label>
+          <label htmlFor="confirmpass">Confirmez le nouveau mot de passe:</label>
           <div>
             <input
               className="signup_field"
@@ -161,7 +161,7 @@ const ProfileUpdate = () => {
         </div>
 
         <div className="flex_center flex_start_update">
-          <label for="bio">Modifiez votre bio:</label>
+          <label htmlFor="bio">Modifiez votre bio:</label>
           <div>
             <textarea
               className="signup_field field_bio"

@@ -132,7 +132,7 @@ const Message = () => {
             <input className="text_box" type='text' id='postmess' value={inputValue} name='message' placeholder='ici votre message...' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
           </div>
           <div className="button_space">
-            <label for='postmess'>
+            <label htmlFor='postmess'>
             <button className="mess_button" onClick={Posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
             </label>
           </div>

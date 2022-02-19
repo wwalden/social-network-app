@@ -97,7 +97,7 @@ const Comment = (props) => {
       <div>
         <div className="post_comment">
             <input className="comment_box" type='text' id={"postcomment" + messageid} value={inputValue} name='message' placeholder='ajoutez un commentaire!' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
-            <label for={"postcomment" + messageid}>
+            <label htmlFor={"postcomment" + messageid}>
               <button aria-label="Post-Comment" title="Post-Comment" onClick={posting}><i className="fas fa-comments"></i>commentez!</button>
             </label>
         </div>

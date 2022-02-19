@@ -70,7 +70,7 @@ const SignUpForm = () => {
       <h2>Créer un compte</h2>
       <div className="signup_form">
         <div className="flex_start">
-          <label for="username">Nom d'utilisateur:</label>
+          <label htmlFor="username">Nom d'utilisateur:</label>
           <div>
             <input className="signup_field" type='username' id="username" name='username' placeholder='username...' onChange={(e) => {setUsernameLog(e.target.value)}}/>
             <p>{usernameErrorMessage}</p>
@@ -78,7 +78,7 @@ const SignUpForm = () => {
         </div>
 
         <div className="flex_start">
-          <label for="email">Email:</label>
+          <label htmlFor="email">Email:</label>
           <div>
             <input className="signup_field" id="email" type='email' name='email' placeholder='email...' onChange={(e) => {setEmailLog(e.target.value)}}/>
             <p>{emailErrorMessage}</p>
@@ -87,7 +87,7 @@ const SignUpForm = () => {
 
         <div className="flex_start">
           <div className="flex_center_aligned">
-            <label for="password" className="black">Mot de passe:</label>
+            <label htmlFor="password" className="black">Mot de passe:</label>
             <p className="black small">(au moins 8 caractères, majuscules/minuscules, un chiffre, un caractère spécial)</p>
           </div>
           <div>
@@ -97,7 +97,7 @@ const SignUpForm = () => {
         </div>
 
         <div className="flex_start">
-          <label for="passconfirm">Confirmez le mot de passe:</label>
+          <label htmlFor="passconfirm">Confirmez le mot de passe:</label>
           <div>
             <input className="signup_field" type='password' id="passconfirm" name='password' placeholder='password...' onChange={(e) => {setConfirmPasswordLog(e.target.value)}}/>
             <p>{confirmPasswordErrorMessage}</p>
@@ -105,7 +105,7 @@ const SignUpForm = () => {
         </div>
  
         <div className="flex_center flex_start">
-          <label for="bio">Entrez votre bio:</label>
+          <label htmlFor="bio">Entrez votre bio:</label>
           <div>
             <textarea className="signup_field" name='bio' id="bio" placeholder='bio...' rows="5" onChange={(e) => {setBioLog(e.target.value)}}/>
             <p>{bioErrorMessage}</p>
