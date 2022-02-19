@@ -4,7 +4,7 @@
 # Description (french language)
   Groupomania est mon projet de fin d'études du parcours `Développeur Web` dispensé par `OpenClassrooms`.
   Il consiste à réaliser un réseau social d'entreprise, une plateforme permettant à différents utilisateurs d'échanger des informations.
-  Le projet dans l'état actuel est encore un MVP, ses fonctionnalités sont semblables à celles de Reddit (partage d'articles et de commentaires).
+  Le projet dans l'état actuel est encore un MVP, ses fonctionnalités sont semblables à celles de Reddit (partage d'articles et de commentaires). Il s'agit de mon premier projet React, il a été l'objet de diverses expérimentations, pas toujours les choix les plus efficaces, mais très formateur...
 
   Stack technique utilisée:
   - Front: React
@@ -26,12 +26,12 @@
   go to this url: `http://localhost:3000/home`
 
 # Usage
-  First you can SignUp with a new profile, then go to home page and add new posts and comments! You can also like your favorite posts!
+  N'hésitez pas à créer votre propre compte utilisateur ("signup"), et à vous connecter. Vous pourrez alors poster des messages, les partager, et réagir à ceux-ci avec des likes et commentaires!
 
 # Roadmap
-  I'd like to include soon a picture sharing feature
+  à venir, une feature qui permet de partager aussi des images...
 
 # Author
-  Arnaud, Junior Web Developer from France
+  Arnaud, développeur web junior
 
 # Happy browsing!

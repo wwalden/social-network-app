@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import {checkUser} from '../../utils/checkUser'
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import dayjs from 'dayjs';
+require("dayjs/locale/fr");
+const relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
 
 const Comment = (props) => {
@@ -102,7 +106,7 @@ const Comment = (props) => {
                 <p className="comment_username"><i className="far fa-user-circle"></i>{item.User.username}</p>
                 {checkAdminStatus(item)}
             </div>
-                <p className="comment_date">{item.User.createdAt}</p>
+                <p className="comment_date">{dayjs(item.User.createdAt).locale("fr").fromNow()}</p>
                 <p className="comment_content"><i className="far fa-comment-dots"></i>{item.content}</p>
             </div>
           ))}

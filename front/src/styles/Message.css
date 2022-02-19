@@ -23,7 +23,6 @@
 .username {
   color: grey;
   font-style: italic;
-  margin-bottom: 5px !important;
 }
 
 .messages_top {
@@ -49,6 +48,12 @@
   margin: 0px 20px 5px 0px;
 }
 
+.small_time {
+  font-size: 0.8em;
+  font-weight: 300;
+  padding-left: 10px;
+
+}
 
 /* AFFICHER LES COMMENTAIRES */
 

@@ -2,8 +2,9 @@ import '../../styles/Aside.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import {checkUser} from '../../utils/checkUser'
-
+import {checkUser} from '../../utils/checkUser';
+import dayjs from 'dayjs';
+require("dayjs/locale/fr");
  
 const GetUser = (props) => {
   const [error, setError] = useState(null);
@@ -44,7 +45,7 @@ const GetUser = (props) => {
           <p>{userData.email}</p>
           <p><b>@{userData.username}</b></p>
           <p className="aside_bio">Bio: {userData.bio}</p>
-          <p className="aside_date">Membre depuis le {userData.createdAt}</p>
+          <p className="aside_date">Membre depuis le {dayjs(userData.createdAt).locale("fr").format('DD MMMM YYYY')}</p>
         </div>
       );
     } else if (fullData === "Small"){

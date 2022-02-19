@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Comment from './Comments';
-import {checkUser} from '../../utils/checkUser'
+import {checkUser} from '../../utils/checkUser';
+import dayjs from 'dayjs';
+require("dayjs/locale/fr");
+const relativeTime = require("dayjs/plugin/relativeTime");
+dayjs.extend(relativeTime);
 
  
 const Message = () => {
@@ -135,7 +139,10 @@ const Message = () => {
           <div className="messages" key={item.id}>
             <div className="messages_top">
               <div className="messages_top_user">
+                <div>
                 <p className="username"><i className="far fa-user-circle"></i>{item.User.username}</p>
+                <p className="username small_time">{dayjs(item.User.createdAt).locale("fr").fromNow()}</p>
+                </div>
                 {checkAdminStatus(item)}
               </div>
               <p>{item.content}</p>
