@@ -72,7 +72,7 @@ const Comment = (props) => {
     if (UserIsAdmin === "Admin") {
       return <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     } else {
-      return checkUser() === item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+      return Number(checkUser()) === item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     }
 
   }
