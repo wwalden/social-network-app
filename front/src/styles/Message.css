@@ -15,13 +15,11 @@
 }
 
 .messages p {
-  margin: 0px;
-  text-align: justify;
-  text-justify: inter-word;
+  margin: 5px 0px 0px 0px;
 }
 
 .username {
-  color: grey;
+  color: rgb(85, 85, 85, 0.8);
   font-style: italic;
 }
 
@@ -49,7 +47,7 @@
 }
 
 .small_time {
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-weight: 300;
   padding-left: 10px;
 
@@ -59,7 +57,7 @@
 
 .message_comment {
   font-weight: 300;
-  font-size: 0.8em;
+  font-size: 0.9em;
   background: rgb(255, 0, 0, 0.1);
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -77,16 +75,16 @@
 }
 
 .comment_username {
-  color: grey;
+  color: rgb(85, 85, 85, 0.8);
   font-size: 1.1em;
 }
 
 .comment_date {
-  color: grey;
+  color: rgb(85, 85, 85, 0.8);
   border-bottom: 1px solid grey;
   width: 150px;
   margin-bottom: 5px !important;
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
 
 .comment_content {
@@ -144,7 +142,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: white
+  color: rgb(0, 0, 0, 0.8);
 }
 
 .mess_button:hover {

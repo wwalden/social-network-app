@@ -12,7 +12,7 @@ class Clock extends React.Component {
 
     return (
       <div>
-        <p>Bienvenue sur <span className="styled_font">  in'Touch  </span> by Groupomania!</p>
+        <h1>Bienvenue sur <span className="styled_font">  in'Touch  </span> by Groupomania!</h1>
         <p>Nous sommes <span className="colored_font">{this.state.date.toLocaleDateString('fr-FR', dayDisplay)}</span>, il est {this.state.date.toLocaleTimeString('fr-FR', timeDisplay)}</p>
       </div>
     );

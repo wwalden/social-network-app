@@ -85,9 +85,9 @@ const Message = () => {
 
   const checkAdminStatus = (item) => {
     if (UserIsAdmin === "Admin") {
-      return <button onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+      return <button aria-label="Delete-Message" title="Delete-Message" onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     } else {
-      return Number(checkUser()) === item.userId && <button onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+      return Number(checkUser()) === item.userId && <button aria-label="Delete-Message" title="Delete-Message" onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     }
 
   }
@@ -127,16 +127,18 @@ const Message = () => {
   } else {
     return (
       <div id="mess_container">
-              <div className="post_messages">
-        <div>
-          <input className="text_box" type='text' value={inputValue} name='message' placeholder='ici votre message...' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
+        <div className="post_messages">
+          <div>
+            <input className="text_box" type='text' id='postmess' value={inputValue} name='message' placeholder='ici votre message...' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
+          </div>
+          <div className="button_space">
+            <label for='postmess'>
+            <button className="mess_button" onClick={Posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
+            </label>
+          </div>
         </div>
-        <div className="button_space">
-          <button className="mess_button" onClick={Posting}>Envoyer... <i className="fas fa-paper-plane"></i></button>
-        </div>
-      </div>
         {items.map(item => (
-          <div className="messages" key={item.id}>
+          <article className="messages" key={item.id}>
             <div className="messages_top">
               <div className="messages_top_user">
                 <div>
@@ -161,7 +163,7 @@ const Message = () => {
             </div> }
 
             <Comment messageid={item.id} userid={item.userId} messagecontent={item.content} />
-          </div>
+          </article>
         ))}
       </div>
     );

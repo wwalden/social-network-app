@@ -2,6 +2,14 @@
   width: 300px;
 }
 
+h1 {
+  font-size: 1em;
+  font-weight: 400;
+  margin: 5px 0px 0px 0px;
+  padding: 0px;
+}
+
+
 .groupo_banner {
   color: black;
   text-align: right;
@@ -16,7 +24,7 @@
   bottom: 70px;
   margin-left: 100px;
   background:#fdca77;
-  width: 250px;
+  width: 290px;
   height: 45px;
   border-radius: 15px;
   padding-top: 12px;
@@ -31,11 +39,11 @@
   margin-left: 100px;
   padding-left: 10px;
   background:#fdca77;
-  width: 240px;
+  width: 280px;
   height: 18px;
   border-radius: 15px;
-  font-size: 0.8em;
-  color: white;
+  font-size: 0.9em;
+  color: rgb(0, 0, 0, 0.6);
   box-shadow: 2px 3px 5px #cccccc; 
 }
 
@@ -71,11 +79,11 @@ font-family: 'Comforter', cursive;
 font-weight: bold;
 font-style: italic;
 font-size: 48px;
-color: #fdca77;
+color: #b87f24;
 }
 
 .colored_font {
-  color: #fdca77;
+  color: #92651c;
 }
  
 #transition {

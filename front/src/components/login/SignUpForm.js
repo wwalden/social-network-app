@@ -67,7 +67,7 @@ const SignUpForm = () => {
 
   return (
     <div className="signup_page">
-      <h1>Créer un compte</h1>
+      <h2>Créer un compte</h2>
       <div className="signup_form">
         <div className="flex_start">
           <p>Nom d'utilisateur:</p>

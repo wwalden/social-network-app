@@ -1,4 +1,4 @@
-h1 {
+h2 {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
@@ -38,7 +38,7 @@ h1 {
   }
   .login_form > p {
     margin: 20px 0px;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .login_form > button {
 flex-grow: 3

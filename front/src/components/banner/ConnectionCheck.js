@@ -1,8 +1,7 @@
 import React from 'react';
 import GetUser from '../profile/GetUser';
 
-const ConnectionCheck = (props) => {
-  const name = props.name
+const ConnectionCheck = () => {
   return (
     <div className="groupo_check">
       <GetUser fullData="Small"/>

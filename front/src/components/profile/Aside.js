@@ -10,7 +10,7 @@ const Aside = (props) => {
 
   if (!fullData) {
     return (
-      <div className={className}>
+      <aside className={className}>
         <h2>mon Profil</h2>
         <form action="http://localhost:3000/profile">
           <input className="form_tool" type="submit" value="Modifier" />
@@ -19,7 +19,7 @@ const Aside = (props) => {
           <img className="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
           <GetUser fullData= "Full"/>
         </div>
-      </div>
+      </aside>
     )
   } else {
     return (

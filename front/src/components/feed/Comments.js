@@ -62,9 +62,9 @@ const Comment = (props) => {
   let UserIsAdmin = (isAdminData === "Admin" ? "Admin" : "Standard");
   const checkAdminStatus = (item) => {
     if (UserIsAdmin === "Admin") {
-      return <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+      return <button aria-label="Delete-Comment" title="Delete-Comment" onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     } else {
-      return Number(checkUser()) === item.UserId && <button onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
+      return Number(checkUser()) === item.UserId && <button aria-label="Delete-Comment" title="Delete-Comment" onClick={() => deleteComment(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     }
   }
 
@@ -96,8 +96,10 @@ const Comment = (props) => {
     return (
       <div>
         <div className="post_comment">
-            <input className="comment_box" type='text' value={inputValue} name='message' placeholder='ajoutez un commentaire!' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
-            <button onClick={posting}><i className="fas fa-comments"></i></button>
+            <input className="comment_box" type='text' id={"postcomment" + messageid} value={inputValue} name='message' placeholder='ajoutez un commentaire!' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
+            <label for={"postcomment" + messageid}>
+              <button aria-label="Post-Comment" title="Post-Comment" onClick={posting}><i className="fas fa-comments"></i>commentez!</button>
+            </label>
         </div>
         <div className="message_comment">
           {items.map(item => (
