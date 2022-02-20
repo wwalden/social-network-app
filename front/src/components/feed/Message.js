@@ -165,7 +165,7 @@ const Message = () => {
               <button title="copiez le texte et partagez-le!" onClick={() => {shareContent(item.content)}}><i className="fas fa-share"></i></button>
             </div> }
 
-            <Comment messageid={item.id} userid={item.userId} messagecontent={item.content} />
+            <Comment messageid={item.id} />
           </article>
         ))}
       </div>

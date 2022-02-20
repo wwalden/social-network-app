@@ -1,7 +1,7 @@
 import '../styles/Profile.css';
 import React, {useState} from 'react';
 import Banner from '../components/banner/Banner'
-import Aside from '../components/profile/Aside'
+import GetUser from '../components/profile/GetUser';
 import axios from 'axios';
 import {checkUser} from '../utils/checkUser'
 import Cookies from 'js-cookie';
@@ -51,7 +51,7 @@ const Profile = () => {
             {!pageType &&
               <div className="flex_center_aligned">
                 <img className="prof_pic" src="https://picsum.photos/300/200/?random" alt="a random landscape" />
-                <Aside fullData={true} />
+                <GetUser fullData= "Full"/>
               </div>
             }
           </div>
