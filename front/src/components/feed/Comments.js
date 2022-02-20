@@ -35,21 +35,24 @@ const Comment = (props) => {
   }
 
   const posting = () => {
-    axios.post(`http://localhost:4200/api/mess/${messageid}/comment`, {
-      content: postMess,
-    }, {
-      headers: {
-        "x-access-token": `${jwtcookie}`
-      }
-    }).then((response) => { 
-      if (response.data.Comment) {
-        setCommIsPosted(response.data.Comment)
-        setInputValue("")
-        setInputValue()
-      }
-    }).catch((err) => {
-      setCommIsPosted("")
-    })
+    if (postMess !== "") {
+      axios.post(`http://localhost:4200/api/mess/${messageid}/comment`, {
+        content: postMess,
+      }, {
+        headers: {
+          "x-access-token": `${jwtcookie}`
+        }
+      }).then((response) => { 
+        if (response.data.Comment) {
+          setCommIsPosted(response.data.Comment)
+          setInputValue("")
+          setInputValue()
+          setPostMess('')
+        }
+      }).catch((err) => {
+        setCommIsPosted("")
+      })
+    }
   }
 
   const handleKeyDown = (event) => {

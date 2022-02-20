@@ -35,17 +35,20 @@ const Message = () => {
   const [inputValue, setInputValue] = useState();
 
   const Posting = async () => {
-    const response = await axios.post("http://localhost:4200/api/mess/", {
-      content: postMess,
-    }, {
-      headers: {
-        "x-access-token": `${jwtcookie}`
+    if (postMess !== "") {
+      const response = await axios.post("http://localhost:4200/api/mess/", {
+        content: postMess,
+      }, {
+        headers: {
+          "x-access-token": `${jwtcookie}`
+        }
+      })
+      if (response) {
+        console.log(response.data)
+        setMessIsPosted(response.data.Message)
+        setInputValue('')
+        setPostMess('')
       }
-    })
-    if (response) {
-      setMessIsPosted(response.data.Message)
-      setInputValue("")
-      setInputValue()
     }
   }
 
