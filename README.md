@@ -1,7 +1,7 @@
 
 # _in'Touch_ by Groupomania
 
-# Description (french language)
+# Description
   Groupomania est mon projet de fin d'études du parcours `Développeur Web` dispensé par `OpenClassrooms`.
   Il consiste à réaliser un réseau social d'entreprise, une plateforme permettant à différents utilisateurs d'échanger des informations.
   Le projet dans l'état actuel est encore un MVP, ses fonctionnalités sont semblables à celles de Reddit (partage d'articles et de commentaires). Il s'agit de mon premier projet React, il a été l'objet de diverses expérimentations, pas toujours les choix les plus efficaces, mais très formateur...
