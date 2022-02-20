@@ -13,7 +13,7 @@ const Comment = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const [trashStatus, setTrashStatus] = useState("");
+  const [trashStatus, setTrashStatus] = useState('');
   const [commIsPosted, setCommIsPosted] = useState('');
   const [inputValue, setInputValue] = useState();
   const [postMess, setPostMess] = useState('');
@@ -29,8 +29,6 @@ const Comment = (props) => {
     });
     if (response.status === 200) {
       setTrashStatus(commentid)
-    } else {
-      console.log(commentid)
     }
   }
 
@@ -45,12 +43,10 @@ const Comment = (props) => {
       }).then((response) => { 
         if (response.data.Comment) {
           setCommIsPosted(response.data.Comment)
-          setInputValue("")
+          setInputValue('')
           setInputValue()
           setPostMess('')
         }
-      }).catch((err) => {
-        setCommIsPosted("")
       })
     }
   }

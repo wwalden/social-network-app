@@ -110,7 +110,7 @@ exports.addComment = (req, res, next) => {
     .then((newComment) =>
       res.status(201).json({ Comment: newComment.id, content: newComment.content })
     )
-    .catch((error) => res.status(400).json({ error }));
+    .catch((error) => res.status(404).json({ error }));
 };
 
 exports.deleteComment = async (req, res, next) => {

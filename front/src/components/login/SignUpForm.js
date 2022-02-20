@@ -59,8 +59,6 @@ const SignUpForm = () => {
       } else {
         window.alert("erreur, veuillez réessayer");
       }
-    }).catch((err) => {
-      console.log(err.response.data)
     })
   }
 

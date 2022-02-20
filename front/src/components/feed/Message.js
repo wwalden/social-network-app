@@ -25,8 +25,6 @@ const Message = () => {
     });
     if (response.status === 200) {
       setTrashStatus(messid)
-    } else {
-      console.log(messid)
     }
   }
 
@@ -71,8 +69,6 @@ const Message = () => {
       
       if (response.status === 200) {
         setLikes(response.data.message)
-      } else {
-        console.log("error")
       }
   }
 
