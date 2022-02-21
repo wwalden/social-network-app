@@ -45,6 +45,7 @@ const Message = () => {
         console.log(response.data)
         setMessIsPosted(response.data.Message)
         setInputValue('')
+        setInputValue()
         setPostMess('')
       }
     }

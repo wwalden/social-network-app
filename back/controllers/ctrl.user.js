@@ -14,22 +14,22 @@ exports.signup = (req, res, next) => {
   let password = req.body.password;
 
   if (!email) {
-    return res.status(400).json({ 'error': 'missing email, please fill email' });
+    return res.status(401).json({ 'error': 'missing email, please fill email' });
   }
   if (!username) {
-    return res.status(400).json({ 'error': 'missing username, please fill username' });
+    return res.status(401).json({ 'error': 'missing username, please fill username' });
   }
   if (!password) {
-    return res.status(400).json({ 'error': 'missing password, please fill password' });
+    return res.status(401).json({ 'error': 'missing password, please fill password' });
   }
   if (username.length >= 17 || username.length <= 5) {
     return res.status(400).json({ 'error': 'wrong username (must be length 6 - 16)' });
   }
   if (!EMAIL_REGEX.test(email)) {
-    return res.status(400).json({ 'error': 'email is not valid' });
+    return res.status(401).json({ 'error': 'email is not valid' });
   }
   if (!PASSWORD_REGEX.test(password)) {
-    return res.status(400).json({ 'error': 'invalid password :  must contain at least 8 chars (uppercase AND lowercase), at least one number, at least one special char)' });
+    return res.status(401).json({ 'error': 'invalid password :  must contain at least 8 chars (uppercase AND lowercase), at least one number, at least one special char)' });
   }
   
   bcrypt
@@ -49,7 +49,12 @@ exports.signup = (req, res, next) => {
 };
 
 
+
 exports.login = (req, res, next) => {
+  let email = req.body.email;
+  if (!EMAIL_REGEX.test(email)) {
+    return res.status(401).json({ 'error': 'email is not valid' });
+  }
   User.findOne({ where: { email: req.body.email } })
     .then((user) => {
       if (!user) {

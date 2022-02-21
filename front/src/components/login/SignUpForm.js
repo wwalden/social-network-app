@@ -23,7 +23,7 @@ const SignUpForm = () => {
 
   
   if (usernameLog.length >= 17 || usernameLog.length <= 5) {
-    usernameErrorMessage = "! 6 à 16 caractères"
+    usernameErrorMessage = "doit faire 6 à 16 caractères"
   }
 
   if (!EMAIL_REGEX.test(emailLog)) {

@@ -28,7 +28,7 @@ const ProfileUpdate = () => {
 
   
   if ((usernameLog.length >= 17 || usernameLog.length <= 5) && usernameLog.length !== 0) {
-    usernameErrorMessage = "! 6 à 16 car."
+    usernameErrorMessage = "doit faire 6 à 16 car."
   }
 
   if (!EMAIL_REGEX.test(emailLog) && emailLog.length !== 0) {

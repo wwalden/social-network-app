@@ -153,11 +153,7 @@ exports.likeMess = async (req, res, next) => {
     if (!userAlreadyLiked) {
       await Message.increment(
         { likes: 1 },
-        {
-          where: {
-            id: req.params.messid,
-          },
-        }
+        { where: { id: req.params.messid,}, }
       );
       await Like.create({
         messid: req.params.messid,
@@ -166,19 +162,13 @@ exports.likeMess = async (req, res, next) => {
     } else {
       await Message.increment(
         { likes: -1 },
-        {
-          where: {
-            id: req.params.messid,
-          },
-        }
+        { where: { id: req.params.messid,}, }
       );
       await Like.destroy({
         where: { messid: req.params.messid, userid: res.locals.user },
       });
     }
-    res
-      .status(200)
-      .json({
+    res.status(200).json({
         message: res.locals.user + req.params.messid + userAlreadyLiked,
       });
   } catch {
