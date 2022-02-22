@@ -30,7 +30,6 @@ const Message = () => {
 
   const [postMess, setPostMess] = useState('');
   const [messIsPosted, setMessIsPosted] = useState('');
-  const [inputValue, setInputValue] = useState();
 
   const Posting = async () => {
     if (postMess !== "") {
@@ -42,10 +41,7 @@ const Message = () => {
         }
       })
       if (response) {
-        console.log(response.data)
         setMessIsPosted(response.data.Message)
-        setInputValue('')
-        setInputValue()
         setPostMess('')
       }
     }
@@ -89,14 +85,13 @@ const Message = () => {
     } else {
       return Number(checkUser()) === item.userId && <button aria-label="Delete-Message" title="Delete-Message" onClick={() => DeleteMess(item.id)} className="trash_button"><i className="fas fa-trash"></i></button>
     }
-
   }
 
   const shareContent = async (item) => {
     await navigator.clipboard.writeText(item);
     alert("message copié!")
-
   }
+
 
   useEffect (() => {
     const jwtcookie = Cookies.get('jwt');
@@ -129,7 +124,7 @@ const Message = () => {
       <div id="mess_container">
         <div className="post_messages">
           <div>
-            <input className="text_box" type='text' id='postmess' value={inputValue} name='message' placeholder='ici votre message...' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
+            <input className="text_box" type='text' id='postmess' value={postMess} name='message' placeholder='ici votre message...' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
           </div>
           <div className="button_space">
             <label htmlFor='postmess'>
@@ -143,7 +138,7 @@ const Message = () => {
               <div className="messages_top_user">
                 <div>
                 <p className="username"><i className="far fa-user-circle"></i>{item.User.username}</p>
-                <p className="username small_time">{dayjs(item.User.createdAt).locale("fr").fromNow()}</p>
+                <p className="username small_time">{dayjs(item.createdAt).locale("fr").fromNow()}</p>
                 </div>
                 {checkAdminStatus(item)}
               </div>

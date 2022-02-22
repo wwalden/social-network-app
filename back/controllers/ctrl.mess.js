@@ -7,7 +7,7 @@ User.hasMany(Message, { foreignKey: "userId" });
 Message.belongsTo(User);
 
 Message.hasMany(Comment, { foreignKey: "messageid" });
-Comment.belongsTo(Message, { onDelete: "cascade" });
+Comment.belongsTo(Message);
 
 User.hasMany(Comment, { foreignKey: "userId" });
 Comment.belongsTo(User);

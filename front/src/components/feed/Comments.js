@@ -15,7 +15,6 @@ const Comment = (props) => {
   const [items, setItems] = useState([]);
   const [trashStatus, setTrashStatus] = useState('');
   const [commIsPosted, setCommIsPosted] = useState('');
-  const [inputValue, setInputValue] = useState();
   const [postMess, setPostMess] = useState('');
 
   const jwtcookie = Cookies.get('jwt');
@@ -43,8 +42,6 @@ const Comment = (props) => {
       }).then((response) => { 
         if (response.data.Comment) {
           setCommIsPosted(response.data.Comment)
-          setInputValue('')
-          setInputValue()
           setPostMess('')
         }
       })
@@ -95,7 +92,7 @@ const Comment = (props) => {
     return (
       <div>
         <div className="post_comment">
-            <input className="comment_box" type='text' id={"postcomment" + messageid} value={inputValue} name='message' placeholder='ajoutez un commentaire!' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
+            <input className="comment_box" type='text' id={"postcomment" + messageid} value={postMess} name='message' placeholder='ajoutez un commentaire!' onKeyDown={handleKeyDown} onChange={(e) => {setPostMess(e.target.value)}}/>
             <label htmlFor={"postcomment" + messageid}>
               <button aria-label="Post-Comment" title="Post-Comment" onClick={posting}><i className="fas fa-comments"></i>commentez!</button>
             </label>
